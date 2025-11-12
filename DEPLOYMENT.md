@@ -1,100 +1,81 @@
-# Deploying to Vercel
+# Deploying to Vercel - UPDATED
 
-## Prerequisites
-- A Vercel account (sign up at https://vercel.com)
-- Vercel CLI installed (optional, for command-line deployment)
+## Quick Fix for 404 Error
 
-## Method 1: Deploy via Vercel Dashboard (Recommended)
+The 404 error happens because Vercel needs specific settings for this SPA. Follow these steps:
 
-1. **Push your code to GitHub** (already done ✅)
+### Step 1: Update Vercel Project Settings
 
-2. **Go to Vercel Dashboard**
-   - Visit https://vercel.com/dashboard
-   - Click "Add New..." → "Project"
+1. Go to your Vercel project dashboard
+2. Click on **Settings** → **General**
+3. Update the following:
 
-3. **Import your GitHub repository**
-   - Select "Import Git Repository"
-   - Choose your repository: `TIC-Global-Services/Autonomous`
-   - Click "Import"
+**Build & Development Settings:**
+- **Framework Preset**: `Vite`
+- **Build Command**: `npm run build:client`
+- **Output Directory**: `dist/spa`
+- **Install Command**: `npm install`
 
-4. **Configure the project**
-   - Framework Preset: `Vite`
-   - Root Directory: `./` (leave as default)
-   - Build Command: `npm run build`
-   - Output Directory: `dist/spa`
-   - Install Command: `npm install`
+### Step 2: Redeploy
 
-5. **Environment Variables** (if needed)
-   - Add any environment variables your app needs
-   - Click "Add" for each variable
+1. Go to **Deployments** tab
+2. Click the three dots (...) on the latest deployment
+3. Click **Redeploy**
 
-6. **Deploy**
-   - Click "Deploy"
-   - Wait for the build to complete (usually 2-3 minutes)
-   - Your site will be live at `https://your-project-name.vercel.app`
+OR
 
-## Method 2: Deploy via Vercel CLI
+1. Make any small change to your code
+2. Push to GitHub
+3. Vercel will auto-deploy
 
-1. **Install Vercel CLI**
-   ```bash
-   npm install -g vercel
-   ```
+## Alternative: Deploy via CLI
 
-2. **Login to Vercel**
-   ```bash
-   vercel login
-   ```
+```bash
+# Install Vercel CLI
+npm install -g vercel
 
-3. **Deploy from project root**
-   ```bash
-   vercel
-   ```
-   - Follow the prompts
-   - Confirm project settings
-   - Wait for deployment
+# Login
+vercel login
 
-4. **Deploy to production**
-   ```bash
-   vercel --prod
-   ```
+# Deploy with correct settings
+vercel --build-env VITE_BUILD=true
 
-## Post-Deployment
+# For production
+vercel --prod
+```
 
-### Custom Domain
-1. Go to your project settings in Vercel
-2. Navigate to "Domains"
-3. Add your custom domain
-4. Update your DNS records as instructed
+## Troubleshooting 404 Errors
 
-### Automatic Deployments
-- Every push to `main` branch will automatically deploy to production
-- Pull requests will create preview deployments
+If you still see 404:
 
-## Troubleshooting
+1. **Check Build Logs**
+   - Go to Deployments → Click on deployment → View Build Logs
+   - Look for errors during build
 
-### Build Fails
-- Check the build logs in Vercel dashboard
-- Ensure all dependencies are in `package.json`
-- Verify build command is correct
+2. **Verify Output Directory**
+   - After build, check if `dist/spa` folder exists
+   - It should contain `index.html` and assets
 
-### 404 Errors
-- Make sure `vercel.json` is configured correctly
-- Check that routes are properly set up
+3. **Check vercel.json**
+   - Make sure `vercel.json` has the rewrite rule (already added)
 
-### Environment Variables
-- Add them in Vercel dashboard under Settings → Environment Variables
-- Redeploy after adding variables
+4. **Clear Cache and Redeploy**
+   - Settings → General → scroll down
+   - Click "Clear Build Cache"
+   - Redeploy
 
-## Current Configuration
+## What's Configured
 
-The project is configured with:
-- Build command: `npm run build`
-- Output directory: `dist/spa`
-- Node version: Latest LTS
-- Framework: Vite + Express
+✅ `vercel.json` - Routes all requests to index.html (SPA mode)
+✅ Build command updated to `build:client` (client-only build)
+✅ Output directory set to `dist/spa`
 
-## Support
+## Expected Result
 
-For issues, check:
-- Vercel Documentation: https://vercel.com/docs
-- Vercel Support: https://vercel.com/support
+After correct configuration:
+- Homepage: `https://your-app.vercel.app/` ✅
+- Solutions: `https://your-app.vercel.app/solutions` ✅
+- What We Do: `https://your-app.vercel.app/whatwedo` ✅
+- Contact: `https://your-app.vercel.app/contact` ✅
+
+All routes should work without 404 errors!
