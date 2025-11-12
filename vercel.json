@@ -1,4 +1,7 @@
 {
+  "buildCommand": "npm run build:client",
+  "outputDirectory": "dist/spa",
+  "framework": "vite",
   "rewrites": [
     {
       "source": "/(.*)",
