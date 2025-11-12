@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState, MouseEvent } from "react";
 import PlusButton from "@/components/PlusButton";
+import SplineBackground from "@/components/SplineBackground";
 
 function CountUp({
   target,
@@ -182,7 +183,8 @@ export default function Index() {
   return (
     <Layout>
       {/* HERO */}
-      <section className="section pt-14 md:pt-24 pb-16 md:pb-28 relative overflow-hidden">
+      <section className="relative overflow-hidden" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
+        <SplineBackground />
         <div className="absolute inset-0 pointer-events-none -z-10">
           <div
             className="absolute -top-24 right-0 h-[320px] w-[720px] blur-3xl opacity-60"
@@ -192,18 +194,18 @@ export default function Index() {
             }}
           />
         </div>
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
+        <div className="section pt-14 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
           <div className="max-w-4xl">
-            <h1 className="mt-0 text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold leading-tight uppercase">
+            <h1 className="mt-0 text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
               <span className="block">INTELLIGENCE</span>
               <span className="block">
                 THAT MOVES THE <span className="text-primary">FUTURE</span>
               </span>
             </h1>
           </div>
-          <div className="flex-shrink-0 mt-4 md:mt-0">
+          {/* <div className="flex-shrink-0 mt-4 md:mt-0">
             <PlusButton to="/contact" />
-          </div>
+          </div> */}
         </div>
       </section>
 

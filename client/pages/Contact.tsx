@@ -1,5 +1,7 @@
 import Layout from "@/components/Layout";
 import { useRef, useState, MouseEvent } from "react";
+import SplineBackground from "@/components/SplineBackground";
+import PlusButton from "@/components/PlusButton";
 
 function MouseGradientCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -41,7 +43,8 @@ export default function Contact() {
   return (
     <Layout>
       {/* HERO */}
-      <section className="section pt-14 md:pt-24 pb-16 md:pb-28 relative overflow-hidden">
+      <section className="relative overflow-hidden" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
+        <SplineBackground />
         <div className="absolute inset-0 pointer-events-none -z-10">
           <div
             className="absolute -top-24 right-0 h-[320px] w-[720px] blur-3xl opacity-60"
@@ -51,16 +54,21 @@ export default function Contact() {
             }}
           />
         </div>
-        <div className="max-w-4xl">
-          <h1 className="mt-0 text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold leading-tight uppercase">
-            <span className="block">LET'S BUILD THE</span>
-            <span className="block">
-              FUTURE <span className="text-primary">TOGETHER</span>
-            </span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-sm md:text-base text-muted-foreground">
-            Ready to transform your business with AI? Get in touch with our team to discuss your project and explore how we can help you achieve your goals.
-          </p>
+        <div className="section pt-14 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
+          <div className="max-w-4xl">
+            <h1 className="mt-0 text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+              <span className="block">LET'S BUILD THE</span>
+              <span className="block">
+                FUTURE <span className="text-primary">TOGETHER</span>
+              </span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-base text-muted-foreground" style={{ fontFamily: 'Clash Display, sans-serif', fontWeight: 500 }}>
+              Ready to transform your business with AI? Get in touch with our team to discuss your project and explore how we can help you achieve your goals.
+            </p>
+          </div>
+          {/* <div className="flex-shrink-0 mt-4 md:mt-0">
+            <PlusButton to="/contact" />
+          </div> */}
         </div>
       </section>
       {/* INTRO */}

@@ -1,28 +1,37 @@
 import Layout from "@/components/Layout";
 import { Link } from "lucide-react";
+import SplineBackground from "@/components/SplineBackground";
+import PlusButton from "@/components/PlusButton";
 
 export default function Whatwedo() {
   return (
     <Layout>
        {/* HERO */}
-            <section className="section pt-14 md:pt-24 pb-16 md:pb-28 relative overflow-hidden">
+            <section className="relative overflow-hidden" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
+              <SplineBackground />
               <div className="absolute inset-0 pointer-events-none -z-10">
                 <div
-                  className="absolute -top-24 right-0 h-[320px] w-[720px] blur-3xl opacity-60"
+                  className="absolute -top-24 right-0 h-[320px] w-[720px] blur-3xl opacity-0"
                   style={{
                     background:
                       "radial-gradient(closest-side, hsl(var(--primary)/0.55), transparent)",
                   }}
                 />
               </div>
-              <div className="max-w-4xl">
-                <h1 className="mt-0 text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold leading-tight uppercase">
-                  <span className="block">EMPOWERING THE FUTURE</span>
-                  <span className="block">
-                    WITH INTELLIGENT<span className="text-primary"> SYSTEMS</span>
-                  </span>
-                </h1>
+              <div className="section pt-14 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
+                <div className="max-w-4xl">
+                  <h1 className="mt-0 text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                    <span className="block">EMPOWERING THE FUTURE</span>
+                    <span className="block">
+                      WITH INTELLIGENT<span className="text-primary"> SYSTEMS</span>
+                    </span>
+                  </h1>
+                </div>
+                {/* <div className="flex-shrink-0 mt-4 md:mt-0">
+                  <PlusButton to="/contact" />
+                </div> */}
               </div>
+            </section>
       {/* INTRO */}
       <section className="section py-16 md:py-20">
         <div className="relative bg-black border border-white/10 rounded-2xl p-12 md:p-16 lg:p-20">
@@ -369,9 +378,6 @@ export default function Whatwedo() {
               </div>
             </div>
           </section>
-
-    </section>
-    
     
     </Layout>
   );
