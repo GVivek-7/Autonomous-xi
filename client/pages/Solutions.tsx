@@ -1,7 +1,82 @@
 import Layout from "@/components/Layout";
-import PlusButton from "@/components/PlusButton";
-import { Link } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
+function AnimatedInfoCards({ items }: { items: Array<{ title: string; content: string }> }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  // Group items into pairs for two columns
+  const pairs = [];
+  for (let i = 0; i < items.length; i += 2) {
+    pairs.push([items[i], items[i + 1]].filter(Boolean));
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % pairs.length);
+        setIsAnimating(false);
+      }, 300);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [pairs.length]);
+
+  return (
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {pairs[currentIndex].map((item: { title: string; content: string }, index: number) => (
+          <div
+            key={`${currentIndex}-${index}`}
+            className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10"
+          >
+            {/* Static Title */}
+            <h4 className="text-2xl font-light text-primary mb-6">
+              {item.title}
+            </h4>
+            
+            {/* Animated Content */}
+            <div className="relative overflow-hidden min-h-[100px]">
+              <p
+                className={`text-base text-white/60 leading-relaxed transition-all duration-500 ${
+                  isAnimating 
+                    ? 'opacity-0 translate-y-4' 
+                    : 'opacity-100 translate-y-0'
+                }`}
+              >
+                {item.content}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      {/* Progress Indicators */}
+      <div className="flex justify-center gap-2 mt-6">
+        {pairs.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              setIsAnimating(true);
+              setTimeout(() => {
+                setCurrentIndex(index);
+                setIsAnimating(false);
+              }, 300);
+            }}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex
+                ? 'w-8 bg-primary'
+                : 'w-2 bg-white/20 hover:bg-white/40'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Solutions() {
   return (
@@ -104,15 +179,15 @@ export default function Solutions() {
 
       {/* SAIM.AI SHOWCASE */}
       <section className="section py-16">
-        <div className="relative bg-black border border-white/10 rounded-2xl overflow-hidden group">
+        <div className="relative bg-black border border-white/10 rounded-2xl overflow-hidden group cursor-pointer">
           {/* Animated glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
           
-          {/* Image with animation */}
+          {/* Image with zoom animation */}
           <img
             src="/saim-showcase.png"
             alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           />
         </div>
       </section>
@@ -210,15 +285,15 @@ export default function Solutions() {
 
       {/* GOGUARD.AI SHOWCASE */}
       <section className="section py-16">
-        <div className="relative bg-black border border-white/10 rounded-2xl overflow-hidden group">
+        <div className="relative bg-black border border-white/10 rounded-2xl overflow-hidden group cursor-pointer">
           {/* Animated glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
           
-          {/* Image with animation */}
+          {/* Image with zoom animation */}
           <img
             src="/goguard-showcase.png"
-            alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            alt="GoGuard.ai - AI Vision for Safety & Sports"
+            className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           />
         </div>
       </section>
@@ -314,15 +389,15 @@ export default function Solutions() {
 
       {/* RAQEEB.AI SHOWCASE */}
       <section className="section py-16">
-        <div className="relative bg-black border border-white/10 rounded-2xl overflow-hidden group">
+        <div className="relative bg-black border border-white/10 rounded-2xl overflow-hidden group cursor-pointer">
           {/* Animated glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
           
-          {/* Image with animation */}
+          {/* Image with zoom animation */}
           <img
             src="/raqeeb-showcase.png"
-            alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            alt="Raqeeb.ai - RegTech & Compliance Automation"
+            className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           />
         </div>
       </section>
@@ -398,17 +473,17 @@ export default function Solutions() {
         </div>
       </section>
 
-      {/* ADNOC.AI SHOWCASE */}
+      {/* SMART CITY VISION AI SHOWCASE */}
       <section className="section py-16">
-        <div className="relative bg-black border border-white/10 rounded-2xl overflow-hidden group">
+        <div className="relative bg-black border border-white/10 rounded-2xl overflow-hidden group cursor-pointer">
           {/* Animated glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
           
-          {/* Image with animation */}
+          {/* Image with zoom animation */}
           <img
             src="/smartcity-showcase.png"
-            alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            alt="Smart City Vision AI - DARBin Abu Dhabi"
+            className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           />
         </div>
       </section>
@@ -430,14 +505,12 @@ export default function Solutions() {
             </p>
 
             {/* PROJECT INTENT */}
-            <div className="mt-12 pt-8 border-t border-white/10">
-              <h4 className="text-2xl md:text-3xl font-light text-primary mb-6">
+            <div className="mt-8 bg-[#1A1A1A] border border-white/10 rounded-xl p-6">
+              <h4 className="text-xl md:text-2xl font-light text-primary mb-4">
                 PROJECT INTENT
               </h4>
-              <p className="text-base text-white/60 leading-relaxed">
-                Upgrade existing roadside camera systems to
-                AI-based vision sensors capable of real-time
-                analytics for traffic, safety, and urban planning.
+              <p className="text-sm md:text-base text-white/60 leading-relaxed">
+                Upgrade existing roadside camera systems to AI-based vision sensors capable of real-time analytics for traffic, safety, and urban planning.
               </p>
             </div>
           </div>
@@ -517,41 +590,39 @@ export default function Solutions() {
 
       {/* IMPACT & COMPLIANCE */}
       <section className="section py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Impact Card */}
-          <div className="bg-black border border-white/10 rounded-xl p-10">
-            <h4 className="text-2xl font-light text-primary mb-6">
-              IMPACT
-            </h4>
-            <p className="text-base text-white/60 leading-relaxed">
-              Transformed static CCTV units into smart vision nodes capable of detecting vehicles,
-              pedestrians, congestion, and incidents in real time.
-            </p>
-          </div>
-
-          {/* Compliance Card */}
-          <div className="bg-black border border-white/10 rounded-xl p-10">
-            <h4 className="text-2xl font-light text-primary mb-6">
-              DEPLOYMENT
-            </h4>
-            <p className="text-base text-white/60 leading-relaxed">
-              Rollout across multiple Abu Dhabi smart-mobility zones under Q-Mobility supervision.
-            </p>
-          </div>
-        </div>
+        <AnimatedInfoCards
+          items={[
+            {
+              title: "IMPACT",
+              content: "Transformed static CCTV units into smart vision nodes capable of detecting vehicles, pedestrians, congestion, and incidents in real time."
+            },
+            {
+              title: "DEPLOYMENT",
+              content: "Rollout across multiple Abu Dhabi smart-mobility zones under Q-Mobility supervision."
+            },
+            {
+              title: "IMPACT",
+              content: "Reduced data-processing latency by 60 % through on-edge inference."
+            },
+            {
+              title: "DEPLOYMENT",
+              content: "Fully aligned with the Abu Dhabi Digital Authority’s Smart City Standards."
+            }
+          ]}
+        />
       </section>
 
-      {/* ADNOC.AI SHOWCASE */}
+      {/* ADNOC PIPELINE INTEGRITY AI SHOWCASE */}
       <section className="section py-16">
-        <div className="relative bg-black border border-white/10 rounded-2xl overflow-hidden group">
+        <div className="relative bg-black border border-white/10 rounded-2xl overflow-hidden group cursor-pointer">
           {/* Animated glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
           
-          {/* Image with animation */}
+          {/* Image with zoom animation */}
           <img
             src="/adnoc-showcase.png"
-            alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            alt="ADNOC Pipeline Integrity AI"
+            className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           />
         </div>
       </section>
@@ -573,15 +644,12 @@ export default function Solutions() {
             </p>
 
             {/* PROJECT INTENT */}
-            <div className="mt-12 pt-8 border-t border-white/10">
-              <h4 className="text-2xl md:text-3xl font-light text-primary mb-6">
+            <div className="mt-8 bg-[#1A1A1A] border border-white/10 rounded-xl p-6">
+              <h4 className="text-xl md:text-2xl font-light text-primary mb-4">
                 PROJECT INTENT
               </h4>
-              <p className="text-base text-white/60 leading-relaxed">
-                To Automatically Analyze Pipeline-Thickness Data
-                Gathered From Ultrasonic And Magnetic Sensors,
-                And Help Inspectors Decide Whether To Repair,
-                Replace, Or Maintain Gas Pipelines.
+              <p className="text-sm md:text-base text-white/60 leading-relaxed">
+                To Automatically Analyze Pipeline-Thickness Data Gathered From Ultrasonic And Magnetic Sensors, And Help Inspectors Decide Whether To Repair, Replace, Or Maintain Gas Pipelines.
               </p>
             </div>
           </div>
@@ -661,33 +729,30 @@ export default function Solutions() {
 
       {/* IMPACT & COMPLIANCE */}
       <section className="section py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Impact Card */}
-          <div className="bg-black border border-white/10 rounded-xl p-10">
-            <h4 className="text-2xl font-light text-primary mb-6">
-              IMPACT
-            </h4>
-            <div className="flex items-baseline gap-2 mb-4">
-              <span className="text-6xl md:text-7xl font-light text-white">92%</span>
-            </div>
-            <p className="text-base text-white/60 leading-relaxed">
-              Improvement In Inspection
-              Accuracy Compared To Manual
-              Assessments.
-            </p>
-          </div>
-
-          {/* Compliance Card */}
-          <div className="bg-black border border-white/10 rounded-xl p-10">
-            <h4 className="text-2xl font-light text-primary mb-6">
-              COMPLIANCE
-            </h4>
-            <p className="text-base text-white/60 leading-relaxed">
-              Deployed On ADNOC's Secure On-Prem
-              Infrastructure With Full UAE Data Residency.
-            </p>
-          </div>
-        </div>
+        <AnimatedInfoCards
+          items={[
+            {
+              title: "IMPACT",
+              content: "92% improvement in inspection accuracy compared to manual assessments, significantly reducing human error and inspection time."
+            },
+            {
+              title: "COMPLIANCE",
+              content: "Deployed on ADNOC's secure on-prem infrastructure with full UAE data residency and compliance with international safety standards."
+            },
+            {
+              title: "IMPACT",
+              content: "Reduced unnecessary replacements by 25 %, saving cost and downtime."
+            },
+            {
+              title: "COMPLIANCE",
+              content: "Enabled real-time decision support for field engineers and maintenance planners."
+            },
+            {
+              title: "COMPLIANCE",
+              content: "Compliant with ISO 27001 and ADNOC’s operational safety framework."
+            }
+          ]}
+        />
       </section>
 
 

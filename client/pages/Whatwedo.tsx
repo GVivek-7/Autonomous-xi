@@ -106,131 +106,145 @@ export default function Whatwedo() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Card 1 - AI Strategy & Consulting */}
-          <div className="bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-colors group">
-            <div className="relative flex items-center justify-center mb-4 md:mb-6 overflow-hidden rounded-lg">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
-              <img
-                src="/www-1.png"
-                alt="AI Strategy & Consulting"
-                className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
-              />
+          <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="relative z-10">
+              <div className="flex items-center justify-center mb-4 md:mb-6">
+                <img
+                  src="/www-1.png"
+                  alt="AI Strategy & Consulting"
+                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <h3 className="text-xl font-light text-white mb-4 text-center">
+                AI STRATEGY & CONSULTING
+              </h3>
+              <p className="text-sm text-white/60 leading-relaxed text-center">
+                We Guide UAE Enterprises Through Readiness Assessments, ROI Planning, And Responsible AI Roadmaps That Align With National Innovation Frameworks.
+              </p>
             </div>
-            <h3 className="text-xl font-light text-white mb-4 text-center">
-              AI STRATEGY & CONSULTING
-            </h3>
-            <p className="text-sm text-white/60 leading-relaxed text-center">
-              We Guide UAE Enterprises Through Readiness Assessments, ROI Planning, And Responsible AI Roadmaps That Align With National Innovation Frameworks.
-            </p>
           </div>
 
           {/* Card 2 - Custom AI Development */}
-          <div className="bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-colors group">
-            <div className="relative flex items-center justify-center mb-4 md:mb-6 overflow-hidden rounded-lg">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
-              <img
-                src="/www-2.png"
-                alt="Custom AI Development"
-                className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
-              />
+          <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="relative z-10">
+              <div className="flex items-center justify-center mb-4 md:mb-6">
+                <img
+                  src="/www-2.png"
+                  alt="Custom AI Development"
+                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <h3 className="text-xl font-light text-white mb-4 text-center">
+                CUSTOM AI DEVELOPMENT
+              </h3>
+              <p className="text-sm text-white/60 leading-relaxed text-center">
+                From Multi-Agent Systems To Computer Vision And NLP Solutions, We Build Tailored AI Applications That Integrate Seamlessly Into Your Operations.
+              </p>
             </div>
-            <h3 className="text-xl font-light text-white mb-4 text-center">
-              CUSTOM AI DEVELOPMENT
-            </h3>
-            <p className="text-sm text-white/60 leading-relaxed text-center">
-              From Multi-Agent Systems To Computer Vision And NLP Solutions, We Build Tailored AI Applications That Integrate Seamlessly Into Your Operations.
-            </p>
           </div>
 
           {/* Card 3 - Natural Language AI */}
-          <div className="bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-colors group">
-            <div className="relative flex items-center justify-center mb-4 md:mb-6 overflow-hidden rounded-lg">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
-              <img
-                src="/www-3.png"
-                alt="Natural Language AI"
-                className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
-              />
+          <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="relative z-10">
+              <div className="flex items-center justify-center mb-4 md:mb-6">
+                <img
+                  src="/www-3.png"
+                  alt="Natural Language AI"
+                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <h3 className="text-xl font-light text-white mb-4 text-center">
+                NATURAL LANGUAGE AND CONVERSATIONAL AI
+              </h3>
+              <p className="text-sm text-white/60 leading-relaxed text-center">
+                Multilingual chatbots, voicebots, and document-intelligence systems that communicate fluently in English and Arabic.
+              </p>
             </div>
-            <h3 className="text-xl font-light text-white mb-4 text-center">
-              NATURAL LANGUAGE AND CONVERSATIONAL AI
-            </h3>
-            <p className="text-sm text-white/60 leading-relaxed text-center">
-              Multilingual chatbots, voicebots, and document-intelligence systems that communicate fluently in English and Arabic.
-            </p>
           </div>
 
           {/* Card 4 - Computer Vision */}
-          <div className="bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-colors group">
-            <div className="relative flex items-center justify-center mb-4 md:mb-6 overflow-hidden rounded-lg">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
-              <img
-                src="/www-4.png"
-                alt="Computer Vision Solutions"
-                className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
-              />
+          <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="relative z-10">
+              <div className="flex items-center justify-center mb-4 md:mb-6">
+                <img
+                  src="/www-4.png"
+                  alt="Computer Vision Solutions"
+                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <h3 className="text-xl font-light text-white mb-4 text-center">
+                COMPUTER VISION SOLUTIONS
+              </h3>
+              <p className="text-sm text-white/60 leading-relaxed text-center">
+                AI-powered image recognition, OCR, and video analytics for healthcare, logistics, surveillance, and sports performance.
+              </p>
             </div>
-            <h3 className="text-xl font-light text-white mb-4 text-center">
-              COMPUTER VISION SOLUTIONS
-            </h3>
-            <p className="text-sm text-white/60 leading-relaxed text-center">
-              AI-powered image recognition, OCR, and video analytics for healthcare, logistics, surveillance, and sports performance.
-            </p>
           </div>
 
           {/* Card 5 - AI Infrastructure */}
-          <div className="bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-colors group">
-            <div className="relative flex items-center justify-center mb-4 md:mb-6 overflow-hidden rounded-lg">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
-              <img
-                src="/www-5.png"
-                alt="AI Infrastructure"
-                className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
-              />
+          <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="relative z-10">
+              <div className="flex items-center justify-center mb-4 md:mb-6">
+                <img
+                  src="/www-5.png"
+                  alt="AI Infrastructure"
+                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <h3 className="text-xl font-light text-white mb-4 text-center">
+                AI INFRASTRUCTURE & DATA ENGINEERING
+              </h3>
+              <p className="text-sm text-white/60 leading-relaxed text-center">
+                Secure cloud or on-prem deployments, scalable data pipelines, and continuous MLOps monitoring for reliable, compliant AI systems.
+              </p>
             </div>
-            <h3 className="text-xl font-light text-white mb-4 text-center">
-              AI INFRASTRUCTURE & DATA ENGINEERING
-            </h3>
-            <p className="text-sm text-white/60 leading-relaxed text-center">
-              Secure cloud or on-prem deployments, scalable data pipelines, and continuous MLOps monitoring for reliable, compliant AI systems.
-            </p>
           </div>
 
           {/* Card 6 - Business Process Automation */}
-          <div className="bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-colors group">
-            <div className="relative flex items-center justify-center mb-4 md:mb-6 overflow-hidden rounded-lg">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
-              <img
-                src="/www-6.png"
-                alt="Business Process Automation"
-                className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
-              />
+          <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="relative z-10">
+              <div className="flex items-center justify-center mb-4 md:mb-6">
+                <img
+                  src="/www-6.png"
+                  alt="Business Process Automation"
+                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <h3 className="text-xl font-light text-white mb-4 text-center">
+                BUSINESS PROCESS AUTOMATION
+              </h3>
+              <p className="text-sm text-white/60 leading-relaxed text-center">
+                 Smart AI tools for HR, marketing, finance, and supply chain — reducing manual effort, minimizing errors, and boosting ROI..
+              </p>
             </div>
-            <h3 className="text-xl font-light text-white mb-4 text-center">
-              BUSINESS PROCESS AUTOMATION
-            </h3>
-            <p className="text-sm text-white/60 leading-relaxed text-center">
-               Smart AI tools for HR, marketing, finance, and supply chain — reducing manual effort, minimizing errors, and boosting ROI..
-            </p>
           </div>
         </div>
 
         {/* Centered Card */}
-        <div className="mt-8 flex justify-center">
-          <div className="bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-colors max-w-md w-full group">
-            <div className="relative flex items-center justify-center mb-4 md:mb-6 overflow-hidden rounded-lg">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
-              <img
-                src="/www-7.png"
-                alt="Emerging Innovations"
-                className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
-              />
+        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden sm:col-start-2 lg:col-start-2">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="relative z-10">
+              <div className="flex items-center justify-center mb-4 md:mb-6">
+                <img
+                  src="/www-7.png"
+                  alt="Emerging Innovations"
+                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <h3 className="text-xl font-light text-white mb-4 text-center">
+                EMERGING INNOVATIONS
+              </h3>
+              <p className="text-sm text-white/60 leading-relaxed text-center">
+                Exploring next-gen domains such as generative 3D design, AI-driven cybersecurity, sustainability analytics, and metaverse integration.
+              </p>
             </div>
-            <h3 className="text-xl font-light text-white mb-4 text-center">
-              EMERGING INNOVATIONS
-            </h3>
-            <p className="text-sm text-white/60 leading-relaxed text-center">
-              Exploring next-gen domains such as generative 3D design, AI-driven cybersecurity, sustainability analytics, and metaverse integration.
-            </p>
           </div>
         </div>
       </section>
@@ -300,7 +314,7 @@ export default function Whatwedo() {
             </div>
 
             {/* Bottom Center - Monitoring & Scaling */}
-            <div className="absolute bottom-[10%] md:bottom-[15%] left-1/2 -translate-x-1/2 max-w-[240px] md:max-w-[320px] text-center animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+            <div className="absolute bottom-0 left -0.34 -translate-x-1/2 max-w-[280px] md:max-w-[360px] text-center animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
               <h3 className="text-sm md:text-base lg:text-xl font-light text-white mb-2 md:mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
                 MONITORING & SCALING
               </h3>

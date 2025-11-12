@@ -1,4 +1,41 @@
 import Layout from "@/components/Layout";
+import { useRef, useState, MouseEvent } from "react";
+
+function MouseGradientCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      className={`relative overflow-hidden ${className}`}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+    >
+      {isHovering && (
+        <div
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"
+          style={{
+            opacity: isHovering ? 1 : 0,
+            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 107, 0, 0.15), transparent 40%)`,
+          }}
+        />
+      )}
+      <div className="relative z-10">{children}</div>
+    </div>
+  );
+}
 
 export default function Contact() {
   return (
@@ -109,35 +146,35 @@ export default function Contact() {
           </div>
 
           {/* Right side - Card */}
-          <div className="bg-black border border-white/10 rounded-xl p-6 md:p-8 text-center">
+          <MouseGradientCard className="bg-black border border-white/10 rounded-xl p-6 md:p-8 text-center">
             <p className="text-sm text-white/70 leading-relaxed">
               Discuss Your AI Strategy, Project Ideas, Or Technical Challenges.
             </p>
-          </div>
+          </MouseGradientCard>
         </div>
 
         {/* Three Cards Below */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Card 1 */}
-          <div className="bg-black border border-white/10 rounded-xl p-6 md:p-8 text-center">
+          <MouseGradientCard className="bg-black border border-white/10 rounded-xl p-6 md:p-8 text-center">
             <p className="text-sm text-white/70 leading-relaxed">
               Partner With A UAE-Based Team Trusted By Enterprises, Startups, And Government Entities.
             </p>
-          </div>
+          </MouseGradientCard>
 
           {/* Card 2 */}
-          <div className="bg-black border border-white/10 rounded-xl p-6 md:p-8 text-center">
+          <MouseGradientCard className="bg-black border border-white/10 rounded-xl p-6 md:p-8 text-center">
             <p className="text-sm text-white/70 leading-relaxed">
               Get Expert Insights Into Machine Learning, Computer Vision, NLP, And Automation.
             </p>
-          </div>
+          </MouseGradientCard>
 
           {/* Card 3 */}
-          <div className="bg-black border border-white/10 rounded-xl p-6 md:p-8 text-center sm:col-span-2 lg:col-span-1">
+          <MouseGradientCard className="bg-black border border-white/10 rounded-xl p-6 md:p-8 text-center sm:col-span-2 lg:col-span-1">
             <p className="text-sm text-white/70 leading-relaxed">
               Request A Consultation, Demo, Or Proposal Tailored To Your Industry.
             </p>
-          </div>
+          </MouseGradientCard>
         </div>
       </section>
 
