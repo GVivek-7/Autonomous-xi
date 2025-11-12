@@ -1,6 +1,42 @@
 import Layout from "@/components/Layout";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, MouseEvent } from "react";
 import { Link } from "react-router-dom";
+
+function MouseGradientCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      className={`relative overflow-hidden ${className}`}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+    >
+      {isHovering && (
+        <div
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"
+          style={{
+            opacity: isHovering ? 1 : 0,
+            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 107, 0, 0.15), transparent 40%)`,
+          }}
+        />
+      )}
+      {children}
+    </div>
+  );
+}
 
 function AnimatedInfoCards({ items }: { items: Array<{ title: string; content: string }> }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -187,7 +223,7 @@ export default function Solutions() {
           <img
             src="/saim-showcase.png"
             alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-110"
           />
         </div>
       </section>
@@ -213,12 +249,12 @@ export default function Solutions() {
           {/* Right side - Features */}
           <div className="space-y-4 md:space-y-5">
             {/* Feature 1 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <img
             src="/ow-1.png"
             alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            className="w-full h-full object-contain"
                 />
               </div>
               <div>
@@ -227,15 +263,15 @@ export default function Solutions() {
                   summarization, and insight generation.
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
 
             {/* Feature 2 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <img
             src="/ow-2.png"
             alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            className="w-full h-full object-contain"
                 />
               </div>
               <div>
@@ -244,15 +280,15 @@ export default function Solutions() {
                   And Policy-Based Approval Flows.
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
 
             {/* Feature 3 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <img
             src="/ow-3.png"
             alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            className="w-full h-full object-contain"
                 />
               </div>
               <div>
@@ -261,15 +297,15 @@ export default function Solutions() {
                   Documents For Unified Knowledge Access.
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
 
             {/* Feature 4 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <img
             src="/ow-4.png"
             alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            className="w-full h-full object-contain"
                 />
               </div>
               <div>
@@ -278,7 +314,7 @@ export default function Solutions() {
                   70% And Boosted Decision Speed By 30%.
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
           </div>
         </div>
       </section>
@@ -293,7 +329,7 @@ export default function Solutions() {
           <img
             src="/goguard-showcase.png"
             alt="GoGuard.ai - AI Vision for Safety & Sports"
-            className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-110"
           />
         </div>
       </section>
@@ -318,12 +354,12 @@ export default function Solutions() {
           {/* Right side - Features */}
           <div className="space-y-5">
             {/* Feature 1 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <img
             src="/ow-5.png"
             alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            className="w-full h-full object-contain"
                 />
               </div>
               <div>
@@ -332,15 +368,15 @@ export default function Solutions() {
                   and Pose Tracking
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
 
             {/* Feature 2 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <img
             src="/ow-6.png"
             alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            className="w-full h-full object-contain"
                 />
               </div>
               <div>
@@ -349,15 +385,15 @@ export default function Solutions() {
                   Injury Alerts and Near-Miss Detection
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
 
             {/* Feature 3 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <img
             src="/ow-7.png"
             alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            className="w-full h-full object-contain"
                 />
               </div>
               <div>
@@ -365,15 +401,15 @@ export default function Solutions() {
                   Used in Industrial Safety, Construction, and Sports Analytics
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
 
             {/* Feature 4 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <img
             src="/ow-8.png"
             alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            className="w-full h-full object-contain"
                 />
               </div>
               <div>
@@ -382,7 +418,7 @@ export default function Solutions() {
                   and boosted decision speed by 30 %.
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
           </div>
         </div>
       </section>
@@ -397,7 +433,7 @@ export default function Solutions() {
           <img
             src="/raqeeb-showcase.png"
             alt="Raqeeb.ai - RegTech & Compliance Automation"
-            className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-110"
           />
         </div>
       </section>
@@ -422,12 +458,12 @@ export default function Solutions() {
           {/* Right side - Features */}
           <div className="space-y-5">
             {/* Feature 1 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <img
             src="/ow-9.png"
             alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            className="w-full h-full object-contain"
                 />
               </div>
               <div>
@@ -435,15 +471,15 @@ export default function Solutions() {
                   Graph-based Anomaly Detection and Entity Resolution
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
 
             {/* Feature 2 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <img
             src="/ow-10.png"
             alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            className="w-full h-full object-contain"
                 />
               </div>
               <div>
@@ -451,15 +487,15 @@ export default function Solutions() {
                   AI-Driven Policy Summarization and Compliance Alerts
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
 
             {/* Feature 3 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
                 <img
             src="/ow-11.png"
             alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
+            className="w-full h-full object-contain"
                 />
               </div>
               <div>
@@ -468,7 +504,7 @@ export default function Solutions() {
                   shortens investigation time by 35 %.
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
           </div>
         </div>
       </section>
@@ -483,111 +519,96 @@ export default function Solutions() {
           <img
             src="/smartcity-showcase.png"
             alt="Smart City Vision AI - DARBin Abu Dhabi"
-            className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-110"
           />
         </div>
       </section>
       
       {/* SMARTCITY.AI FEATURES */}
       <section className="section py-16">
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Left side - Title and Description */}
-          <div className="space-y-6">
+        {/* Features Grid - Top Row */}
+        <div className="grid md:grid-cols-2 gap-4 mb-3">
+          {/* Left Column - Title and Description */}
+          <div>
             <h2 className="text-4xl md:text-5xl font-light">
               <span className="text-primary">SMART CITY VISION AI</span>
             </h2>
-            <h3 className="text-2xl md:text-3xl font-light text-white">
+            <h3 className="text-2xl md:text-3xl font-light text-white mt-1">
               DARB IN ABU DHABI (WITH Q_MOBILITY)
             </h3>
-            <p className="text-base text-white/70 leading-relaxed max-w-xl">
-              A collaborative initiative between Autonomous AI and Q-Mobility to transform 
-              Abu Dhabi’s smart-mobility infrastructure under the DARBin program.
+            <p className="text-base text-white/70 leading-relaxed mt-2">
+              A collaborative initiative between Autonomous AI and Q-Mobility to transform Abu Dhabi's smart-mobility infrastructure under the DARBin program.
             </p>
-
-            {/* PROJECT INTENT */}
-            <div className="mt-8 bg-[#1A1A1A] border border-white/10 rounded-xl p-6">
-              <h4 className="text-xl md:text-2xl font-light text-primary mb-4">
-                PROJECT INTENT
-              </h4>
-              <p className="text-sm md:text-base text-white/60 leading-relaxed">
-                Upgrade existing roadside camera systems to AI-based vision sensors capable of real-time analytics for traffic, safety, and urban planning.
-              </p>
-            </div>
           </div>
 
-          {/* Right side - Features */}
-          <div className="space-y-5">
+          {/* Right Column - Features 1 & 2 stacked */}
+          <div className="space-y-3">
             {/* Feature 1 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
-                <img
-            src="/ow-12.png"
-            alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
-                />
+                <img src="/ow-12.png" alt="Firmware Engineering" className="w-full h-full object-contain" />
               </div>
               <div>
                 <p className="text-sm text-white/80 leading-relaxed">
-                  Firmware re-engineering of legacy
-                  camera systems to integrate AI vision.
+                  Firmware re-engineering of legacy camera systems to integrate AI vision.
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
 
             {/* Feature 2 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
-                <img
-            src="/ow-13.png"
-            alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
-                />
+                <img src="/ow-13.png" alt="RT Detector" className="w-full h-full object-contain" />
               </div>
               <div>
                 <p className="text-sm text-white/80 leading-relaxed">
-                  Imported and customized the Python package
-                  RT Dter (Real-Time Detector) for edge inference.
+                  Imported and customized the Python package RT Dter (Real-Time Detector) for edge inference.
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
+          </div>
+        </div>
 
+        {/* Features Grid - Bottom Row */}
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Left Column - PROJECT INTENT */}
+          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex flex-col">
+            <h4 className="text-xl md:text-2xl font-light text-primary mb-3">
+              PROJECT INTENT
+            </h4>
+            <p className="text-sm md:text-base text-white/60 leading-relaxed">
+              Upgrade existing roadside camera systems to AI-based vision sensors capable of real-time analytics for traffic, safety, and urban planning.
+            </p>
+          </MouseGradientCard>
+
+          {/* Right Column - Features 3 & 4 stacked */}
+          <div className="space-y-3">
             {/* Feature 3 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
-                <img
-            src="/ow-14.png"
-            alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
-                />
+                <img src="/ow-14.png" alt="Adaptive Firmware" className="w-full h-full object-contain" />
               </div>
               <div>
                 <p className="text-sm text-white/80 leading-relaxed">
-                  Developed adaptive firmware modules enabling in-camera object detection and event
-                  classification.
+                  Developed adaptive firmware modules enabling in-camera object detection and event classification.
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
 
             {/* Feature 4 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
-                <img
-            src="/ow-15.png"
-            alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
-                />
+                <img src="/ow-15.png" alt="DARBin Integration" className="w-full h-full object-contain" />
               </div>
               <div>
                 <p className="text-sm text-white/80 leading-relaxed">
-                  Integrated with DARBin’s data platform for cross-road analytics 
-                  and live traffic feeds.
+                  Integrated with DARBin's data platform for cross-road analytics and live traffic feeds.
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
           </div>
         </div>
       </section>
-
       {/* IMPACT & COMPLIANCE */}
       <section className="section py-16">
         <AnimatedInfoCards
@@ -622,107 +643,93 @@ export default function Solutions() {
           <img
             src="/adnoc-showcase.png"
             alt="ADNOC Pipeline Integrity AI"
-            className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-110"
           />
         </div>
       </section>
 
       {/* ADNOC.AI FEATURES */}
       <section className="section py-16">
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Left side - Title and Description */}
-          <div className="space-y-6">
+        {/* Features Grid - Top Row */}
+        <div className="grid md:grid-cols-2 gap-4 mb-3">
+          {/* Left Column - Title and Description */}
+          <div>
             <h2 className="text-4xl md:text-5xl font-light">
               <span className="text-primary">ADNOC PIPELINE INTEGRITY AI</span>
             </h2>
-            <h3 className="text-2xl md:text-3xl font-light text-white">
+            <h3 className="text-2xl md:text-3xl font-light text-white mt-1">
               GAS PIPELINE THICKNESS ANALYSIS
             </h3>
-            <p className="text-base text-white/70 leading-relaxed max-w-xl">
-              A specialized AI system that assists ADNOC gas-line inspectors in 
-              assessing the health and remaining life of critical pipeline infrastructure.
+            <p className="text-base text-white/70 leading-relaxed mt-2">
+              A specialized AI system that assists ADNOC gas-line inspectors in assessing the health and remaining life of critical pipeline infrastructure.
             </p>
-
-            {/* PROJECT INTENT */}
-            <div className="mt-8 bg-[#1A1A1A] border border-white/10 rounded-xl p-6">
-              <h4 className="text-xl md:text-2xl font-light text-primary mb-4">
-                PROJECT INTENT
-              </h4>
-              <p className="text-sm md:text-base text-white/60 leading-relaxed">
-                To Automatically Analyze Pipeline-Thickness Data Gathered From Ultrasonic And Magnetic Sensors, And Help Inspectors Decide Whether To Repair, Replace, Or Maintain Gas Pipelines.
-              </p>
-            </div>
           </div>
 
-          {/* Right side - Features */}
-          <div className="space-y-5">
+          {/* Right Column - Features 1 & 2 stacked */}
+          <div className="space-y-3">
             {/* Feature 1 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
-                <img
-            src="/ow-16.png"
-            alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
-                />
+                <img src="/ow-16.png" alt="IoT Sensor Data" className="w-full h-full object-contain" />
               </div>
               <div>
                 <p className="text-sm text-white/80 leading-relaxed">
-                  Sensor data ingestion from IoT
-                  and NDT (non-destructive testing) devices.
+                  Sensor data ingestion from IoT and NDT (non-destructive testing) devices.
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
 
             {/* Feature 2 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
-                <img
-            src="/ow-17.png"
-            alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
-                />
+                <img src="/ow-17.png" alt="Feature Extraction" className="w-full h-full object-contain" />
               </div>
               <div>
                 <p className="text-sm text-white/80 leading-relaxed">
-                  Feature extraction of wall-thickness variation,
-                  corrosion depth, and temperature impact.
+                  Feature extraction of wall-thickness variation, corrosion depth, and temperature impact.
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
+          </div>
+        </div>
 
+        {/* Features Grid - Bottom Row */}
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Left Column - PROJECT INTENT */}
+          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex flex-col">
+            <h4 className="text-xl md:text-2xl font-light text-primary mb-3">
+              PROJECT INTENT
+            </h4>
+            <p className="text-sm md:text-base text-white/60 leading-relaxed">
+              To Automatically Analyze Pipeline-Thickness Data Gathered From Ultrasonic And Magnetic Sensors, And Help Inspectors Decide Whether To Repair, Replace, Or Maintain Gas Pipelines.
+            </p>
+          </MouseGradientCard>
+
+          {/* Right Column - Features 3 & 4 stacked */}
+          <div className="space-y-3">
             {/* Feature 3 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
-                <img
-            src="/ow-18.png"
-            alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
-                />
+                <img src="/ow-18.png" alt="XGBoost Model" className="w-full h-full object-contain" />
               </div>
               <div>
                 <p className="text-sm text-white/80 leading-relaxed">
-                  XGBoost-based predictive model to 
-                  estimate degradation trends and classify risk levels.
+                  XGBoost-based predictive model to estimate degradation trends and classify risk levels.
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
 
             {/* Feature 4 */}
-            <div className="bg-[#1A1A1A] border border-white/10 rounded-xl p-6 flex items-start gap-4 hover:border-primary/30 transition-colors">
+            <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
-                <img
-            src="/ow-19.png"
-            alt="Saim.ai - Future of AI SAIM"
-            className="w-full h-auto object-cover animate-fade-in-up transform transition-all duration-700 hover:scale-105"
-                />
+                <img src="/ow-19.png" alt="Visualization Dashboard" className="w-full h-full object-contain" />
               </div>
               <div>
                 <p className="text-sm text-white/80 leading-relaxed">
-                  Visualization dashboard displaying probability-of-failure
-                  and recommended action (retain / replace / reinspect).
+                  Visualization dashboard displaying probability-of-failure and recommended action (retain / replace / reinspect).
                 </p>
               </div>
-            </div>
+            </MouseGradientCard>
           </div>
         </div>
       </section>
