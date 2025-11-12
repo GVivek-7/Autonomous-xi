@@ -66,7 +66,7 @@ function AnimatedInfoCards({ items }: { items: Array<{ title: string; content: s
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {pairs[currentIndex].map((item: { title: string; content: string }, index: number) => (
-          <div
+          <MouseGradientCard
             key={`${currentIndex}-${index}`}
             className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10"
           >
@@ -87,7 +87,7 @@ function AnimatedInfoCards({ items }: { items: Array<{ title: string; content: s
                 {item.content}
               </p>
             </div>
-          </div>
+          </MouseGradientCard>
         ))}
       </div>
       
@@ -801,9 +801,6 @@ export default function Solutions() {
                 <span className="text-sm tracking-[0.2em] uppercase text-white font-medium">
                   LET'S CONNECT
                 </span>
-                <div className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center group-hover:border-primary transition-colors">
-                  <span className="text-primary text-xl font-light">+</span>
-                </div>
               </Link>
             </div>
 

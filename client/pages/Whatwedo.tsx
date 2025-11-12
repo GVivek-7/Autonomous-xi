@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { Link } from "lucide-react";
+import { Link } from "react-router-dom";
 import SplineBackground from "@/components/SplineBackground";
 import PlusButton from "@/components/PlusButton";
 
@@ -334,7 +334,7 @@ export default function Whatwedo() {
           </div>
         </div>
     </section>
-    {/* CTA */}
+          {/* CTA */}
           <section className="section py-16">
             <div className="relative bg-black border border-white/10 rounded-2xl p-12 md:p-16 overflow-hidden">
               <div className="flex items-center justify-center gap-8">
@@ -357,13 +357,20 @@ export default function Whatwedo() {
                     <span className="text-white">?</span>
                   </h2>
                   
-                  <Link to="/contact" className="inline-flex items-center gap-3 border border-white/30 rounded-full px-8 py-4 hover:border-primary/50 hover:bg-white/5 transition-all duration-300 group">
-                    <span className="text-sm tracking-[0.2em] uppercase text-white font-medium">
+                  <Link 
+                    to="/contact" 
+                    className="inline-flex items-center gap-3 border-2 rounded-full px-8 py-4 hover:border-primary hover:bg-white/20 transition-all duration-300 group"
+                    style={{ 
+                      borderColor: 'rgba(255, 255, 255, 0.5)',
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                    }}
+                  >
+                    <span 
+                      className="text-sm tracking-[0.2em] uppercase font-semibold"
+                      style={{ color: '#FFFFFF' }}
+                    >
                       LET'S CONNECT
                     </span>
-                    <div className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center group-hover:border-primary transition-colors">
-                      <span className="text-primary text-xl font-light">+</span>
-                    </div>
                   </Link>
                 </div>
     

@@ -591,14 +591,11 @@ export default function Index() {
               
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-3 border border-white/30 rounded-full px-8 py-4 hover:border-primary/50 hover:bg-white/5 transition-all duration-300 group"
+                className="inline-flex items-center gap-3 border border-white/30 rounded-full px-8 py-4 hover:border-primary/50 hover:bg-white/10 transition-all duration-300 group bg-white/5"
               >
                 <span className="text-sm tracking-[0.2em] uppercase text-white font-medium">
                   LET'S CONNECT
                 </span>
-                <div className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center group-hover:border-primary transition-colors">
-                  <span className="text-primary text-xl font-light">+</span>
-                </div>
               </Link>
             </div>
 

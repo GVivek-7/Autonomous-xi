@@ -24,13 +24,13 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation - Centered */}
-        <nav className="hidden md:flex items-center justify-center gap-6 lg:gap-8 text-xs tracking-wider">
+        <nav className="hidden md:flex items-center justify-center gap-4 lg:gap-8 text-xs tracking-wider">
           {navItems.map((item) => (
             <NavLink
               key={item.label}
               to={item.to}
               className={({ isActive }) =>
-                `${isActive ? "text-white" : "text-primary"} hover:text-white transition-colors duration-300`
+                `${isActive ? "text-white" : "text-primary"} hover:text-white transition-colors duration-300 whitespace-nowrap`
               }
             >
               {item.label}
