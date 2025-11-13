@@ -358,10 +358,9 @@ export default function Contact() {
             <select className="bg-[#1A1A1A] border border-white/10 rounded-lg px-4 md:px-6 py-3 md:py-4 text-white focus:border-primary/50 focus:outline-none transition-colors appearance-none cursor-pointer text-sm md:text-base">
               <option>COMPUTER VISION</option>
               <option>NATURAL LANGUAGE PROCESSING</option>
-              <option>MACHINE LEARNING</option>
-              <option>AI STRATEGY & CONSULTING</option>
-              <option>MLOPS & INFRASTRUCTURE</option>
-              <option>DATA ENGINEERING</option>
+              <option>AI STRATEGY</option>
+              <option>GENERATIVE AI</option>
+              <option>BUSINESS AUTOMATION</option>
             </select>
           </div>
 
