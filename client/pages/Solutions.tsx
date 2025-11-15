@@ -134,7 +134,7 @@ export default function Solutions() {
               </div>
               <div className="section pt-14 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
                 <div className="max-w-4xl relative z-20">
-                  <h1 className="mt-0 text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                  <h1 className="mt-0 text-2xl md:text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                     <span className="block">AUTONOMOUS BY NATURE</span>
                     <span className="block">
                       INTELLIGENT BY <span className="text-primary">DESIGN</span>
@@ -250,7 +250,7 @@ export default function Solutions() {
             <h3 className="text-xl sm:text-2xl md:text-3xl font-light text-white">
               AI BUSINESS ASSISTANT
             </h3>
-            <p className="text-sm md:text-base text-white/70 leading-relaxed max-w-xl">
+            <p className="text-sm md:text-xs md:text-base text-white/70 leading-relaxed max-w-xl">
               A Multi-Agent AI System That Automates Executive Workflows,
               Generates Insights From Enterprise Data, And Acts As A Real-Time
               Digital Assistant For Businesses.
@@ -269,7 +269,7 @@ export default function Solutions() {
                 />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Multi-agent orchestration for task automation,
                   summarization, and insight generation.
                 </p>
@@ -286,7 +286,7 @@ export default function Solutions() {
                 />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Multilingual (English + Arabic) Communication
                   And Policy-Based Approval Flows.
                 </p>
@@ -303,7 +303,7 @@ export default function Solutions() {
                 />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Integrated Retrieval Across Mail, CRM, And
                   Documents For Unified Knowledge Access.
                 </p>
@@ -320,7 +320,7 @@ export default function Solutions() {
                 />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Reduced Manual Report Preparation Time By
                   70% And Boosted Decision Speed By 30%.
                 </p>
@@ -356,7 +356,7 @@ export default function Solutions() {
             <h3 className="text-2xl md:text-3xl font-light text-white">
               VISION ANALYTICS FOR SAFETY & SPORTS
             </h3>
-            <p className="text-base text-white/70 leading-relaxed max-w-xl">
+            <p className="text-xs md:text-base text-white/70 leading-relaxed max-w-xl">
               A computer-vision platform that uses AI to track movement, 
               detect risk patterns, and enhance human performance and safety.
             </p>
@@ -374,7 +374,7 @@ export default function Solutions() {
                 />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Smart Vision Models Built on YOLO for Detection
                   and Pose Tracking
                 </p>
@@ -391,7 +391,7 @@ export default function Solutions() {
                 />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   AI-Powered Predictive
                   Injury Alerts and Near-Miss Detection
                 </p>
@@ -408,7 +408,7 @@ export default function Solutions() {
                 />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Used in Industrial Safety, Construction, and Sports Analytics
                 </p>
               </div>
@@ -424,7 +424,7 @@ export default function Solutions() {
                 />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Reduced manual report preparation time by 70 %
                   and boosted decision speed by 30 %.
                 </p>
@@ -460,7 +460,7 @@ export default function Solutions() {
             <h3 className="text-2xl md:text-3xl font-light text-white">
               INTELLIGENT REGTECH AUTOMATION
             </h3>
-            <p className="text-base text-white/70 leading-relaxed max-w-xl">
+            <p className="text-xs md:text-base text-white/70 leading-relaxed max-w-xl">
               An explainable AI platform for the financial sector 
               that automates AML, KYC, and fraud-risk operations.
             </p>
@@ -478,7 +478,7 @@ export default function Solutions() {
                 />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Graph-based Anomaly Detection and Entity Resolution
                 </p>
               </div>
@@ -494,7 +494,7 @@ export default function Solutions() {
                 />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   AI-Driven Policy Summarization and Compliance Alerts
                 </p>
               </div>
@@ -510,7 +510,7 @@ export default function Solutions() {
                 />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Reduces false positives by up to 50 % and 
                   shortens investigation time by 35 %.
                 </p>
@@ -547,7 +547,7 @@ export default function Solutions() {
             <h3 className="text-2xl md:text-3xl font-light text-white mt-1">
               DARB IN ABU DHABI (WITH Q_MOBILITY)
             </h3>
-            <p className="text-base text-white/70 leading-relaxed mt-2">
+            <p className="text-xs md:text-base text-white/70 leading-relaxed mt-2">
               A collaborative initiative between Autonomous AI and Q-Mobility to transform Abu Dhabi's smart-mobility infrastructure under the DARBin program.
             </p>
           </div>
@@ -560,7 +560,7 @@ export default function Solutions() {
                 <img src="/ow-12.png" alt="Firmware Engineering" className="w-full h-full object-contain" />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Firmware re-engineering of legacy camera systems to integrate AI vision.
                 </p>
               </div>
@@ -572,7 +572,7 @@ export default function Solutions() {
                 <img src="/ow-13.png" alt="RT Detector" className="w-full h-full object-contain" />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Imported and customized the Python package RT Dter (Real-Time Detector) for edge inference.
                 </p>
               </div>
@@ -600,7 +600,7 @@ export default function Solutions() {
                 <img src="/ow-14.png" alt="Adaptive Firmware" className="w-full h-full object-contain" />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Developed adaptive firmware modules enabling in-camera object detection and event classification.
                 </p>
               </div>
@@ -612,7 +612,7 @@ export default function Solutions() {
                 <img src="/ow-15.png" alt="DARBin Integration" className="w-full h-full object-contain" />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Integrated with DARBin's data platform for cross-road analytics and live traffic feeds.
                 </p>
               </div>
@@ -671,7 +671,7 @@ export default function Solutions() {
             <h3 className="text-2xl md:text-3xl font-light text-white mt-1">
               GAS PIPELINE THICKNESS ANALYSIS
             </h3>
-            <p className="text-base text-white/70 leading-relaxed mt-2">
+            <p className="text-xs md:text-base text-white/70 leading-relaxed mt-2">
               A specialized AI system that assists ADNOC gas-line inspectors in assessing the health and remaining life of critical pipeline infrastructure.
             </p>
           </div>
@@ -684,7 +684,7 @@ export default function Solutions() {
                 <img src="/ow-16.png" alt="IoT Sensor Data" className="w-full h-full object-contain" />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Sensor data ingestion from IoT and NDT (non-destructive testing) devices.
                 </p>
               </div>
@@ -696,7 +696,7 @@ export default function Solutions() {
                 <img src="/ow-17.png" alt="Feature Extraction" className="w-full h-full object-contain" />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Feature extraction of wall-thickness variation, corrosion depth, and temperature impact.
                 </p>
               </div>
@@ -724,7 +724,7 @@ export default function Solutions() {
                 <img src="/ow-18.png" alt="XGBoost Model" className="w-full h-full object-contain" />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   XGBoost-based predictive model to estimate degradation trends and classify risk levels.
                 </p>
               </div>
@@ -736,7 +736,7 @@ export default function Solutions() {
                 <img src="/ow-19.png" alt="Visualization Dashboard" className="w-full h-full object-contain" />
               </div>
               <div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-xs md:text-sm text-white/80 leading-relaxed">
                   Visualization dashboard displaying probability-of-failure and recommended action (retain / replace / reinspect).
                 </p>
               </div>

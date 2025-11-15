@@ -198,7 +198,7 @@ function Card({
         }}
       />
       <div className="relative z-10 p-8 pb-6 flex-shrink-0">
-        <h3 className="text-sm font-medium tracking-[0.15em] uppercase mb-4 text-white">
+        <h3 className="text-sm md:text-xl font-medium tracking-[0.15em] uppercase mb-4 text-white">
           {title}
         </h3>
         <p className="text-xs leading-relaxed text-white/80">
@@ -230,7 +230,7 @@ export default function Whatwedo() {
               </div>
               <div className="section pt-14 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
                 <div className="max-w-4xl relative z-20">
-                  <h1 className="mt-0 text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                  <h1 className="mt-0 text-2xl md:text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                     <span className="block">EMPOWERING THE FUTURE</span>
                     <span className="block">
                       WITH INTELLIGENT<span className="text-primary"> SYSTEMS</span>
@@ -281,7 +281,7 @@ export default function Whatwedo() {
           />
 
           {/* Content */}
-          <p className="text-[30px] text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xs md:text-[30px] text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
             At <span className="text-primary font-semibold">Autonomous AI</span>, we build systems that think, learn, and evolve. From predictive
             analytics to generative intelligence, we empower <span className="text-primary font-semibold">UAE businesses</span> to automate,
             innovate, and scale with precision.
@@ -356,7 +356,7 @@ export default function Whatwedo() {
               <h3 className="text-xl font-light text-white mb-4 text-center">
                 AI STRATEGY & CONSULTING
               </h3>
-              <p className="text-sm text-white/60 leading-relaxed text-center">
+              <p className="text-xs md:text-sm text-white/60 leading-relaxed text-center">
                 We Guide UAE Enterprises Through Readiness Assessments, ROI Planning, And Responsible AI Roadmaps That Align With National Innovation Frameworks.
               </p>
             </div>
@@ -376,7 +376,7 @@ export default function Whatwedo() {
               <h3 className="text-xl font-light text-white mb-4 text-center">
                 CUSTOM AI DEVELOPMENT
               </h3>
-              <p className="text-sm text-white/60 leading-relaxed text-center">
+              <p className="text-xs md:text-sm text-white/60 leading-relaxed text-center">
                 From Multi-Agent Systems To Computer Vision And NLP Solutions, We Build Tailored AI Applications That Integrate Seamlessly Into Your Operations.
               </p>
             </div>
@@ -396,7 +396,7 @@ export default function Whatwedo() {
               <h3 className="text-xl font-light text-white mb-4 text-center">
                 NATURAL LANGUAGE AND CONVERSATIONAL AI
               </h3>
-              <p className="text-sm text-white/60 leading-relaxed text-center">
+              <p className="text-xs md:text-sm text-white/60 leading-relaxed text-center">
                 Multilingual chatbots, voicebots, and document-intelligence systems that communicate fluently in English and Arabic.
               </p>
             </div>
@@ -416,7 +416,7 @@ export default function Whatwedo() {
               <h3 className="text-xl font-light text-white mb-4 text-center">
                 COMPUTER VISION SOLUTIONS
               </h3>
-              <p className="text-sm text-white/60 leading-relaxed text-center">
+              <p className="text-xs md:text-sm text-white/60 leading-relaxed text-center">
                 AI-powered image recognition, OCR, and video analytics for healthcare, logistics, surveillance, and sports performance.
               </p>
             </div>
@@ -436,7 +436,7 @@ export default function Whatwedo() {
               <h3 className="text-xl font-light text-white mb-4 text-center">
                 AI INFRASTRUCTURE & DATA ENGINEERING
               </h3>
-              <p className="text-sm text-white/60 leading-relaxed text-center">
+              <p className="text-xs md:text-sm text-white/60 leading-relaxed text-center">
                 Secure cloud or on-prem deployments, scalable data pipelines, and continuous MLOps monitoring for reliable, compliant AI systems.
               </p>
             </div>
@@ -456,7 +456,7 @@ export default function Whatwedo() {
               <h3 className="text-xl font-light text-white mb-4 text-center">
                 BUSINESS PROCESS AUTOMATION
               </h3>
-              <p className="text-sm text-white/60 leading-relaxed text-center">
+              <p className="text-xs md:text-sm text-white/60 leading-relaxed text-center">
                  Smart AI tools for HR, marketing, finance, and supply chain — reducing manual effort, minimizing errors, and boosting ROI..
               </p>
             </div>
@@ -478,7 +478,7 @@ export default function Whatwedo() {
               <h3 className="text-xl font-light text-white mb-4 text-center">
                 EMERGING INNOVATIONS
               </h3>
-              <p className="text-sm text-white/60 leading-relaxed text-center">
+              <p className="text-xs md:text-sm text-white/60 leading-relaxed text-center">
                 Exploring next-gen domains such as generative 3D design, AI-driven cybersecurity, sustainability analytics, and metaverse integration.
               </p>
             </div>
@@ -521,7 +521,7 @@ export default function Whatwedo() {
               </h3>
               
               {/* Certification Description */}
-              <p className="text-sm text-white/60 leading-relaxed">
+              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
                 {cert.desc}
               </p>
             </div>
@@ -616,7 +616,7 @@ export default function Whatwedo() {
               <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
                 DISCOVERY<br />& STRATEGY
               </h3>
-              <p className="text-sm text-white/60 leading-relaxed">
+              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
                 Define Objectives, Identify High-Impact Use Cases, And Align Stakeholders Around An Actionable AI Vision.
               </p>
             </div>
@@ -626,7 +626,7 @@ export default function Whatwedo() {
               <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
                 DATA STRATEGY<br />& ENGINEERING
               </h3>
-              <p className="text-sm text-white/60 leading-relaxed">
+              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
                 Collect, Clean, And Structure Datasets With Full Governance And Compliance To UAE Standards.
               </p>
             </div>
@@ -636,7 +636,7 @@ export default function Whatwedo() {
               <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
                 MODEL<br />DEVELOPMENT
               </h3>
-              <p className="text-sm text-white/60 leading-relaxed">
+              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
                 Design, Train, And Validate Machine-Learning Models Tailored To Your Business And Industry.
               </p>
             </div>
@@ -646,7 +646,7 @@ export default function Whatwedo() {
               <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
                 TESTING<br />& DEPLOYMENT
               </h3>
-              <p className="text-sm text-white/60 leading-relaxed">
+              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
                 Validate Accuracy, Security, And Performance Before Deployment On UAE Or Global Cloud Platforms.
               </p>
             </div>
@@ -656,7 +656,7 @@ export default function Whatwedo() {
               <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
                 MONITORING & SCALING
               </h3>
-              <p className="text-sm text-white/60 leading-relaxed">
+              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
                 Implement Feedback Loops, Retraining Pipelines, And Optimization For Long-Term Scalability And Innovation.
               </p>
             </div>

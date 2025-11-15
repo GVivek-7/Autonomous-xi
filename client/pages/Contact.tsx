@@ -123,7 +123,7 @@ export default function Contact() {
         </div>
         <div className="section pt-14 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
           <div className="max-w-4xl relative z-20">
-            <h1 className="mt-0 text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+            <h1 className="mt-0 text-2xl md:text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
               <span className="block">LET'S BUILD THE</span>
               <span className="block">
                 FUTURE <span className="text-primary">TOGETHER</span>
@@ -177,7 +177,7 @@ export default function Contact() {
           />
 
           {/* Content */}
-          <p className="text-[30px] text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xs md:text-[30px] text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
             At <span className="text-primary font-semibold">Autonomous AI</span>, we At Autonomous AI, we believe collaboration fuels innovation Whether you’re exploring AI for your business or scaling existing systems, our team is ready to assist.
             We work across the <span className="text-primary font-semibold">UAE - from Abu Dhabi to Dubai</span> and beyond — delivering customized AI solutions that align with your goals and the nation’s innovation vision.
           </p>
@@ -224,7 +224,7 @@ export default function Contact() {
 
           {/* Right side - Card */}
           <MouseGradientCard className="bg-black border border-white/10 rounded-xl p-6 md:p-8 text-center">
-            <p className="text-sm text-white/70 leading-relaxed">
+            <p className="text-xs md:text-sm text-white/70 leading-relaxed">
               Discuss Your AI Strategy, Project Ideas, Or Technical Challenges.
             </p>
           </MouseGradientCard>
@@ -234,21 +234,21 @@ export default function Contact() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Card 1 */}
           <MouseGradientCard className="bg-black border border-white/10 rounded-xl p-6 md:p-8 text-center">
-            <p className="text-sm text-white/70 leading-relaxed">
+            <p className="text-xs md:text-sm text-white/70 leading-relaxed">
               Partner With A UAE-Based Team Trusted By Enterprises, Startups, And Government Entities.
             </p>
           </MouseGradientCard>
 
           {/* Card 2 */}
           <MouseGradientCard className="bg-black border border-white/10 rounded-xl p-6 md:p-8 text-center">
-            <p className="text-sm text-white/70 leading-relaxed">
+            <p className="text-xs md:text-sm text-white/70 leading-relaxed">
               Get Expert Insights Into Machine Learning, Computer Vision, NLP, And Automation.
             </p>
           </MouseGradientCard>
 
           {/* Card 3 */}
           <MouseGradientCard className="bg-black border border-white/10 rounded-xl p-6 md:p-8 text-center sm:col-span-2 lg:col-span-1">
-            <p className="text-sm text-white/70 leading-relaxed">
+            <p className="text-xs md:text-sm text-white/70 leading-relaxed">
               Request A Consultation, Demo, Or Proposal Tailored To Your Industry.
             </p>
           </MouseGradientCard>

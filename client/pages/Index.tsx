@@ -238,7 +238,7 @@ function Card({
   return (
     <div className="rounded-xl overflow-hidden flex flex-col h-[500px] bg-[#E8E4DC] text-black">
       <div className="p-8 pb-6 flex-shrink-0">
-        <h3 className="text-sm font-medium tracking-[0.15em] uppercase mb-4 text-black">
+        <h3 className="text-sm md:text-xl font-medium tracking-[0.15em] uppercase mb-4 text-black">
           {title}
         </h3>
         <p className="text-xs leading-relaxed text-black/80">
@@ -295,10 +295,10 @@ export default function Index() {
       <section className="relative overflow-hidden bg-black" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
         <SplineBackground />
         <RadialGlass />
-        <div className="section h-full flex flex-col justify-end pb-12 md:pb-16">
+        <div className="section h-full flex flex-col justify-start md:justify-end pt-20 md:pt-0 pb-12 md:pb-16">
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
           <div className="max-w-4xl relative z-20">
-            <h1 className="mt-0 text-5xl md:text-6xl lg:text-7xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+            <h1 className="mt-0 text-2xl md:text-6xl lg:text-7xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
               <span className="block text-white">INTELLIGENCE</span>
               <span className="block text-primary">
                 THAT MOVES THE FUTURE
@@ -351,7 +351,7 @@ export default function Index() {
           /> */}
 
           {/* Content */}
-          <p className="text-[30px] text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xs md:text-[30px] text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
             At <span className="text-primary font-semibold">Autonomous AI</span>, we build systems that think, learn, and evolve. From predictive
             analytics to generative intelligence, we empower <span className="text-primary font-semibold">UAE businesses</span> to automate,
             innovate, and scale with precision.
@@ -512,7 +512,7 @@ export default function Index() {
                 AI BUSINESS ASSISTANT
               </h4>
             </div>
-            <p className="text-sm md:text-base text-white/70 leading-relaxed mt-8">
+            <p className="text-xs md:text-base text-white/70 leading-relaxed mt-8">
               A Multi-Agent Business Intelligence Platform That Automates
               Workflows, Analyzes Communication, And Generates Insights —
               Reducing Manual Reporting Time By 70%.
@@ -547,7 +547,7 @@ export default function Index() {
                 AI VISION FOR SAFETY & SPORTS
               </h4>
             </div>
-            <p className="text-sm md:text-base text-white/70 leading-relaxed mt-8">
+            <p className="text-xs md:text-base text-white/70 leading-relaxed mt-8">
               An AI-Powered Video Analytics System Using Computer Vision To
               Track Player Movements, Predict Injuries, And Enhance Safety
               Compliance In Industrial And Athletic Settings.
@@ -564,7 +564,7 @@ export default function Index() {
                 REGTECH & COMPLIANCE AUTOMATION
               </h4>
             </div>
-            <p className="text-sm md:text-base text-white/70 leading-relaxed mt-8">
+            <p className="text-xs md:text-base text-white/70 leading-relaxed mt-8">
               A Regulatory Intelligence Solution Built For Financial
               Institutions, Detecting Fraud, Ensuring KYC/AML Compliance, And
               Automating Policy Audits With Explainable AI.
@@ -599,7 +599,7 @@ export default function Index() {
                 OPERATIONAL INTELLIGENCE FOR ENERGY
               </h4>
             </div>
-            <p className="text-sm md:text-base text-white/70 leading-relaxed mt-8">
+            <p className="text-xs md:text-base text-white/70 leading-relaxed mt-8">
               AI-Powered Predictive Analytics Integrated Into ADNOC Workflows
               To Optimize Maintenance Schedules, Energy Consumption, And Risk
               Management In Real-Time.
@@ -642,7 +642,7 @@ export default function Index() {
                 <span className="text-white">TARGETED LEAD ACQUISITION</span>
               </h2>
               
-              <p className="text-sm md:text-base text-white/70 leading-relaxed max-w-xl">
+              <p className="text-xs md:text-base text-white/70 leading-relaxed max-w-xl">
                 Your Gateway To A World Where Expertise Meets Innovation. While You're
                 Here, Talk To An Expert And Let's Shape Your Digital Success Story
                 Together.
