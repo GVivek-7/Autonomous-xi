@@ -1,7 +1,8 @@
 import Layout from "@/components/Layout";
 import { useRef, useState, MouseEvent } from "react";
 import SplineBackground from "@/components/SplineBackground";
-import PlusButton from "@/components/PlusButton";
+import RadialGlass from "@/components/RadialGlass";
+import emailjs from '@emailjs/browser';
 
 function MouseGradientCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -40,11 +41,77 @@ function MouseGradientCard({ children, className = "" }: { children: React.React
 }
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    company: '',
+    service: 'COMPUTER VISION',
+    message: '',
+    agreeToPrivacy: false
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      // EmailJS configuration from environment variables
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS configuration is missing. Please check your .env file.');
+      }
+
+      const templateParams = {
+        to_email: 'info@autonomous.ae',
+        from_name: formData.fullName,
+        from_email: formData.email,
+        phone: formData.phone || 'Not provided',
+        company: formData.company || 'Not provided',
+        service: formData.service,
+        message: formData.message,
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
+      setSubmitStatus('success');
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        company: '',
+        service: 'COMPUTER VISION',
+        message: '',
+        agreeToPrivacy: false
+      });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <Layout>
       {/* HERO */}
-      <section className="relative overflow-hidden" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
+      <section className="relative overflow-hidden bg-black" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
         <SplineBackground />
+        <RadialGlass />
         <div className="absolute inset-0 pointer-events-none -z-10">
           <div
             className="absolute -top-24 right-0 h-[320px] w-[720px] blur-3xl opacity-60"
@@ -55,7 +122,7 @@ export default function Contact() {
           />
         </div>
         <div className="section pt-14 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl relative z-20">
             <h1 className="mt-0 text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
               <span className="block">LET'S BUILD THE</span>
               <span className="block">
@@ -73,21 +140,22 @@ export default function Contact() {
       </section>
       {/* INTRO */}
       <section className="section py-16 md:py-20">
-        <div className="relative bg-black border border-white/10 rounded-2xl p-12 md:p-16 lg:p-20">
+        <div className="relative bg-black border border-white/10 rounded-[20px] p-12 md:p-16 lg:p-20">
           {/* Top-left corner accent */}
-          <div className="absolute top-6 left-6">
+          <div className="absolute top-0 left-0">
             <svg
-              width="40"
-              height="40"
-              viewBox="0 0 40 40"
+              width="60"
+              height="60"
+              viewBox="0 0 60 60"
               fill="none"
               className="text-primary"
             >
               <path
-                d="M 0 20 L 0 0 L 20 0"
+                d="M 0 60 Q 0 0 60 0"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
+                fill="none"
               />
             </svg>
           </div>
@@ -109,25 +177,26 @@ export default function Contact() {
           />
 
           {/* Content */}
-          <p className="text-base md:text-lg text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-[30px] text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
             At <span className="text-primary font-semibold">Autonomous AI</span>, we At Autonomous AI, we believe collaboration fuels innovation Whether you’re exploring AI for your business or scaling existing systems, our team is ready to assist.
             We work across the <span className="text-primary font-semibold">UAE - from Abu Dhabi to Dubai</span> and beyond — delivering customized AI solutions that align with your goals and the nation’s innovation vision.
           </p>
 
           {/* Bottom-right corner accent */}
-          <div className="absolute bottom-6 right-6">
+          <div className="absolute bottom-0 right-0">
             <svg
-              width="40"
-              height="40"
-              viewBox="0 0 40 40"
+              width="60"
+              height="60"
+              viewBox="0 0 60 60"
               fill="none"
               className="text-primary"
             >
               <path
-                d="M 40 20 L 40 40 L 20 40"
+                d="M 60 0 Q 60 60 0 60"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
+                fill="none"
               />
             </svg>
           </div>
@@ -301,7 +370,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <form className="max-w-4xl mx-auto space-y-4 md:space-y-6">
+        <form onSubmit={handleSubmit} className="max-w-4xl mx-auto space-y-4 md:space-y-6">
           {/* Full Name */}
           <div className="grid md:grid-cols-[200px_1fr] gap-3 md:gap-4 items-start md:items-center">
             <label className="text-xs md:text-sm text-white uppercase tracking-wide pt-4 md:pt-0">
@@ -309,7 +378,11 @@ export default function Contact() {
             </label>
             <input
               type="text"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleInputChange}
               placeholder="SAJI"
+              required
               className="bg-[#1A1A1A] border border-white/10 rounded-lg px-4 md:px-6 py-3 md:py-4 text-white placeholder:text-white/40 focus:border-primary/50 focus:outline-none transition-colors text-sm md:text-base"
             />
           </div>
@@ -321,7 +394,11 @@ export default function Contact() {
             </label>
             <input
               type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
               placeholder="ticbyakwad@gmail.com"
+              required
               className="bg-[#1A1A1A] border border-white/10 rounded-lg px-4 md:px-6 py-3 md:py-4 text-white placeholder:text-white/40 focus:border-primary/50 focus:outline-none transition-colors text-sm md:text-base"
             />
           </div>
@@ -333,6 +410,9 @@ export default function Contact() {
             </label>
             <input
               type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
               placeholder="+97154 994 3774"
               className="bg-[#1A1A1A] border border-white/10 rounded-lg px-4 md:px-6 py-3 md:py-4 text-white placeholder:text-white/40 focus:border-primary/50 focus:outline-none transition-colors text-sm md:text-base"
             />
@@ -345,6 +425,9 @@ export default function Contact() {
             </label>
             <input
               type="text"
+              name="company"
+              value={formData.company}
+              onChange={handleInputChange}
               placeholder="TICBYAKWAD"
               className="bg-[#1A1A1A] border border-white/10 rounded-lg px-4 md:px-6 py-3 md:py-4 text-white placeholder:text-white/40 focus:border-primary/50 focus:outline-none transition-colors text-sm md:text-base"
             />
@@ -355,7 +438,12 @@ export default function Contact() {
             <label className="text-xs md:text-sm text-white uppercase tracking-wide pt-4 md:pt-0">
               SERVICE INTERESTED IN
             </label>
-            <select className="bg-[#1A1A1A] border border-white/10 rounded-lg px-4 md:px-6 py-3 md:py-4 text-white focus:border-primary/50 focus:outline-none transition-colors appearance-none cursor-pointer text-sm md:text-base">
+            <select 
+              name="service"
+              value={formData.service}
+              onChange={handleInputChange}
+              className="bg-[#1A1A1A] border border-white/10 rounded-lg px-4 md:px-6 py-3 md:py-4 text-white focus:border-primary/50 focus:outline-none transition-colors appearance-none cursor-pointer text-sm md:text-base"
+            >
               <option>COMPUTER VISION</option>
               <option>NATURAL LANGUAGE PROCESSING</option>
               <option>AI STRATEGY</option>
@@ -371,7 +459,11 @@ export default function Contact() {
             </label>
             <textarea
               rows={4}
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
               placeholder="WRITE YOUR MESSAGE"
+              required
               className="bg-[#1A1A1A] border border-white/10 rounded-lg px-4 md:px-6 py-3 md:py-4 text-white placeholder:text-white/40 focus:border-primary/50 focus:outline-none transition-colors resize-none text-sm md:text-base"
             />
           </div>
@@ -392,6 +484,10 @@ export default function Contact() {
             <label className="flex items-start md:items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
+                name="agreeToPrivacy"
+                checked={formData.agreeToPrivacy}
+                onChange={handleInputChange}
+                required
                 className="w-5 h-5 mt-0.5 md:mt-0 bg-[#1A1A1A] border border-white/20 rounded checked:bg-primary checked:border-primary focus:outline-none cursor-pointer flex-shrink-0"
               />
               <span className="text-xs md:text-sm text-white/70">
@@ -401,11 +497,24 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="w-full md:w-auto bg-primary hover:bg-primary/90 text-white px-8 md:px-10 py-3 md:py-4 rounded-full text-xs md:text-sm tracking-[0.2em] uppercase font-medium transition-colors"
+              disabled={isSubmitting}
+              className="w-full md:w-auto bg-primary hover:bg-primary/90 text-white px-8 md:px-10 py-3 md:py-4 rounded-full text-xs md:text-sm tracking-[0.2em] uppercase font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              SEND MESSAGE
+              {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
             </button>
           </div>
+          
+          {/* Status Messages */}
+          {submitStatus === 'success' && (
+            <div className="text-center text-green-500 text-sm mt-4">
+              Message sent successfully! We'll get back to you soon.
+            </div>
+          )}
+          {submitStatus === 'error' && (
+            <div className="text-center text-red-500 text-sm mt-4">
+              Failed to send message. Please try again.
+            </div>
+          )}
         </form>
       </section>
       

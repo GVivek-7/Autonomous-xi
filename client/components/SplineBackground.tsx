@@ -1,14 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function SplineBackground() {
-  const [isLoading, setIsLoading] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -58,26 +52,6 @@ export default function SplineBackground() {
           style={{
             background: "radial-gradient(circle, rgba(255, 150, 50, 0.5), transparent 60%)",
             transform: `translate(${parallaxX * 0.5}px, ${parallaxY * 0.5}px)`,
-          }}
-        />
-      </div>
-      
-      <div 
-        className="absolute inset-0 opacity-90 transition-all duration-200 ease-out"
-        style={{
-          transform: `translate(${parallaxX}px, ${parallaxY}px) scale(1.08) rotate(${mousePosition.x * 2}deg)`,
-        }}
-      >
-        <iframe
-          src="https://my.spline.design/orb-C2r252ps8or9BHmO6Nvu8l4C/"
-          frameBorder="0"
-          width="100%"
-          height="100%"
-          className="transition-opacity duration-500"
-          style={{ 
-            opacity: isLoading ? 0.5 : 1,
-            filter: 'brightness(1.6) contrast(1.2) saturate(1.1)',
-            pointerEvents: 'none'
           }}
         />
       </div>

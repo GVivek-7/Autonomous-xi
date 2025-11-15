@@ -1,14 +1,208 @@
 import Layout from "@/components/Layout";
 import { Link } from "react-router-dom";
+import { useState, useRef, MouseEvent } from "react";
 import SplineBackground from "@/components/SplineBackground";
-import PlusButton from "@/components/PlusButton";
+import RadialGlass from "@/components/RadialGlass";
+
+function MouseGradientCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      className={`relative overflow-hidden ${className}`}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+        style={{
+          opacity: isHovering ? 1 : 0,
+          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 107, 0, 0.2), transparent 40%)`,
+        }}
+      />
+      <div className="relative z-10">{children}</div>
+    </div>
+  );
+}
+
+function WhatWeDoCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const cards = [
+    {
+      title: "AI Strategy & Consulting",
+      desc: "We guide UAE enterprises through readiness assessments, ROI planning, and responsible AI roadmaps that align with national innovation frameworks.",
+      alt: "AI Strategy & Consulting"
+    },
+    {
+      title: "Custom AI Development",
+      desc: "Machine learning, deep learning, and generative AI solutions built to automate workflows, enhance decision-making, and accelerate growth.",
+      alt: "Custom AI Development"
+    },
+    {
+      title: "Natural Language & Conversational AI",
+      desc: "Multilingual chatbots, voicebots, and document-intelligence systems that communicate fluently in English and Arabic.",
+      alt: "Natural Language & Conversational AI"
+    },
+    {
+      title: "Computer Vision Solutions",
+      desc: "AI-powered image recognition, OCR, and video analytics for healthcare, logistics, surveillance, and sports performance.",
+      alt: "Computer Vision Solutions"
+    },
+    {
+      title: "AI Infrastructure and Data Engineering",
+      desc: "Secure cloud or on-prem deployments, scalable data pipelines, and continuous MLOps monitoring for reliable, compliant AI systems.",
+      alt: "AI Infrastructure and Data Engineering"
+    },
+    {
+      title: "Business Process Automation",
+      desc: "Smart AI tools for HR, marketing, finance, and supply chain — reducing manual effort, minimizing errors, and boosting ROI.",
+      alt: "Business Process Automation"
+    },
+    {
+      title: "Emerging Innovations",
+      desc: "Exploring next-gen domains such as generative 3D design, AI-driven cybersecurity, sustainability analytics, and metaverse integration.",
+      alt: "Emerging Innovations"
+    }
+
+  ];
+  
+  const cardsPerView = 3;
+  const maxIndex = Math.max(0, cards.length - cardsPerView);
+  
+  const handlePrev = () => {
+    setCurrentIndex((prev) => Math.max(0, prev - 1));
+  };
+  
+  const handleNext = () => {
+    setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
+  };
+  
+  return (
+    <div className="relative">
+      {/* Cards Container */}
+      <div className="overflow-hidden">
+        <div 
+          className="flex gap-5 transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)` }}
+        >
+          {cards.map((card, index) => (
+            <div key={index} className="flex-shrink-0" style={{ width: `calc(${100 / cardsPerView}% - ${(cardsPerView - 1) * 20 / cardsPerView}px)` }}>
+              <MouseGradientCard className="h-full">
+                <Card
+                  title={card.title}
+                  desc={card.desc}
+                  variant="dark"
+                  icon=""
+                    
+                />
+              </MouseGradientCard>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Navigation Buttons */}
+      <div className="flex justify-center gap-3 mt-8">
+        <button
+          onClick={handlePrev}
+          disabled={currentIndex === 0}
+          className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center hover:bg-primary/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          aria-label="Previous"
+        >
+          <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          onClick={handleNext}
+          disabled={currentIndex === maxIndex}
+          className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center hover:bg-primary/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          aria-label="Next"
+        >
+          <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function Card({
+  title,
+  desc,
+  icon,
+  variant = "dark",
+}: {
+  title: string;
+  desc: string;
+  icon: React.ReactNode;
+  variant?: "light" | "dark";
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  return (
+    <div 
+      ref={cardRef}
+      className="relative rounded-xl overflow-hidden flex flex-col h-[200px] bg-[#000000] text-white border border-white/20"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 transition-opacity duration-300 z-0"
+        style={{
+          opacity: isHovering ? 1 : 0,
+          background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 107, 0, 0.25), transparent 60%)`,
+        }}
+      />
+      <div className="relative z-10 p-8 pb-6 flex-shrink-0">
+        <h3 className="text-sm font-medium tracking-[0.15em] uppercase mb-4 text-white">
+          {title}
+        </h3>
+        <p className="text-xs leading-relaxed text-white/80">
+          {desc}
+        </p>
+      </div>
+      <div className="relative z-10 flex-1 flex items-end justify-center overflow-hidden">
+        <div className="text-primary w-full h-full flex items-end">{icon}</div>
+      </div>
+    </div>
+  );
+}
 
 export default function Whatwedo() {
   return (
     <Layout>
        {/* HERO */}
-            <section className="relative overflow-hidden" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
+            <section className="relative overflow-hidden bg-black" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
               <SplineBackground />
+              <RadialGlass />
               <div className="absolute inset-0 pointer-events-none -z-10">
                 <div
                   className="absolute -top-24 right-0 h-[320px] w-[720px] blur-3xl opacity-0"
@@ -19,7 +213,7 @@ export default function Whatwedo() {
                 />
               </div>
               <div className="section pt-14 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
-                <div className="max-w-4xl">
+                <div className="max-w-4xl relative z-20">
                   <h1 className="mt-0 text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                     <span className="block">EMPOWERING THE FUTURE</span>
                     <span className="block">
@@ -34,21 +228,22 @@ export default function Whatwedo() {
             </section>
       {/* INTRO */}
       <section className="section py-16 md:py-20">
-        <div className="relative bg-black border border-white/10 rounded-2xl p-12 md:p-16 lg:p-20">
+        <div className="relative bg-black border border-white/10 rounded-[20px] p-12 md:p-16 lg:p-20">
           {/* Top-left corner accent */}
-          <div className="absolute top-6 left-6">
+          <div className="absolute top-0 left-0">
             <svg
-              width="40"
-              height="40"
-              viewBox="0 0 40 40"
+              width="60"
+              height="60"
+              viewBox="0 0 60 60"
               fill="none"
               className="text-primary"
             >
               <path
-                d="M 0 20 L 0 0 L 20 0"
+                d="M 0 60 Q 0 0 60 0"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
+                fill="none"
               />
             </svg>
           </div>
@@ -70,26 +265,27 @@ export default function Whatwedo() {
           />
 
           {/* Content */}
-          <p className="text-base md:text-lg text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-[30px] text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
             At <span className="text-primary font-semibold">Autonomous AI</span>, we build systems that think, learn, and evolve. From predictive
             analytics to generative intelligence, we empower <span className="text-primary font-semibold">UAE businesses</span> to automate,
             innovate, and scale with precision.
           </p>
 
           {/* Bottom-right corner accent */}
-          <div className="absolute bottom-6 right-6">
+          <div className="absolute bottom-0 right-0">
             <svg
-              width="40"
-              height="40"
-              viewBox="0 0 40 40"
+              width="60"
+              height="60"
+              viewBox="0 0 60 60"
               fill="none"
               className="text-primary"
             >
               <path
-                d="M 40 20 L 40 40 L 20 40"
+                d="M 60 0 Q 60 60 0 60"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
+                fill="none"
               />
             </svg>
           </div>
@@ -103,9 +299,25 @@ export default function Whatwedo() {
           />
         </div>
       </section>
+      <section id="what-we-do" className="section py-16">
+        <div className="mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-tight">
+            <span className="block text-white">THE FUTURE, POWERED BY</span>
+            <span className="block text-primary font-normal tracking-wide">
+              AUTONOMOUS AI
+            </span>
+          </h2>
+          <p className="mt-4 text-sm md:text-base text-white/60 max-w-2xl">
+            Integrating Intelligence Seamlessly Across Software, Data, And
+            Operations To Shape The Future Of How Businesses Evolve.
+          </p>
+        </div>
+        
+        <WhatWeDoCarousel />
+      </section>
 
       {/* OUR INTELLIGENT STACK */}
-      <section className="section py-16">
+      {/* <section className="section py-16">
         <div className="mb-8 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-tight text-center mb-4 md:mb-6">
             <span className="text-white">OUR INTELLIGENT </span>
@@ -113,16 +325,16 @@ export default function Whatwedo() {
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"> */}
           {/* Card 1 - AI Strategy & Consulting */}
-          <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
+          {/* <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="relative z-10">
               <div className="flex items-center justify-center mb-4 md:mb-6">
                 <img
-                  src="/www-1.png"
+                  src="/intelicon1.png"
                   alt="AI Strategy & Consulting"
-                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="w-1/2 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <h3 className="text-xl font-light text-white mb-4 text-center">
@@ -132,17 +344,17 @@ export default function Whatwedo() {
                 We Guide UAE Enterprises Through Readiness Assessments, ROI Planning, And Responsible AI Roadmaps That Align With National Innovation Frameworks.
               </p>
             </div>
-          </div>
+          </div> */}
 
           {/* Card 2 - Custom AI Development */}
-          <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
+          {/* <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="relative z-10">
               <div className="flex items-center justify-center mb-4 md:mb-6">
                 <img
-                  src="/www-2.png"
+                  src="/intelicon2.png"
                   alt="Custom AI Development"
-                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="w-1/2 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <h3 className="text-xl font-light text-white mb-4 text-center">
@@ -152,17 +364,17 @@ export default function Whatwedo() {
                 From Multi-Agent Systems To Computer Vision And NLP Solutions, We Build Tailored AI Applications That Integrate Seamlessly Into Your Operations.
               </p>
             </div>
-          </div>
+          </div> */}
 
           {/* Card 3 - Natural Language AI */}
-          <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
+          {/* <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="relative z-10">
               <div className="flex items-center justify-center mb-4 md:mb-6">
                 <img
-                  src="/www-3.png"
+                  src="/intelicon3.png"
                   alt="Natural Language AI"
-                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="w-1/2 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <h3 className="text-xl font-light text-white mb-4 text-center">
@@ -175,14 +387,14 @@ export default function Whatwedo() {
           </div>
 
           {/* Card 4 - Computer Vision */}
-          <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
+          {/* <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="relative z-10">
               <div className="flex items-center justify-center mb-4 md:mb-6">
                 <img
-                  src="/www-4.png"
+                  src="/intelicon4.png"
                   alt="Computer Vision Solutions"
-                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="w-1/2 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <h3 className="text-xl font-light text-white mb-4 text-center">
@@ -192,17 +404,17 @@ export default function Whatwedo() {
                 AI-powered image recognition, OCR, and video analytics for healthcare, logistics, surveillance, and sports performance.
               </p>
             </div>
-          </div>
+          </div> */}
 
           {/* Card 5 - AI Infrastructure */}
-          <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
+          {/* <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="relative z-10">
               <div className="flex items-center justify-center mb-4 md:mb-6">
                 <img
-                  src="/www-5.png"
+                  src="/intelicon5.png"
                   alt="AI Infrastructure"
-                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="w-1/2 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <h3 className="text-xl font-light text-white mb-4 text-center">
@@ -212,17 +424,17 @@ export default function Whatwedo() {
                 Secure cloud or on-prem deployments, scalable data pipelines, and continuous MLOps monitoring for reliable, compliant AI systems.
               </p>
             </div>
-          </div>
+          </div> */}
 
           {/* Card 6 - Business Process Automation */}
-          <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
+          {/* <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="relative z-10">
               <div className="flex items-center justify-center mb-4 md:mb-6">
                 <img
-                  src="/www-6.png"
+                  src="/intelicon6.png"
                   alt="Business Process Automation"
-                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="w-1/2 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <h3 className="text-xl font-light text-white mb-4 text-center">
@@ -233,18 +445,18 @@ export default function Whatwedo() {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Centered Card */}
-        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        {/*<div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           <div className="relative bg-black border border-white/10 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500 group overflow-hidden sm:col-start-2 lg:col-start-2">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <div className="relative z-10">
               <div className="flex items-center justify-center mb-4 md:mb-6">
                 <img
-                  src="/www-7.png"
+                  src="/intelicon7.png"
                   alt="Emerging Innovations"
-                  className="w-3/4 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="w-1/2 h-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <h3 className="text-xl font-light text-white mb-4 text-center">
@@ -255,6 +467,49 @@ export default function Whatwedo() {
               </p>
             </div>
           </div>
+        </div>
+      </section> */}
+
+      {/* CERTIFICATIONS */}
+      <section className="section py-16">
+        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide uppercase mb-12 md:mb-16">
+          <span className="text-white">OUR </span>
+          <span className="text-primary">CERTIFICATIONS</span>
+          <span className="text-white"> & </span>
+          <span className="text-primary">STANDARDS</span>
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {[
+            { num: 1, title: "ISO 27001:2022", desc: "Information Security Management For AI And Data Systems" },
+            { num: 2, title: "ISO 9001:2015", desc: "Quality Management System For AI Development" },
+            { num: 3, title: "UAE Artificial Intelligence Accreditation (MOAI) ", desc: "Alignment with UAE’s National AI Strategy 2031" },
+            { num: 4, title: "GDPR & UAE Data Residency Compliance Compliant", desc: "Full adherence to privacy and ethical AI practices" },
+            { num: 5, title: "AWS & Azure AI Partner Certification", desc: "Authorized deployment on major cloud infrastructures" },
+            { num: 6, title: "Responsible AI Framework Certification", desc: "Ensuring transparency, bias control,and ethical governance" },
+          ].map((cert) => (
+            <div
+              key={cert.num}
+              className="bg-black border border-white/10 rounded-xl p-6 md:p-8 flex flex-col items-center text-center hover:border-primary/30 transition-colors">
+              {/* Certification Image */}
+              <div className="w-full h-32 md:h-40 mb-6 flex items-center justify-center bg-white/5 rounded-lg p-4">
+                <img
+                  src={`/cert-${cert.num}.png`}
+                  alt={cert.title}
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
+              
+              {/* Certification Title */}
+               <h3 className="text-xl md:text-2xl font-light text-white mb-3">
+                {cert.title}
+              </h3>
+              
+              {/* Certification Description */}
+              <p className="text-sm text-white/60 leading-relaxed">
+                {cert.desc}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -270,64 +525,122 @@ export default function Whatwedo() {
           </p>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4">
-          {/* Hexagon diagram container */}
-          <div className="relative flex items-center justify-center min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
+        {/* Mobile: Stacked Layout */}
+        <div className="md:hidden space-y-8 px-4">
+          <div className="flex justify-center mb-8">
+            <img
+              src="/hexreplace.png"
+              alt="AI Flow Hexagon"
+              className="w-[200px] h-[200px] object-contain"
+            />
+          </div>
+          
+          <div className="space-y-6 max-w-md mx-auto">
+            <div className="text-center">
+              <h3 className="text-sm font-light text-white mb-2 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
+                DISCOVERY & STRATEGY
+              </h3>
+              <p className="text-xs text-white/60 leading-relaxed text-center">
+                Define Objectives, Identify High-Impact Use Cases, And Align Stakeholders Around An Actionable AI Vision.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <h3 className="text-sm font-light text-white mb-2 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
+                DATA STRATEGY & ENGINEERING
+              </h3>
+              <p className="text-xs text-white/60 leading-relaxed text-center">
+                Collect, Clean, And Structure Datasets With Full Governance And Compliance To UAE Standards.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <h3 className="text-sm font-light text-white mb-2 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
+                MODEL DEVELOPMENT
+              </h3>
+              <p className="text-xs text-white/60 leading-relaxed text-center">
+                Design, Train, And Validate Machine-Learning Models Tailored To Your Business And Industry.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <h3 className="text-sm font-light text-white mb-2 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
+                TESTING & DEPLOYMENT
+              </h3>
+              <p className="text-xs text-white/60 leading-relaxed text-center">
+                Validate Accuracy, Security, And Performance Before Deployment On UAE Or Global Cloud Platforms.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <h3 className="text-sm font-light text-white mb-2 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
+                MONITORING & SCALING
+              </h3>
+              <p className="text-xs text-white/60 leading-relaxed text-center">
+                Implement Feedback Loops, Retraining Pipelines, And Optimization For Long-Term Scalability And Innovation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop: Hexagonal Layout */}
+        <div className="hidden md:block relative max-w-7xl mx-auto px-4">
+          <div className="relative flex items-center justify-center min-h-[700px] lg:min-h-[800px]">
             {/* Center hexagon image */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
               <img
-                src="/flow-hexagon.png"
+                src="/hexreplace.png"
                 alt="AI Flow Hexagon"
-                className="w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] object-contain"
+                className="w-[400px] h-[400px] lg:w-[500px] lg:h-[500px] object-contain"
               />
             </div>
 
             {/* Top Left - Discovery & Strategy */}
-            <div className="absolute top-[15%] md:top-[20%] left-0 max-w-[200px] md:max-w-[280px] animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <h3 className="text-sm md:text-base lg:text-xl font-light text-white mb-2 md:mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
+            <div className="absolute top-[20%] left-0 max-w-[280px] animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
                 DISCOVERY<br />& STRATEGY
               </h3>
-              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
+              <p className="text-sm text-white/60 leading-relaxed">
                 Define Objectives, Identify High-Impact Use Cases, And Align Stakeholders Around An Actionable AI Vision.
               </p>
             </div>
 
             {/* Top Right - Data Strategy & Engineering */}
-            <div className="absolute top-[15%] md:top-[20%] right-0 max-w-[200px] md:max-w-[280px] text-right animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <h3 className="text-sm md:text-base lg:text-xl font-light text-white mb-2 md:mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
+            <div className="absolute top-[20%] right-0 max-w-[280px] text-right animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
                 DATA STRATEGY<br />& ENGINEERING
               </h3>
-              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
+              <p className="text-sm text-white/60 leading-relaxed">
                 Collect, Clean, And Structure Datasets With Full Governance And Compliance To UAE Standards.
               </p>
             </div>
 
             {/* Middle Left - Model Development */}
-            <div className="absolute top-1/2 -translate-y-1/2 left-0 max-w-[200px] md:max-w-[280px] animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-              <h3 className="text-sm md:text-base lg:text-xl font-light text-white mb-2 md:mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
+            <div className="absolute top-1/2 -translate-y-1/2 left-0 max-w-[280px] animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+              <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
                 MODEL<br />DEVELOPMENT
               </h3>
-              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
+              <p className="text-sm text-white/60 leading-relaxed">
                 Design, Train, And Validate Machine-Learning Models Tailored To Your Business And Industry.
               </p>
             </div>
 
             {/* Middle Right - Testing & Deployment */}
-            <div className="absolute top-1/2 -translate-y-1/2 right-0 max-w-[200px] md:max-w-[280px] text-right animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-              <h3 className="text-sm md:text-base lg:text-xl font-light text-white mb-2 md:mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
+            <div className="absolute top-1/2 -translate-y-1/2 right-0 max-w-[280px] text-right animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+              <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
                 TESTING<br />& DEPLOYMENT
               </h3>
-              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
+              <p className="text-sm text-white/60 leading-relaxed">
                 Validate Accuracy, Security, And Performance Before Deployment On UAE Or Global Cloud Platforms.
               </p>
             </div>
 
             {/* Bottom Center - Monitoring & Scaling */}
-            <div className="absolute bottom-0 left -0.34 -translate-x-1/2 max-w-[280px] md:max-w-[360px] text-center animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
-              <h3 className="text-sm md:text-base lg:text-xl font-light text-white mb-2 md:mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
+            <div className="absolute bottom-0 left-0.25 -translate-x-1/2 max-w-[360px] text-center animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+              <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
                 MONITORING & SCALING
               </h3>
-              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
+              <p className="text-sm text-white/60 leading-relaxed">
                 Implement Feedback Loops, Retraining Pipelines, And Optimization For Long-Term Scalability And Innovation.
               </p>
             </div>
@@ -339,13 +652,13 @@ export default function Whatwedo() {
             <div className="relative bg-black border border-white/10 rounded-2xl p-12 md:p-16 overflow-hidden">
               <div className="flex items-center justify-center gap-8">
                 {/* Left image placeholder */}
-                <div className="hidden md:flex items-center justify-center w-24 h-24 flex-shrink-0">
+                {/* <div className="hidden md:flex items-center justify-center w-24 h-24 flex-shrink-0">
                   <img
                     src="/number-image-2.png"
                     alt="Decoration"
                     className="w-full h-full object-contain"
                   />
-                </div>
+                </div> */}
     
                 {/* Center content */}
                 <div className="flex-1 max-w-4xl text-center">
@@ -375,13 +688,13 @@ export default function Whatwedo() {
                 </div>
     
                 {/* Right image placeholder */}
-                <div className="hidden md:flex items-center justify-center w-24 h-24 flex-shrink-0">
+                {/* <div className="hidden md:flex items-center justify-center w-24 h-24 flex-shrink-0">
                   <img
                     src="/number-image-1.png"
                     alt="Decoration"
                     className="w-full h-full object-contain"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </section>

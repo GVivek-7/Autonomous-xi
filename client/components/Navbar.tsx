@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const navItems = [
   { to: "/", label: "HOME" },
@@ -10,9 +10,38 @@ const navItems = [
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Show navbar when scrolling up, hide when scrolling down
+      if (currentScrollY < lastScrollY || currentScrollY < 10) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+        setMobileMenuOpen(false); // Close mobile menu when hiding navbar
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-background/80 backdrop-blur-md">
+    <header 
+      className={`sticky top-0 z-50 border-b border-transparent transition-transform duration-300 ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      }`} 
+      style={{ background: 'transparent', backdropFilter: 'none' }}
+    >
       <div className="section h-16 flex items-center justify-between md:grid md:grid-cols-3">
         {/* Logo - Image on mobile, image on tablet/desktop */}
         <Link to="/" className="flex items-center">
@@ -42,7 +71,7 @@ export default function Navbar() {
         <div className="hidden md:flex justify-end">
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center border border-white/30 rounded-full px-6 lg:px-8 py-3 hover:border-white/50 hover:bg-white/5 transition-all duration-300"
+            className="inline-flex items-center justify-center border border-white/30 rounded-full px-6 lg:px-8 py-3 hover:border-white/50 transition-all duration-300"
           >
             <span className="text-xs tracking-[0.2em] uppercase text-white font-light">
               LET'S TALK
@@ -70,7 +99,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-white/10 bg-background/95 backdrop-blur-md">
+        <div className="md:hidden border-t border-transparent bg-black/90">
           <nav className="section py-4 flex flex-col gap-4">
             {navItems.map((item) => (
               <NavLink

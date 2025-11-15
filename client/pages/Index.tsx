@@ -1,8 +1,9 @@
 import Layout from "@/components/Layout";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState, MouseEvent } from "react";
-import PlusButton from "@/components/PlusButton";
 import SplineBackground from "@/components/SplineBackground";
+import RadialGlass from "@/components/RadialGlass";
+import RadialGlassSmall from "@/components/RadialGlassSmall";
 
 function CountUp({
   target,
@@ -80,7 +81,7 @@ function Stat({
       <div className="mb-4">
         <CountUp
           target={value}
-          className="text-4xl sm:text-5xl md:text-6xl font-light text-primary"
+          className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-weight:500 bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent"
         />
       </div>
       <h4 className="text-xs tracking-[0.15em] uppercase text-white font-medium mb-3">
@@ -89,6 +90,120 @@ function Stat({
       <p className="text-xs leading-relaxed text-white/60 max-w-xs mx-auto md:mx-0">
         {desc}
       </p>
+    </div>
+  );
+}
+
+function WhatWeDoCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const cards = [
+    {
+      title: "AI-ENABLED SOFTWARE SERVICES",
+      desc: "Autonomous AI Delivers End-To-End Solutions—From AI Strategy And Consulting To Full-Scale Deployment. We Help Organizations Integrate Computer Vision, NLP, And Automation Into Their Workflows While Ensuring Compliance And Responsible AI Governance.",
+      icon: "/card-icon1.png",
+      alt: "Neural Network"
+    },
+    {
+      title: "AI INFRASTRUCTURE & DATA SERVICES",
+      desc: "We architect and deploy scalable AI infrastructure—cloud-native platforms, MLOps pipelines, and data engineering solutions that power intelligent systems at enterprise scale.",
+      icon: "/card-icon2.png",
+      alt: "Infrastructure"
+    },
+    {
+      title: "AI-POWERED BUSINESS EVOLUTION",
+      desc: "Transform operations with intelligent automation, predictive analytics, and AI-driven decision systems that evolve with your business needs.",
+      icon: "/iconimg3.png",
+      alt: "Business Evolution"
+    },
+    {
+      title: "EMERGING INNOVATIONS",
+      desc: "Pioneering next-generation AI capabilities through research and development in advanced machine learning, neural architectures, and cognitive systems.",
+      icon: "/icon-img4.png",
+      alt: "Emerging Innovations"
+    },
+    {
+      title: "TRAINING AND ENABLEMENT",
+      desc: "Autonomous AI offers corporate training, developer bootcamps, and executive programs that prepare UAE teams to adopt, manage, and scale artificial intelligence ethically and effectively.",
+      icon: "/imgicon5.png",
+      alt: "Emerging Innovations"
+    },
+    {
+      title: "AI SOLUTIONS EXECUTION PROCESS",
+      desc: "Our five-phase process—Discovery, Data, Model, Deployment, and Scaling—ensures that every project moves from vision to real-world impact with transparency, speed, and measurable outcomes.",
+      icon: "/imgicon6.png",
+      alt: "Emerging Innovations"
+    },
+    {
+      title: "AUTONOMOUS AI ADVANTAGE",
+      desc: "We combine strategy, design, and deep technical expertise across healthcare, fintech, retail, logistics, and government sectors. With a focus on UAE standards, GDPR, and responsible AI, we build solutions that are scalable, secure, and future-proof.",
+      icon: "/imgicon7.png",
+      alt: "Emerging Innovations"
+    }
+
+  ];
+  
+  const cardsPerView = 3;
+  const maxIndex = Math.max(0, cards.length - cardsPerView);
+  
+  const handlePrev = () => {
+    setCurrentIndex((prev) => Math.max(0, prev - 1));
+  };
+  
+  const handleNext = () => {
+    setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
+  };
+  
+  return (
+    <div className="relative">
+      {/* Cards Container */}
+      <div className="overflow-hidden">
+        <div 
+          className="flex gap-5 transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)` }}
+        >
+          {cards.map((card, index) => (
+            <div key={index} className="flex-shrink-0" style={{ width: `calc(${100 / cardsPerView}% - ${(cardsPerView - 1) * 20 / cardsPerView}px)` }}>
+              <Card
+                title={card.title}
+                desc={card.desc}
+                variant="dark"
+                icon={
+                  <img 
+                    src={card.icon} 
+                    alt={card.alt} 
+                    className="w-full h-full object-contain object-bottom"
+                  />
+                }
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Navigation Buttons */}
+      <div className="flex justify-center gap-3 mt-8">
+        <button
+          onClick={handlePrev}
+          disabled={currentIndex === 0}
+          className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center hover:bg-primary/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          aria-label="Previous"
+        >
+          <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          onClick={handleNext}
+          disabled={currentIndex === maxIndex}
+          className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center hover:bg-primary/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          aria-label="Next"
+        >
+          <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 }
@@ -105,39 +220,17 @@ function Card({
   variant?: "light" | "dark";
 }) {
   return (
-    <div className="group perspective-1000 min-h-[320px]">
-      <div className="relative w-full h-full transition-transform duration-700 transform-style-3d group-hover:rotate-y-180">
-        {/* Front of card - Icon and Title */}
-        <div
-          className={`absolute inset-0 rounded-xl p-8 backface-hidden flex flex-col ${
-            variant === "light"
-              ? "bg-[#E8E4DC] text-black"
-              : "bg-[#1A1A1A]"
-          }`}
-        >
-          <h3 className={`text-sm font-medium tracking-[0.15em] uppercase mb-auto ${
-            variant === "light" ? "text-black" : "text-white"
-          }`}>
-            {title}
-          </h3>
-          <div className="flex-1 flex items-center justify-center">
-            <div className="text-primary">{icon}</div>
-          </div>
-        </div>
-
-        {/* Back of card - Content */}
-        <div className={`absolute inset-0 rounded-xl p-8 backface-hidden rotate-y-180 flex flex-col ${
-          variant === "light"
-            ? "bg-[#E8E4DC] text-black"
-            : "bg-[#E8E4DC] text-black"
-        }`}>
-          <h3 className="text-sm font-medium tracking-[0.15em] uppercase mb-4">
-            {title}
-          </h3>
-          <p className="text-[11px] leading-relaxed text-black/80 flex-1">
-            {desc}
-          </p>
-        </div>
+    <div className="rounded-xl overflow-hidden flex flex-col h-[500px] bg-[#E8E4DC] text-black">
+      <div className="p-8 pb-6 flex-shrink-0">
+        <h3 className="text-sm font-medium tracking-[0.15em] uppercase mb-4 text-black">
+          {title}
+        </h3>
+        <p className="text-xs leading-relaxed text-black/80">
+          {desc}
+        </p>
+      </div>
+      <div className="flex-1 flex items-end justify-center overflow-hidden">
+        <div className="text-primary w-full h-full flex items-end">{icon}</div>
       </div>
     </div>
   );
@@ -170,7 +263,7 @@ function MouseGradientCard({ children, className = "" }: { children: React.React
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"
           style={{
             opacity: isHovering ? 1 : 0,
-            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 107, 0, 0.15), transparent 40%)`,
+            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 68, 0, 0.15), transparent 40%)`,
           }}
         />
       )}
@@ -183,102 +276,97 @@ export default function Index() {
   return (
     <Layout>
       {/* HERO */}
-      <section className="relative overflow-hidden" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
+      <section className="relative overflow-hidden bg-black" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
         <SplineBackground />
-        <div className="absolute inset-0 pointer-events-none -z-10">
-          <div
-            className="absolute -top-24 right-0 h-[320px] w-[720px] blur-3xl opacity-60"
-            style={{
-              background:
-                "radial-gradient(closest-side, hsl(var(--primary)/0.55), transparent)",
-            }}
-          />
-        </div>
-        <div className="section pt-14 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
-          <div className="max-w-4xl">
-            <h1 className="mt-0 text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-              <span className="block">INTELLIGENCE</span>
-              <span className="block">
-                THAT MOVES THE <span className="text-primary">FUTURE</span>
+        <RadialGlass />
+        <div className="section h-full flex flex-col justify-end pb-12 md:pb-16">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
+          <div className="max-w-4xl relative z-20">
+            <h1 className="mt-0 text-5xl md:text-6xl lg:text-7xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+              <span className="block text-white">INTELLIGENCE</span>
+              <span className="block text-primary">
+                THAT MOVES THE FUTURE
               </span>
             </h1>
           </div>
           {/* <div className="flex-shrink-0 mt-4 md:mt-0">
             <PlusButton to="/contact" />
           </div> */}
+          </div>
         </div>
       </section>
 
       {/* INTRO */}
       <section className="section py-16 md:py-20">
-        <div className="relative bg-black border border-white/10 rounded-2xl p-12 md:p-16 lg:p-20">
-          {/* Top-left corner accent */}
-          <div className="absolute top-6 left-6">
+        <div className="relative bg-black p-12 md:p-16 lg:p-20 rounded-[20px] border border-white/10">
+          {/* Top-left corner line */}
+          <div className="absolute top-0 left-0">
             <svg
-              width="40"
-              height="40"
-              viewBox="0 0 40 40"
+              width="60"
+              height="60"
+              viewBox="0 0 60 60"
               fill="none"
               className="text-primary"
             >
               <path
-                d="M 0 20 L 0 0 L 20 0"
+                d="M 0 60 Q 0 0 60 0"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
+                fill="none"
               />
             </svg>
           </div>
 
           {/* Top-left glow */}
-          <div
+          {/* <div
             className="absolute -top-8 -left-8 w-24 h-24 rounded-full blur-2xl opacity-20"
             style={{
               background: "radial-gradient(circle, hsl(var(--primary)), transparent)",
             }}
-          />
+          /> */}
 
-          {/* Center radial glow behind text */}
+          {/* Center radial glow behind text
           <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full blur-3xl opacity-15"
             style={{
               background: "radial-gradient(ellipse, hsl(var(--primary)), transparent 70%)",
             }}
-          />
+          /> */}
 
           {/* Content */}
-          <p className="text-base md:text-lg text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-[30px] text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
             At <span className="text-primary font-semibold">Autonomous AI</span>, we build systems that think, learn, and evolve. From predictive
             analytics to generative intelligence, we empower <span className="text-primary font-semibold">UAE businesses</span> to automate,
             innovate, and scale with precision.
           </p>
 
-          {/* Bottom-right corner accent */}
-          <div className="absolute bottom-6 right-6">
+          {/* Bottom-right corner line */}
+          <div className="absolute bottom-0 right-0">
             <svg
-              width="40"
-              height="40"
-              viewBox="0 0 40 40"
+              width="60"
+              height="60"
+              viewBox="0 0 60 60"
               fill="none"
               className="text-primary"
             >
               <path
-                d="M 40 20 L 40 40 L 20 40"
+                d="M 60 0 Q 60 60 0 60"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
+                fill="none"
               />
             </svg>
           </div>
 
-          {/* Bottom-right glow */}
+          {/* Bottom-right glow
           <div
             className="absolute -bottom-8 -right-8 w-24 h-24 rounded-full blur-2xl opacity-20"
             style={{
               background: "radial-gradient(circle, hsl(var(--primary)), transparent)",
             }}
-          />
-        </div>
+          />*/}        </div>
       </section>
 
       {/* WHAT WE DO */}
@@ -295,56 +383,8 @@ export default function Index() {
             Operations To Shape The Future Of How Businesses Evolve.
           </p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <Card
-            title="AI-ENABLED SOFTWARE SERVICES"
-            desc="Autonomous AI Delivers End-To-End Solutions—From AI Strategy And Consulting To Full-Scale Deployment. We Help Organizations Integrate Computer Vision, NLP, And Automation Into Their Workflows While Ensuring Compliance And Responsible AI Governance."
-            variant="dark"
-            icon={
-              <img 
-                src="/card-icon-1.png" 
-                alt="Neural Network" 
-                className="w-24 h-24 md:w-32 md:h-32 object-contain"
-              />
-            }
-          />
-          <Card
-            title="AI INFRASTRUCTURE & DATA SERVICES"
-            desc="We architect and deploy scalable AI infrastructure—cloud-native platforms, MLOps pipelines, and data engineering solutions that power intelligent systems at enterprise scale."
-            variant="dark"
-            icon={
-              <img 
-                src="/card-icon-3.png" 
-                alt="Infrastructure" 
-                className="w-24 h-24 md:w-32 md:h-32 object-contain"
-              />
-            }
-          />
-          <Card
-            title="AI-POWERED BUSINESS EVOLUTION"
-            desc="Transform operations with intelligent automation, predictive analytics, and AI-driven decision systems that evolve with your business needs."
-            variant="dark"
-            icon={
-              <img 
-                src="/card-icon-2.png" 
-                alt="Business Evolution" 
-                className="w-24 h-24 md:w-32 md:h-32 object-contain"
-              />
-            }
-          />
-          <Card
-            title="EMERGING INNOVATIONS"
-            desc="Pioneering next-generation AI capabilities through research and development in advanced machine learning, neural architectures, and cognitive systems."
-            variant="dark"
-            icon={
-              <img 
-                src="/card-icon-4.png" 
-                alt="Emerging Innovations" 
-                className="w-24 h-24 md:w-32 md:h-32 object-contain"
-              />
-            }
-          />
-        </div>
+        
+        <WhatWeDoCarousel />
       </section>
 
       {/* NUMBERS */}
@@ -363,19 +403,17 @@ export default function Index() {
           </div>
 
           {/* Stats container */}
-          <div className="flex-1 max-w-5xl flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0">
+          <div className="flex-1 max-w-5xl flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
             <Stat
               value="2M+"
               heading="CLIENT GROWTH IMPACT"
               desc="Achieved Through Automation And Intelligence."
             />
-            <div className="hidden md:block w-px h-24 bg-primary/30 mx-6 lg:mx-8" />
             <Stat
               value="5+"
               heading="AI+ PROJECTS DELIVERED"
               desc="Including Saim.AI, GoGuard.AI, Raqeeb.AI, And ADNOC AI."
             />
-            <div className="hidden md:block w-px h-24 bg-primary/30 mx-6 lg:mx-8" />
             <Stat
               value="2+"
               heading="YEARS IN AI EXCELLENCE"
@@ -395,12 +433,13 @@ export default function Index() {
       </section>
 
       {/* CERTIFICATIONS */}
-      <section className="section py-16">
-        <div className="flex items-end justify-between mb-8">
-          <h2 className="text-2xl md:text-4xl font-extrabold">
-            Our certifications & standards
-          </h2>
-        </div>
+      {/* <section className="section py-16">
+        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide uppercase mb-12 md:mb-16">
+          <span className="text-white">OUR </span>
+          <span className="text-primary">CERTIFICATIONS</span>
+          <span className="text-white"> & </span>
+          <span className="text-primary">STANDARDS</span>
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {[
             { num: 1, title: "ISO 27001:2022", desc: "Information Security Management For AI And Data Systems" },
@@ -415,7 +454,7 @@ export default function Index() {
               className="bg-black border border-white/10 rounded-xl p-6 md:p-8 flex flex-col items-center text-center hover:border-primary/30 transition-colors"
             >
               {/* Certification Image */}
-              <div className="w-full h-32 md:h-40 mb-6 flex items-center justify-center bg-white/5 rounded-lg p-4">
+              {/* <div className="w-full h-32 md:h-40 mb-6 flex items-center justify-center bg-white/5 rounded-lg p-4">
                 <img
                   src={`/cert-${cert.num}.png`}
                   alt={cert.title}
@@ -424,23 +463,23 @@ export default function Index() {
               </div>
               
               {/* Certification Title */}
-              <h3 className="text-xl md:text-2xl font-light text-white mb-3">
+              {/* <h3 className="text-xl md:text-2xl font-light text-white mb-3">
                 {cert.title}
               </h3>
               
               {/* Certification Description */}
-              <p className="text-sm text-white/60 leading-relaxed">
+              {/* <p className="text-sm text-white/60 leading-relaxed">
                 {cert.desc}
               </p>
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* SPOTLIGHT */}
       <section className="section py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-light tracking-wide">
+          <h2 className="text-3xl md:text-5xl font-medium tracking-wide">
             <span className="text-white">SPOTLIGHT </span>
             <span className="text-primary">ON</span>
             <span className="text-white"> OUR WORK</span>
@@ -450,7 +489,7 @@ export default function Index() {
           {/* SAIM.AI */}
           <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10 flex flex-col justify-between min-h-[320px]">
             <div className="space-y-6">
-              <h3 className="text-3xl md:text-4xl font-light">
+              <h3 className="text-3xl md:text-4xl font-medium">
                 <span className="text-primary">SAIM.AI</span>
               </h3>
               <h4 className="text-xl md:text-2xl font-light text-white">
@@ -485,7 +524,7 @@ export default function Index() {
           {/* GOGUARD.AI */}
           <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10 flex flex-col justify-between min-h-[320px]">
             <div className="space-y-6">
-              <h3 className="text-3xl md:text-4xl font-light">
+              <h3 className="text-3xl md:text-4xl font-medium">
                 <span className="text-primary">GOGUARD.AI</span>
               </h3>
               <h4 className="text-xl md:text-2xl font-light text-white">
@@ -502,7 +541,7 @@ export default function Index() {
           {/* RAQEEB.AI */}
           <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10 flex flex-col justify-between min-h-[320px]">
             <div className="space-y-6">
-              <h3 className="text-3xl md:text-4xl font-light">
+              <h3 className="text-3xl md:text-4xl font-medium">
                 <span className="text-primary">RAQEEB.AI</span>
               </h3>
               <h4 className="text-xl md:text-2xl font-light text-white">
@@ -537,7 +576,7 @@ export default function Index() {
           {/* ADNOC AI INITIATIVE */}
           <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10 flex flex-col justify-between min-h-[320px]">
             <div className="space-y-6">
-              <h3 className="text-3xl md:text-4xl font-light">
+              <h3 className="text-3xl md:text-4xl font-medium">
                 <span className="text-primary">ADNOC AI INITIATIVE</span>
               </h3>
               <h4 className="text-xl md:text-2xl font-light text-white">
@@ -566,18 +605,59 @@ export default function Index() {
         </div>
       </section>
 
+      {/* AI-POWERED SOLUTIONS FOR TARGETED LEAD ACQUISITION */}
+      <section className="py-16 w-screen relative left-1/2 right-1/2 -mx-[50vw] overflow-hidden">
+        <div className="relative bg-gradient-to-r from-[#4a1a0a] via-black to-black min-h-[400px]">
+          {/* Left gradient glow */}
+          <div className="absolute left-0 top-0 bottom-0 w-1/3 bg-gradient-to-r from-primary/20 to-transparent blur-3xl z-0" />
+          
+          {/* 3D Model Background - Aligned at right extreme */}
+          <div className="absolute right-0 top-0 bottom-0 w-full md:w-1/2 h-full z-0">
+            <RadialGlassSmall />
+          </div>
+          
+          <div className="relative flex items-center w-full py-12 px-4 sm:px-6 md:px-8 z-10">
+            {/* Left Content */}
+            <div className="space-y-6 max-w-2xl">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight uppercase">
+                <span className="text-primary">AI-POWERED</span>{" "}
+                <span className="text-white">SOLUTIONS FOR</span>
+                <br />
+                <span className="text-white">TARGETED LEAD ACQUISITION</span>
+              </h2>
+              
+              <p className="text-sm md:text-base text-white/70 leading-relaxed max-w-xl">
+                Your Gateway To A World Where Expertise Meets Innovation. While You're
+                Here, Talk To An Expert And Let's Shape Your Digital Success Story
+                Together.
+              </p>
+              
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-3 border border-white/30 rounded-full px-6 py-3 hover:border-primary/50 hover:bg-white/10 transition-all duration-300 group bg-white/5"
+              >
+                <span className="text-xs tracking-[0.2em] uppercase text-white font-medium">
+                  LET'S CONNECT
+                </span>
+                <span className="text-white text-xl">+</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="section py-16">
         <div className="relative bg-black border border-white/10 rounded-2xl p-12 md:p-16 overflow-hidden">
           <div className="flex items-center justify-center gap-8">
             {/* Left image placeholder */}
-            <div className="hidden md:flex items-center justify-center w-24 h-24 flex-shrink-0">
+            {/* <div className="hidden md:flex items-center justify-center w-24 h-24 flex-shrink-0">
               <img
                 src="/number-image-2.png"
                 alt="Decoration"
                 className="w-full h-full object-contain"
               />
-            </div>
+            </div> */}
 
             {/* Center content */}
             <div className="flex-1 max-w-4xl text-center">
@@ -600,13 +680,13 @@ export default function Index() {
             </div>
 
             {/* Right image placeholder */}
-            <div className="hidden md:flex items-center justify-center w-24 h-24 flex-shrink-0">
+            {/* <div className="hidden md:flex items-center justify-center w-24 h-24 flex-shrink-0">
               <img
                 src="/number-image-1.png"
                 alt="Decoration"
                 className="w-full h-full object-contain"
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

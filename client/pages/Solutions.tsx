@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import { useState, useEffect, useRef, MouseEvent } from "react";
 import { Link } from "react-router-dom";
 import SplineBackground from "@/components/SplineBackground";
-import PlusButton from "@/components/PlusButton";
+import RadialGlass from "@/components/RadialGlass";
 
 function MouseGradientCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -120,8 +120,9 @@ export default function Solutions() {
   return (
     <Layout>
       {/* HERO */}
-            <section className="relative overflow-hidden" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
+            <section className="relative overflow-hidden bg-black" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
               <SplineBackground />
+              <RadialGlass />
               <div className="absolute inset-0 pointer-events-none -z-10">
                 <div
                   className="absolute -top-24 right-0 h-[320px] w-[720px] blur-3xl opacity-60"
@@ -132,7 +133,7 @@ export default function Solutions() {
                 />
               </div>
               <div className="section pt-14 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
-                <div className="max-w-4xl">
+                <div className="max-w-4xl relative z-20">
                   <h1 className="mt-0 text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                     <span className="block">AUTONOMOUS BY NATURE</span>
                     <span className="block">
@@ -147,21 +148,22 @@ export default function Solutions() {
             </section>
                {/* INTRO */}
       <section className="section py-12 md:py-16 lg:py-20">
-        <div className="relative bg-black border border-white/10 rounded-2xl p-8 md:p-12 lg:p-16 xl:p-20">
+        <div className="relative bg-black border border-white/10 rounded-[20px] p-8 md:p-12 lg:p-16 xl:p-20">
           {/* Top-left corner accent */}
-          <div className="absolute top-4 left-4 md:top-6 md:left-6">
+          <div className="absolute top-0 left-0">
             <svg
-              width="32"
-              height="32"
-              viewBox="0 0 40 40"
+              width="60"
+              height="60"
+              viewBox="0 0 60 60"
               fill="none"
-              className="text-primary md:w-10 md:h-10"
+              className="text-primary"
             >
               <path
-                d="M 0 20 L 0 0 L 20 0"
+                d="M 0 60 Q 0 0 60 0"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
+                fill="none"
               />
             </svg>
           </div>
@@ -194,19 +196,20 @@ export default function Solutions() {
         </div>
 
           {/* Bottom-right corner accent */}
-          <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6">
+          <div className="absolute bottom-0 right-0">
             <svg
-              width="32"
-              height="32"
-              viewBox="0 0 40 40"
+              width="60"
+              height="60"
+              viewBox="0 0 60 60"
               fill="none"
-              className="text-primary md:w-10 md:h-10"
+              className="text-primary"
             >
               <path
-                d="M 40 20 L 40 40 L 20 40"
+                d="M 60 0 Q 60 60 0 60"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
+                fill="none"
               />
             </svg>
           </div>
@@ -776,13 +779,13 @@ export default function Solutions() {
         <div className="relative bg-black border border-white/10 rounded-2xl p-12 md:p-16 overflow-hidden">
           <div className="flex items-center justify-center gap-8">
             {/* Left image placeholder */}
-            <div className="hidden md:flex items-center justify-center w-24 h-24 flex-shrink-0">
+            {/* <div className="hidden md:flex items-center justify-center w-24 h-24 flex-shrink-0">
               <img
                 src="/number-image-2.png"
                 alt="Decoration"
                 className="w-full h-full object-contain"
               />
-            </div>
+            </div> */}
 
             {/* Center content */}
             <div className="flex-1 max-w-4xl text-center">
@@ -805,13 +808,13 @@ export default function Solutions() {
             </div>
 
             {/* Right image placeholder */}
-            <div className="hidden md:flex items-center justify-center w-24 h-24 flex-shrink-0">
+            {/* <div className="hidden md:flex items-center justify-center w-24 h-24 flex-shrink-0">
               <img
                 src="/number-image-1.png"
                 alt="Decoration"
                 className="w-full h-full object-contain"
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
