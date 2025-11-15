@@ -288,9 +288,9 @@ function FlowOfInnovation() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: () => `+=${cards.length * window.innerHeight}`,
+          end: () => `+=${window.innerHeight * 1.5}`,
           pin: true,
-          scrub: 1,
+          scrub: 0.5,
           anticipatePin: 1,
         }
       });
@@ -331,7 +331,7 @@ function FlowOfInnovation() {
 
   return (
     <div ref={sectionRef} className="relative">
-      <div className="pt-10 pb-20">
+      <div className="pt-10" style={{ paddingBottom: '120px' }}>
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-center mb-4">
           <span className="text-white">THE FLOW OF </span>
           <span className="text-primary">INNOVATION</span>
@@ -360,8 +360,8 @@ function FlowOfInnovation() {
                   <ul className="space-y-1 md:space-y-2">
                     {card.bullets.map((bullet, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <span className="text-primary mt-1">•</span>
-                        <span className="text-[10px] md:text-xs text-white/60">{bullet}</span>
+                        <span className="text-primary flex-shrink-0 leading-tight">•</span>
+                        <span className="text-[10px] md:text-xs text-white/60 leading-tight">{bullet}</span>
                       </li>
                     ))}
                   </ul>
