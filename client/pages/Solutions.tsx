@@ -120,7 +120,7 @@ export default function Solutions() {
   return (
     <Layout>
       {/* HERO */}
-            <section className="relative overflow-hidden bg-black" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
+            <section className="relative overflow-hidden bg-black w-full" style={{ height: '870px' }}>
               <SplineBackground />
               <RadialGlass />
               <div className="absolute inset-0 pointer-events-none -z-10">

@@ -110,13 +110,13 @@ function WhatWeDoCarousel() {
   return (
     <div className="relative">
       {/* Cards Container */}
-      <div className="overflow-hidden">
+      <div className="overflow-hidden px-2 md:px-0">
         <div 
-          className="flex gap-5 transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)` }}
+          className="flex gap-3 md:gap-5 transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${currentIndex * (100 / cardsPerView + (cardsPerView > 1 ? 0 : 0))}%)` }}
         >
           {cards.map((card, index) => (
-            <div key={index} className="flex-shrink-0" style={{ width: `calc(${100 / cardsPerView}% - ${(cardsPerView - 1) * 20 / cardsPerView}px)` }}>
+            <div key={index} className="flex-shrink-0 px-1 md:px-0" style={{ width: cardsPerView === 1 ? '100%' : `calc(${100 / cardsPerView}% - ${(cardsPerView - 1) * 20 / cardsPerView}px)` }}>
               <MouseGradientCard className="h-full">
                 <Card
                   title={card.title}
@@ -216,7 +216,7 @@ export default function Whatwedo() {
   return (
     <Layout>
        {/* HERO */}
-            <section className="relative overflow-hidden bg-black" style={{ height: '870px', maxWidth: '1440px', margin: '0 auto' }}>
+            <section className="relative overflow-hidden bg-black w-full" style={{ height: '870px' }}>
               <SplineBackground />
               <RadialGlass />
               <div className="absolute inset-0 pointer-events-none -z-10">
