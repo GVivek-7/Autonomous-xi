@@ -148,7 +148,7 @@ export default function Solutions() {
             </section>
                {/* INTRO */}
       <section className="section py-12 md:py-16 lg:py-20">
-        <div className="relative bg-black border border-white/10 rounded-[20px] p-8 md:p-12 lg:p-16 xl:p-20">
+        <div className="relative bg-black rounded-[20px] p-8 md:p-12 lg:p-16 xl:p-20">
           {/* Top-left corner accent */}
           <div className="absolute top-0 left-0">
             <svg

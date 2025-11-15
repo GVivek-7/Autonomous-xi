@@ -292,25 +292,44 @@ export default function Index() {
   return (
     <Layout>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-black w-full" style={{ height: '870px' }}>
+      {/* <section className="relative overflow-hidden bg-black w-full" style={{ height: '870px' }}>
         <SplineBackground />
         <RadialGlass />
-        <div className="section h-full flex flex-col justify-start md:justify-end pt-20 md:pt-0 pb-12 md:pb-16">
-          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
+        <div className="section pt-24 md:pt-32 pb-16 md:pb-28 h-full flex flex-col gap-6 md:gap-8 relative z-20">
           <div className="max-w-4xl relative z-20">
-            <h1 className="mt-0 text-2xl md:text-6xl lg:text-7xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+            <h1 className="mt-0 text-2xl md:text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
               <span className="block text-white">INTELLIGENCE</span>
               <span className="block text-primary">
                 THAT MOVES THE FUTURE
               </span>
             </h1>
-          </div>
+          </div> */}
           {/* <div className="flex-shrink-0 mt-4 md:mt-0">
             <PlusButton to="/contact" />
           </div> */}
-          </div>
-        </div>
-      </section>
+        {/* </div>
+      </section> */}
+      <section
+  className="relative overflow-hidden bg-black w-full"
+  style={{ height: "700px" }}
+>
+  {/* Background layers */}
+  <SplineBackground />
+  <RadialGlass />
+
+  {/* TEXT BLOCK — placed bottom-left */}
+  <div className="absolute bottom-12 left-10 md:bottom-20 md:left-20 z-20">
+    <h1
+      className="mt-0 text-3xl md:text-6xl font-normal leading-tight uppercase"
+      style={{ fontFamily: "Clash Display, sans-serif" }}
+    >
+      <span className="block text-white">INTELLIGENCE</span>
+      <span className="block text-primary">THAT MOVES THE FUTURE</span>
+    </h1>
+  </div>
+</section>
+
+      
 
       {/* INTRO */}
       <section className="section py-16 md:py-20">

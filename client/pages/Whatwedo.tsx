@@ -244,7 +244,7 @@ export default function Whatwedo() {
             </section>
       {/* INTRO */}
       <section className="section py-16 md:py-20">
-        <div className="relative bg-black border border-white/10 rounded-[20px] p-12 md:p-16 lg:p-20">
+        <div className="relative bg-black rounded-[20px] p-12 md:p-16 lg:p-20">
           {/* Top-left corner accent */}
           <div className="absolute top-0 left-0">
             <svg
