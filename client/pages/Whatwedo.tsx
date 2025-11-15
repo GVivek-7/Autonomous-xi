@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { useState, useRef, MouseEvent, useEffect } from "react";
 import SplineBackground from "@/components/SplineBackground";
 import RadialGlass from "@/components/RadialGlass";
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function MouseGradientCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -62,37 +66,45 @@ function WhatWeDoCarousel() {
     {
       title: "AI Strategy & Consulting",
       desc: "We guide UAE enterprises through readiness assessments, ROI planning, and responsible AI roadmaps that align with national innovation frameworks.",
-      alt: "AI Strategy & Consulting"
+      alt: "AI Strategy & Consulting",
+      icon:"/icon1.png"
     },
     {
       title: "Custom AI Development",
       desc: "Machine learning, deep learning, and generative AI solutions built to automate workflows, enhance decision-making, and accelerate growth.",
-      alt: "Custom AI Development"
+      alt: "Custom AI Development",
+      icon:"/icon2.png"
+
     },
     {
       title: "Natural Language & Conversational AI",
       desc: "Multilingual chatbots, voicebots, and document-intelligence systems that communicate fluently in English and Arabic.",
-      alt: "Natural Language & Conversational AI"
+      alt: "Natural Language & Conversational AI",
+      icon:"/icon3.png"
     },
     {
       title: "Computer Vision Solutions",
       desc: "AI-powered image recognition, OCR, and video analytics for healthcare, logistics, surveillance, and sports performance.",
-      alt: "Computer Vision Solutions"
+      alt: "Computer Vision Solutions",
+      icon:"/icon4.png"
     },
     {
       title: "AI Infrastructure and Data Engineering",
       desc: "Secure cloud or on-prem deployments, scalable data pipelines, and continuous MLOps monitoring for reliable, compliant AI systems.",
-      alt: "AI Infrastructure and Data Engineering"
+      alt: "AI Infrastructure and Data Engineering",
+      icon:"/icon5.png"
     },
     {
       title: "Business Process Automation",
       desc: "Smart AI tools for HR, marketing, finance, and supply chain — reducing manual effort, minimizing errors, and boosting ROI.",
-      alt: "Business Process Automation"
+      alt: "Business Process Automation",
+      icon:"/icon6.png"
     },
     {
       title: "Emerging Innovations",
       desc: "Exploring next-gen domains such as generative 3D design, AI-driven cybersecurity, sustainability analytics, and metaverse integration.",
-      alt: "Emerging Innovations"
+      alt: "Emerging Innovations",
+      icon:"/icon7.png"
     }
 
   ];
@@ -110,19 +122,19 @@ function WhatWeDoCarousel() {
   return (
     <div className="relative">
       {/* Cards Container */}
-      <div className="overflow-hidden px-2 md:px-0">
+      <div className="overflow-hidden w-full">
         <div 
-          className="flex gap-3 md:gap-5 transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${currentIndex * (100 / cardsPerView + (cardsPerView > 1 ? 0 : 0))}%)` }}
+          className="flex gap-0 md:gap-5 transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {cards.map((card, index) => (
-            <div key={index} className="flex-shrink-0 px-1 md:px-0" style={{ width: cardsPerView === 1 ? '100%' : `calc(${100 / cardsPerView}% - ${(cardsPerView - 1) * 20 / cardsPerView}px)` }}>
+            <div key={index} className="flex-shrink-0 w-full md:w-auto" style={{ width: cardsPerView === 1 ? '100%' : `calc(${100 / cardsPerView}% - ${(cardsPerView - 1) * 20 / cardsPerView}px)` }}>
               <MouseGradientCard className="h-full">
                 <Card
                   title={card.title}
                   desc={card.desc}
                   variant="dark"
-                  icon=""
+                  icon={card.icon}
                     
                 />
               </MouseGradientCard>
@@ -185,7 +197,7 @@ function Card({
   return (
     <div 
       ref={cardRef}
-      className="relative rounded-xl overflow-hidden flex flex-col h-[200px] bg-[#000000] text-white border border-white/20"
+      className="relative rounded-xl overflow-hidden flex flex-col h-[280px] bg-[#000000] text-white border border-white/20"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
@@ -198,15 +210,171 @@ function Card({
         }}
       />
       <div className="relative z-10 p-8 pb-6 flex-shrink-0">
-        <h3 className="text-sm md:text-xl font-medium tracking-[0.15em] uppercase mb-4 text-white">
+        {typeof icon === 'string' && icon && (
+          <div className="mb-4">
+            <img src={icon} alt={title} className="w-12 h-12 object-contain" />
+          </div>
+        )}
+        <h3 className="text-sm md:text-xl font-medium tracking-[0.15em] uppercase mb-4 text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>
           {title}
         </h3>
         <p className="text-xs leading-relaxed text-white/80">
           {desc}
         </p>
       </div>
-      <div className="relative z-10 flex-1 flex items-end justify-center overflow-hidden">
-        <div className="text-primary w-full h-full flex items-end">{icon}</div>
+    </div>
+  );
+}
+
+function FlowOfInnovation() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  const flowCards = [
+    {
+      title: "DISCOVERY & STRATEGY",
+      desc: "Establish Clear Objectives, Uncover Transformative AI Opportunities, And Bring All Stakeholders Together Around A Unified, Actionable Vision That Drives Meaningful Impact And Long-Term Value.",
+      bullets: ["Identify High-Impact AI Opportunities", "Build A Clear, Actionable Roadmap", "Align Teams Around A Unified AI Vision"]
+    },
+    {
+      title: "DATA STRATEGY & ENGINEERING",
+      desc: "Build A Robust Data Foundation With Secure Collection, Cleaning, And Structuring—Ensuring Full Governance And Compliance With UAE Standards For Reliable AI Performance.",
+      bullets: ["Build a robust, compliant data ecosystem", "Ensure clean, reliable, and well-structured datasets, Implement governance aligned with UAE regulations"]
+    },
+    {
+      title: "MODEL DEVELOPMENT",
+      desc: "Design, Train, And Validate Custom Machine Learning Models Tailored To Your Business Needs And Industry Requirements For Optimal Performance.",
+      bullets: ["Build custom ML models aligned to your goals", 
+        "Train with high-quality, domain-specific data", "Validate performance for accuracy and reliability"]
+    },
+    {
+      title: "TESTING & DEPLOYMENT",
+      desc: "Validate Accuracy, Security, And Performance Before Seamless Deployment On UAE Or Global Cloud Platforms With Zero Disruption.",
+      bullets: ["Rigorously test models for accuracy and stability","Conduct security and compliance checks","Optimize performance for production environments"]
+    },
+    {
+      title: "MONITORING & SCALING",
+      desc: "Implement Continuous Feedback Loops, Retraining Pipelines, And Optimization Strategies For Long-Term Scalability And Innovation.",
+      bullets: ["Monitor models for accuracy and drift","Automate retraining pipelines for freshness","Optimize performance for growing workloads"]
+    }
+  ];
+
+  useEffect(() => {
+    const cards = cardsRef.current.filter(Boolean);
+    if (cards.length === 0) return;
+
+    const setupTimeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+
+      // Set initial positions
+      cards.forEach((card) => {
+        gsap.set(card, {
+          y: window.innerHeight,
+          scale: 1,
+          transformOrigin: "center top"
+        });
+      });
+
+      // Set first card visible
+      gsap.set(cards[0], { y: 0, scale: 1 });
+
+      // Create animation timeline
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: () => `+=${cards.length * window.innerHeight}`,
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+        }
+      });
+
+      // Animate each card
+      cards.forEach((card, index) => {
+        if (index === 0) return;
+
+        const label = `card${index}`;
+        tl.add(label, index);
+
+        // Slide current card up
+        tl.fromTo(card,
+          { y: window.innerHeight, scale: 1 },
+          { y: 0, scale: 1, duration: 1, ease: "none" },
+          label
+        );
+
+        // Stack previous cards
+        for (let i = 0; i < index; i++) {
+          const stackOffset = (index - i) * 10;
+          const stackScale = 0.9 - ((index - i) * 0.05);
+          tl.to(cards[i], {
+            y: -stackOffset,
+            scale: stackScale,
+            duration: 1,
+            ease: "none"
+          }, label);
+        }
+      });
+    }, 100);
+
+    return () => {
+      clearTimeout(setupTimeout);
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
+  return (
+    <div ref={sectionRef} className="relative">
+      <div className="pt-10 pb-20">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-center mb-4">
+          <span className="text-white">THE FLOW OF </span>
+          <span className="text-primary">INNOVATION</span>
+        </h2>
+        <p className="mt-4 text-sm md:text-base text-white/60 max-w-2xl text-center mx-auto mb-12">
+  Integrating Intelligence Seamlessly Across Software, Data, And
+  Operations To Shape The Future Of How Businesses Evolve.
+</p>
+
+        <div ref={cardsContainerRef} className="relative w-full flex flex-col items-center justify-start pt-8" style={{ height: '100vh' }}>
+          {flowCards.map((card, index) => (
+            <div
+              key={index}
+              ref={el => { cardsRef.current[index] = el; }}
+              className="absolute bg-[#1A1A1A] border border-white/10 rounded-2xl shadow-lg max-w-6xl w-full mx-4 md:mx-0"
+              style={{ zIndex: index + 1, transformOrigin: 'top center' }}
+            >
+              <div className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-8 p-4 md:p-8 md:pr-0 md:pb-0">
+                <div className="flex-1 md:pr-8 pb-4 md:pb-8">
+                  <h3 className="text-lg md:text-2xl font-semibold text-primary mb-2 md:mb-3 uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                    {card.title}
+                  </h3>
+                  <p className="text-white/70 mb-3 md:mb-6 text-xs md:text-sm">
+                    {card.desc}
+                  </p>
+                  <ul className="space-y-1 md:space-y-2">
+                    {card.bullets.map((bullet, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span className="text-[10px] md:text-xs text-white/60">{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                {/* Image at bottom right corner - fully visible */}
+                <div className="flex-shrink-0 self-end w-full md:w-auto flex justify-end">
+                  <img
+                    src="/flow-1.png"
+                    alt={card.title}
+                    className="w-48 md:w-80 h-auto object-contain opacity-80"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -529,140 +697,7 @@ export default function Whatwedo() {
         </div>
       </section>
 
-      {/*FLOW OF INNOVATION*/}
-      <section className="section py-16 md:py-24">
-        <div className="mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-center mb-6 md:mb-8">
-            <span className="text-white">THE FLOW OF </span>
-            <span className="text-primary">INNOVATION</span>
-          </h2>
-          <p className="text-sm md:text-base lg:text-lg text-center text-white/70 max-w-4xl mx-auto leading-relaxed px-4">
-            We Follow A Proven Five-Phase Framework To Deliver Clarity, Control, And Measurable Outcomes At Every Step.
-          </p>
-        </div>
-
-        {/* Mobile: Stacked Layout */}
-        <div className="md:hidden space-y-8 px-4">
-          <div className="flex justify-center mb-8">
-            <img
-              src="/hexreplace.png"
-              alt="AI Flow Hexagon"
-              className="w-[200px] h-[200px] object-contain"
-            />
-          </div>
-          
-          <div className="space-y-6 max-w-md mx-auto">
-            <div className="text-center">
-              <h3 className="text-sm font-light text-white mb-2 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
-                DISCOVERY & STRATEGY
-              </h3>
-              <p className="text-xs text-white/60 leading-relaxed text-center">
-                Define Objectives, Identify High-Impact Use Cases, And Align Stakeholders Around An Actionable AI Vision.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <h3 className="text-sm font-light text-white mb-2 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
-                DATA STRATEGY & ENGINEERING
-              </h3>
-              <p className="text-xs text-white/60 leading-relaxed text-center">
-                Collect, Clean, And Structure Datasets With Full Governance And Compliance To UAE Standards.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <h3 className="text-sm font-light text-white mb-2 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
-                MODEL DEVELOPMENT
-              </h3>
-              <p className="text-xs text-white/60 leading-relaxed text-center">
-                Design, Train, And Validate Machine-Learning Models Tailored To Your Business And Industry.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <h3 className="text-sm font-light text-white mb-2 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
-                TESTING & DEPLOYMENT
-              </h3>
-              <p className="text-xs text-white/60 leading-relaxed text-center">
-                Validate Accuracy, Security, And Performance Before Deployment On UAE Or Global Cloud Platforms.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <h3 className="text-sm font-light text-white mb-2 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
-                MONITORING & SCALING
-              </h3>
-              <p className="text-xs text-white/60 leading-relaxed text-center">
-                Implement Feedback Loops, Retraining Pipelines, And Optimization For Long-Term Scalability And Innovation.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop: Hexagonal Layout */}
-        <div className="hidden md:block relative max-w-7xl mx-auto px-4">
-          <div className="relative flex items-center justify-center min-h-[700px] lg:min-h-[800px]">
-            {/* Center hexagon image */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <img
-                src="/hexreplace.png"
-                alt="AI Flow Hexagon"
-                className="w-[400px] h-[400px] lg:w-[500px] lg:h-[500px] object-contain"
-              />
-            </div>
-
-            {/* Top Left - Discovery & Strategy */}
-            <div className="absolute top-[20%] left-0 max-w-[280px] animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
-                DISCOVERY<br />& STRATEGY
-              </h3>
-              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
-                Define Objectives, Identify High-Impact Use Cases, And Align Stakeholders Around An Actionable AI Vision.
-              </p>
-            </div>
-
-            {/* Top Right - Data Strategy & Engineering */}
-            <div className="absolute top-[20%] right-0 max-w-[280px] text-right animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
-                DATA STRATEGY<br />& ENGINEERING
-              </h3>
-              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
-                Collect, Clean, And Structure Datasets With Full Governance And Compliance To UAE Standards.
-              </p>
-            </div>
-
-            {/* Middle Left - Model Development */}
-            <div className="absolute top-1/2 -translate-y-1/2 left-0 max-w-[280px] animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-              <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
-                MODEL<br />DEVELOPMENT
-              </h3>
-              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
-                Design, Train, And Validate Machine-Learning Models Tailored To Your Business And Industry.
-              </p>
-            </div>
-
-            {/* Middle Right - Testing & Deployment */}
-            <div className="absolute top-1/2 -translate-y-1/2 right-0 max-w-[280px] text-right animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-              <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
-                TESTING<br />& DEPLOYMENT
-              </h3>
-              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
-                Validate Accuracy, Security, And Performance Before Deployment On UAE Or Global Cloud Platforms.
-              </p>
-            </div>
-
-            {/* Bottom Center - Monitoring & Scaling */}
-            <div className="absolute bottom-0 left-0.25 -translate-x-1/2 max-w-[360px] text-center animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
-              <h3 className="text-base lg:text-xl font-light text-white mb-3 transition-colors duration-300 hover:text-primary uppercase tracking-wide">
-                MONITORING & SCALING
-              </h3>
-              <p className="text-xs md:text-sm text-white/60 leading-relaxed">
-                Implement Feedback Loops, Retraining Pipelines, And Optimization For Long-Term Scalability And Innovation.
-              </p>
-            </div>
-          </div>
-        </div>
-    </section>
+      <FlowOfInnovation />
           {/* CTA */}
           <section className="section py-16">
             <div className="relative bg-black border border-white/10 rounded-2xl p-12 md:p-16 overflow-hidden">

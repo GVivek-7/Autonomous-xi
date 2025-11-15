@@ -1,5 +1,6 @@
 /** @import must precede all other statements */
 @import url("https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -119,6 +120,10 @@
     padding: 0;
   }
 
+  p {
+    font-family: 'Poppins', sans-serif;
+  }
+
   :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -217,5 +222,15 @@
   
   .animate-fade-in-up {
     animation: fade-in-up 1s ease-out forwards;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

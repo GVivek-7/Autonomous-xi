@@ -238,7 +238,7 @@ function Card({
   return (
     <div className="rounded-xl overflow-hidden flex flex-col h-[500px] bg-[#E8E4DC] text-black">
       <div className="p-8 pb-6 flex-shrink-0">
-        <h3 className="text-sm md:text-xl font-medium tracking-[0.15em] uppercase mb-4 text-black">
+        <h3 className="text-sm md:text-xl font-medium tracking-[0.15em] uppercase mb-4 text-black" style={{ fontFamily: 'Clash Display, sans-serif' }}>
           {title}
         </h3>
         <p className="text-xs leading-relaxed text-black/80">
@@ -335,7 +335,7 @@ export default function Index() {
       <section className="section py-16 md:py-20">
         <div className="relative bg-black p-12 md:p-16 lg:p-20 rounded-[20px]">
           {/* Top-left corner line */}
-          <div className="absolute top-0 left-0">
+          <div className="absolute top-50 left-0">
             <svg
               width="60"
               height="60"
@@ -668,11 +668,11 @@ export default function Index() {
               </p>
               
               <Link
-                to="/contact"
+                to="/whatwedo"
                 className="inline-flex items-center gap-3 border border-white/30 rounded-full px-6 py-3 hover:border-primary/50 hover:bg-white/10 transition-all duration-300 group bg-white/5"
               >
                 <span className="text-xs tracking-[0.2em] uppercase text-white font-medium">
-                  LET'S CONNECT
+                  Know More
                 </span>
                 <span className="text-white text-xl">+</span>
               </Link>

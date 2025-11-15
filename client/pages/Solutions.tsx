@@ -147,10 +147,10 @@ export default function Solutions() {
               </div>
             </section>
                {/* INTRO */}
-      <section className="section py-12 md:py-16 lg:py-20">
-        <div className="relative bg-black rounded-[20px] p-8 md:p-12 lg:p-16 xl:p-20">
+      {/* <section className="section py-12 md:py-16 lg:py-20">
+        <div className="relative bg-black rounded-[20px] p-8 md:p-12 lg:p-16 xl:p-20"> */}
           {/* Top-left corner accent */}
-          <div className="absolute top-0 left-0">
+          {/* <div className="absolute top-0 left-0">
             <svg
               width="60"
               height="60"
@@ -166,26 +166,26 @@ export default function Solutions() {
                 fill="none"
               />
             </svg>
-          </div>
+          </div> */}
 
           {/* Top-left glow */}
-          <div
+          {/* <div
             className="absolute -top-8 -left-8 w-24 h-24 rounded-full blur-2xl opacity-20"
             style={{
               background: "radial-gradient(circle, hsl(var(--primary)), transparent)",
             }}
-          />
+          /> */}
 
           {/* Center radial glow behind text */}
-          <div
+          {/* <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] md:w-[600px] h-[200px] md:h-[300px] rounded-full blur-3xl opacity-15"
             style={{
               background: "radial-gradient(ellipse, hsl(var(--primary)), transparent 70%)",
             }}
-          />
+          /> */}
 
           {/* Content */}
-          <div className="mb-8 md:mb-12 relative z-10">
+          {/* <div className="mb-8 md:mb-12 relative z-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-tight">
             <span className="block text-white">THE LAB WHERE IDEAS GO</span>
             <span className="block text-primary font-normal tracking-wide">
@@ -193,10 +193,10 @@ export default function Solutions() {
             </span>
           </h2>
         
-        </div>
+        </div> */}
 
           {/* Bottom-right corner accent */}
-          <div className="absolute bottom-0 right-0">
+          {/* <div className="absolute bottom-0 right-0">
             <svg
               width="60"
               height="60"
@@ -212,17 +212,17 @@ export default function Solutions() {
                 fill="none"
               />
             </svg>
-          </div>
+          </div> */}
 
           {/* Bottom-right glow */}
-          <div
+          {/* <div
             className="absolute -bottom-8 -right-8 w-24 h-24 rounded-full blur-2xl opacity-20"
             style={{
               background: "radial-gradient(circle, hsl(var(--primary)), transparent)",
             }}
           />
         </div>
-      </section>
+      </section> */}
 
       {/* SAIM.AI SHOWCASE */}
       <section className="section py-16">
