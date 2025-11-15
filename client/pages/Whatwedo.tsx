@@ -125,7 +125,11 @@ function WhatWeDoCarousel() {
       <div className="overflow-hidden w-full">
         <div 
           className="flex gap-0 md:gap-5 transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          style={{ 
+            transform: cardsPerView === 1 
+              ? `translateX(-${currentIndex * 100}%)` 
+              : `translateX(-${currentIndex * (100 / cardsPerView)}%)`
+          }}
         >
           {cards.map((card, index) => (
             <div key={index} className="flex-shrink-0 w-full md:w-auto" style={{ width: cardsPerView === 1 ? '100%' : `calc(${100 / cardsPerView}% - ${(cardsPerView - 1) * 20 / cardsPerView}px)` }}>
