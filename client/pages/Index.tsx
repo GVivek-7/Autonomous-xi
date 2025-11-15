@@ -314,7 +314,7 @@ export default function Index() {
 
       {/* INTRO */}
       <section className="section py-16 md:py-20">
-        <div className="relative bg-black p-12 md:p-16 lg:p-20 rounded-[20px] border border-white/10">
+        <div className="relative bg-black p-12 md:p-16 lg:p-20 rounded-[20px]">
           {/* Top-left corner line */}
           <div className="absolute top-0 left-0">
             <svg
