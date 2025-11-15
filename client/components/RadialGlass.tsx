@@ -52,9 +52,12 @@ function RadialGlassModel() {
     }
   });
   
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const scale = isMobile ? 0.4 : 0.8;
+  
   return (
     <group ref={groupRef}>
-      <primitive object={clonedScene} scale={0.8} position={[0, -1, 0]} />
+      <primitive object={clonedScene} scale={scale} position={[0, -1, 0]} />
     </group>
   );
 }

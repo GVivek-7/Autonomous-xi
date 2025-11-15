@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { Link } from "react-router-dom";
-import { useState, useRef, MouseEvent } from "react";
+import { useState, useRef, MouseEvent, useEffect } from "react";
 import SplineBackground from "@/components/SplineBackground";
 import RadialGlass from "@/components/RadialGlass";
 
@@ -40,6 +40,23 @@ function MouseGradientCard({ children, className = "" }: { children: React.React
 
 function WhatWeDoCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardsPerView, setCardsPerView] = useState(3);
+  
+  useEffect(() => {
+    const updateCardsPerView = () => {
+      if (window.innerWidth < 768) {
+        setCardsPerView(1); // Mobile: 1 card
+      } else if (window.innerWidth < 1024) {
+        setCardsPerView(2); // Tablet: 2 cards
+      } else {
+        setCardsPerView(3); // Desktop: 3 cards
+      }
+    };
+    
+    updateCardsPerView();
+    window.addEventListener('resize', updateCardsPerView);
+    return () => window.removeEventListener('resize', updateCardsPerView);
+  }, []);
   
   const cards = [
     {
@@ -80,7 +97,6 @@ function WhatWeDoCarousel() {
 
   ];
   
-  const cardsPerView = 3;
   const maxIndex = Math.max(0, cards.length - cardsPerView);
   
   const handlePrev = () => {

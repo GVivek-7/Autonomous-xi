@@ -51,9 +51,13 @@ function RadialGlassModel() {
     }
   });
   
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const scale = isMobile ? 0.25 : 0.4;
+  const position: [number, number, number] = isMobile ? [0, 0, 0] : [3, 0, 0];
+  
   return (
     <group ref={groupRef}>
-      <primitive object={clonedScene} scale={0.4} position={[3, 0, 0]} />
+      <primitive object={clonedScene} scale={scale} position={position} />
     </group>
   );
 }
