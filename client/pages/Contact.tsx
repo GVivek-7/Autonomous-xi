@@ -109,7 +109,7 @@ export default function Contact() {
   return (
     <Layout>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-black w-full" style={{ height: '870px' }}>
+      <section className="relative overflow-hidden bg-black w-full" style={{ height: '800px' }}>
         <SplineBackground />
         <RadialGlass />
         <div className="absolute inset-0 pointer-events-none -z-10">

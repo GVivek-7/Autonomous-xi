@@ -311,7 +311,7 @@ export default function Index() {
       </section> */}
       <section
   className="relative overflow-hidden bg-black w-full"
-  style={{ height: "700px" }}
+  style={{ height: "800px" }}
 >
   {/* Background layers */}
   <SplineBackground />
@@ -320,7 +320,7 @@ export default function Index() {
   {/* TEXT BLOCK — placed bottom-left */}
   <div className="absolute bottom-12 left-10 md:bottom-20 md:left-20 z-20">
     <h1
-      className="mt-0 text-3xl md:text-6xl font-normal leading-tight uppercase"
+      className="mt-0 text-2xl md:text-5xl font-normal leading-tight uppercase"
       style={{ fontFamily: "Clash Display, sans-serif" }}
     >
       <span className="block text-white">INTELLIGENCE</span>
