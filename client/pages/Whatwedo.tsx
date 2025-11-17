@@ -293,7 +293,7 @@ function FlowOfInnovation() {
           start: "top top",
           end: () => `+=${window.innerHeight * 5}`,
           pin: true,
-          scrub: 2,
+          scrub: 1,
           anticipatePin: 1,
         }
       });
