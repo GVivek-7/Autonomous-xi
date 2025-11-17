@@ -114,43 +114,43 @@ function WhatWeDoCarousel() {
   
   const cards = [
     {
-      title: "AI-ENABLED SOFTWARE SERVICES",
+      title: "AI-Enabled Software Services",
       desc: "Autonomous AI Delivers End-To-End Solutions—From AI Strategy And Consulting To Full-Scale Deployment. We Help Organizations Integrate Computer Vision, NLP, And Automation Into Their Workflows While Ensuring Compliance And Responsible AI Governance.",
       icon: "/card-icon1.png",
       alt: "Neural Network"
     },
     {
-      title: "AI INFRASTRUCTURE & DATA SERVICES",
+      title: "AI Infrastructure & Data Services",
       desc: "We architect and deploy scalable AI infrastructure—cloud-native platforms, MLOps pipelines, and data engineering solutions that power intelligent systems at enterprise scale.",
       icon: "/card-icon2.png",
       alt: "Infrastructure"
     },
     {
-      title: "AI-POWERED BUSINESS EVOLUTION",
+      title: "AI-Powered Business Evolution",
       desc: "Transform operations with intelligent automation, predictive analytics, and AI-driven decision systems that evolve with your business needs.",
       icon: "/iconimg3.png",
       alt: "Business Evolution"
     },
     {
-      title: "EMERGING INNOVATIONS",
+      title: "Emerging Innovations",
       desc: "Pioneering next-generation AI capabilities through research and development in advanced machine learning, neural architectures, and cognitive systems.",
       icon: "/icon-img4.png",
       alt: "Emerging Innovations"
     },
     {
-      title: "TRAINING AND ENABLEMENT",
+      title: "Training and Enablement",
       desc: "Autonomous AI offers corporate training, developer bootcamps, and executive programs that prepare UAE teams to adopt, manage, and scale artificial intelligence ethically and effectively.",
       icon: "/imgicon5.png",
       alt: "Emerging Innovations"
     },
     {
-      title: "AI SOLUTIONS EXECUTION PROCESS",
+      title: "AI Solutions Execution Process",
       desc: "Our five-phase process—Discovery, Data, Model, Deployment, and Scaling—ensures that every project moves from vision to real-world impact with transparency, speed, and measurable outcomes.",
       icon: "/imgicon6.png",
       alt: "Emerging Innovations"
     },
     {
-      title: "AUTONOMOUS AI ADVANTAGE",
+      title: "Autonomous AI Advantage",
       desc: "We combine strategy, design, and deep technical expertise across healthcare, fintech, retail, logistics, and government sectors. With a focus on UAE standards, GDPR, and responsible AI, we build solutions that are scalable, secure, and future-proof.",
       icon: "/imgicon7.png",
       alt: "Emerging Innovations"
@@ -158,6 +158,9 @@ function WhatWeDoCarousel() {
 
   ];
   
+  // Calculate maxIndex to ensure last card is fully visible
+  // With peek effect, we show 3.2 cards at a time
+  // maxIndex = total cards - cards that fit fully = 7 - 3 = 4
   const maxIndex = Math.max(0, cards.length - cardsPerView);
   
   const handlePrev = () => {
@@ -178,11 +181,11 @@ function WhatWeDoCarousel() {
             gap: cardsPerView === 1 ? '0' : '20px',
             transform: cardsPerView === 1 
               ? `translateX(-${currentIndex * 100}%)` 
-              : `translateX(-${currentIndex * (100 / cardsPerView + (20 / cardsPerView))}%)`
+              : `translateX(calc(-${currentIndex * 100 / (cardsPerView + 0.2)}% - ${currentIndex * 20}px))`
           }}
         >
           {cards.map((card, index) => (
-            <div key={index} className="flex-shrink-0" style={{ width: cardsPerView === 1 ? '100%' : `calc(${100 / cardsPerView}% - ${20 * (cardsPerView - 1) / cardsPerView}px)` }}>
+            <div key={index} className="flex-shrink-0" style={{ width: cardsPerView === 1 ? '100%' : `calc(${100 / (cardsPerView + 0.2)}% - ${20 * (cardsPerView - 1) / cardsPerView}px)` }}>
               <Card
                 title={card.title}
                 desc={card.desc}
@@ -201,11 +204,11 @@ function WhatWeDoCarousel() {
       </div>
       
       {/* Navigation Buttons */}
-      <div className="flex justify-center gap-3 mt-8">
+      <div className="flex justify-end gap-3 mt-8 pr-6">
         <button
           onClick={handlePrev}
           disabled={currentIndex === 0}
-          className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center hover:bg-primary/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/20 disabled:hover:bg-transparent"
           aria-label="Previous"
         >
           <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -239,9 +242,9 @@ function Card({
   variant?: "light" | "dark";
 }) {
   return (
-    <div className="rounded-xl overflow-hidden flex flex-col h-[500px] bg-[#E8E4DC] text-black">
+    <div className="rounded-xl overflow-hidden flex flex-col h-[600px] bg-[#E8E4DC] text-black">
       <div className="p-8 pb-6 flex-shrink-0">
-        <h3 className="text-sm md:text-xl font-medium tracking-[0.15em] uppercase mb-4 text-black" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+        <h3 className="text-sm md:text-xl font-medium mb-4 text-black" style={{ fontFamily: 'Poppins, sans-serif' }}>
           {title}
         </h3>
         <p className="text-xs leading-relaxed text-black/80">
@@ -415,9 +418,9 @@ export default function Index() {
       <section id="what-we-do" className="section py-16">
         <div className="mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-tight">
-            <span className="block text-white">THE FUTURE, POWERED BY</span>
+            <span className="block text-white">The Future, Powered By</span>
             <span className="block text-primary font-normal tracking-wide">
-              AUTONOMOUS AI
+              Autonomous AI
             </span>
           </h2>
           <p className="mt-4 text-sm md:text-base text-white/60 max-w-2xl">
