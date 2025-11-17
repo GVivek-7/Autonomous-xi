@@ -282,6 +282,10 @@ function FlowOfInnovation() {
       // Set first card visible
       gsap.set(cards[0], { y: 0, scale: 1 });
 
+      // Detect mobile
+      const isMobile = window.innerWidth < 768;
+      const animationDuration = isMobile ? 1 : 2;
+
       // Create animation timeline
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -305,7 +309,7 @@ function FlowOfInnovation() {
         // Slide current card up
         tl.fromTo(card,
             { y: window.innerHeight, scale: 1 },
-            { y: 0, scale: 1, duration: 2, ease: "power2.inOut" },
+            { y: 0, scale: 1, duration: animationDuration, ease: "power2.inOut" },
             label
           );
 
@@ -316,7 +320,7 @@ function FlowOfInnovation() {
           tl.to(cards[i], {
             y: -stackOffset,
             scale: stackScale,
-            duration: 2,
+            duration: animationDuration,
             ease: "power2.inOut"
           }, label);
         }
