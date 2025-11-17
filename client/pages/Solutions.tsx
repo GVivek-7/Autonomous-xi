@@ -581,19 +581,9 @@ export default function Solutions() {
         </div>
 
         {/* Features Grid - Bottom Row */}
-        <div className="grid md:grid-cols-2 gap-4">
-          {/* Left Column - PROJECT INTENT */}
-          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex flex-col">
-            <h4 className="text-xl md:text-2xl font-light text-primary mb-3">
-              PROJECT INTENT
-            </h4>
-            <p className="text-sm md:text-base text-white/60 leading-relaxed">
-              Upgrade existing roadside camera systems to AI-based vision sensors capable of real-time analytics for traffic, safety, and urban planning.
-            </p>
-          </MouseGradientCard>
-
-          {/* Right Column - Features 3 & 4 stacked */}
-          <div className="space-y-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Right Column - Features 3 & 4 stacked - Order 1 on mobile, 2 on desktop */}
+          <div className="space-y-3 order-1 md:order-2">
             {/* Feature 3 */}
             <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
@@ -618,6 +608,16 @@ export default function Solutions() {
               </div>
             </MouseGradientCard>
           </div>
+
+          {/* Left Column - PROJECT INTENT - Order 2 on mobile, 1 on desktop */}
+          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex flex-col order-2 md:order-1">
+            <h4 className="text-xl md:text-2xl font-light text-primary mb-3">
+              PROJECT INTENT
+            </h4>
+            <p className="text-sm md:text-base text-white/60 leading-relaxed">
+              Upgrade existing roadside camera systems to AI-based vision sensors capable of real-time analytics for traffic, safety, and urban planning.
+            </p>
+          </MouseGradientCard>
         </div>
       </section>
       {/* IMPACT & COMPLIANCE */}
@@ -705,19 +705,9 @@ export default function Solutions() {
         </div>
 
         {/* Features Grid - Bottom Row */}
-        <div className="grid md:grid-cols-2 gap-4">
-          {/* Left Column - PROJECT INTENT */}
-          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex flex-col">
-            <h4 className="text-xl md:text-2xl font-light text-primary mb-3">
-              PROJECT INTENT
-            </h4>
-            <p className="text-sm md:text-base text-white/60 leading-relaxed">
-              To Automatically Analyze Pipeline-Thickness Data Gathered From Ultrasonic And Magnetic Sensors, And Help Inspectors Decide Whether To Repair, Replace, Or Maintain Gas Pipelines.
-            </p>
-          </MouseGradientCard>
-
-          {/* Right Column - Features 3 & 4 stacked */}
-          <div className="space-y-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Right Column - Features 3 & 4 stacked - Order 1 on mobile, 2 on desktop */}
+          <div className="space-y-3 order-1 md:order-2">
             {/* Feature 3 */}
             <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex items-start gap-4 hover:border-primary/30 transition-colors">
               <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center">
@@ -742,6 +732,16 @@ export default function Solutions() {
               </div>
             </MouseGradientCard>
           </div>
+
+          {/* Left Column - PROJECT INTENT - Order 2 on mobile, 1 on desktop */}
+          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-5 flex flex-col order-2 md:order-1">
+            <h4 className="text-xl md:text-2xl font-light text-primary mb-3">
+              PROJECT INTENT
+            </h4>
+            <p className="text-sm md:text-base text-white/60 leading-relaxed">
+              To Automatically Analyze Pipeline-Thickness Data Gathered From Ultrasonic And Magnetic Sensors, And Help Inspectors Decide Whether To Repair, Replace, Or Maintain Gas Pipelines.
+            </p>
+          </MouseGradientCard>
         </div>
       </section>
 
