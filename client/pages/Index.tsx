@@ -679,9 +679,9 @@ export default function Index() {
                 className="inline-flex items-center gap-3 border border-white/30 rounded-full px-6 py-3 hover:border-primary/50 hover:bg-white/10 transition-all duration-300 group bg-white/5"
               >
                 <span className="text-xs tracking-[0.2em] uppercase text-white font-medium">
-                  Know More
+                  More About us
                 </span>
-                <span className="text-white text-xl">+</span>
+                {/* <span className="text-white text-xl">+</span> */}
               </Link>
             </div>
           </div>
