@@ -287,9 +287,9 @@ function FlowOfInnovation() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: () => `+=${window.innerHeight * 1.5}`,
+          end: () => `+=${window.innerHeight * 5}`,
           pin: true,
-          scrub: 0.5,
+          scrub: 2,
           anticipatePin: 1,
         }
       });
@@ -299,14 +299,15 @@ function FlowOfInnovation() {
         if (index === 0) return;
 
         const label = `card${index}`;
-        tl.add(label, index);
+        // Space out animations more - each card gets more time
+        tl.add(label, `+=${index === 1 ? 0 : 1.5}`);
 
         // Slide current card up
         tl.fromTo(card,
-          { y: window.innerHeight, scale: 1 },
-          { y: 0, scale: 1, duration: 1, ease: "none" },
-          label
-        );
+            { y: window.innerHeight, scale: 1 },
+            { y: 0, scale: 1, duration: 2, ease: "power2.inOut" },
+            label
+          );
 
         // Stack previous cards
         for (let i = 0; i < index; i++) {
@@ -315,8 +316,8 @@ function FlowOfInnovation() {
           tl.to(cards[i], {
             y: -stackOffset,
             scale: stackScale,
-            duration: 1,
-            ease: "none"
+            duration: 2,
+            ease: "power2.inOut"
           }, label);
         }
       });
