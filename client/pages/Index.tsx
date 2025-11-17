@@ -313,7 +313,7 @@ export default function Index() {
         {/* </div>
       </section> */}
       {/* HERO */}
-                  <section className="relative overflow-hidden bg-black w-full" style={{ height: '800px' }}>
+                  <section className="relative overflow-hidden bg-black w-full h-[500px] md:h-[800px]">
                     <SplineBackground />
                     <RadialGlass />
                     <div className="absolute inset-0 pointer-events-none -z-10">
@@ -325,7 +325,7 @@ export default function Index() {
                         }}
                       />
                     </div>
-                    <div className="section pt-8 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-between gap-6 md:gap-8 relative z-20 md:z-auto">
+                    <div className="section pt-6 md:pt-24 pb-0 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-between gap-0 md:gap-8 relative z-20 md:z-auto">
                       <div className="max-w-4xl relative">
                         <h1 className="mt-0 text-2xl md:text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                           <span className="block">INTELLIGENCE THAT BUILDS</span>
@@ -345,21 +345,18 @@ export default function Index() {
         <div className="relative bg-black rounded-[20px] p-6 md:p-16 lg:p-20">
           {/* Top-left corner accent */}
           <div className="absolute top-0 left-0">
-            <svg
-              width="60"
-              height="60"
-              viewBox="0 0 60 60"
+            {/* <svg
+              width="80"
+              height="80"
+              viewBox="0 0 80 80"
               fill="none"
               className="text-primary"
             >
               <path
-                d="M 0 60 Q 0 0 60 0"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                fill="none"
+                d="M 0 80 Q 0 0 80 0 L 80 20 Q 20 20 20 80 Z"
+                fill="currentColor"
               />
-            </svg>
+            </svg> */}
           </div>
 
           {/* Top-left glow */}
@@ -387,7 +384,7 @@ export default function Index() {
 
           {/* Bottom-right corner accent */}
           <div className="absolute bottom-0 right-0">
-            <svg
+            {/* <svg
               width="60"
               height="60"
               viewBox="0 0 60 60"
@@ -401,7 +398,7 @@ export default function Index() {
                 strokeLinecap="round"
                 fill="none"
               />
-            </svg>
+            </svg> */}
           </div>
 
           {/* Bottom-right glow */}
