@@ -331,7 +331,7 @@ function FlowOfInnovation() {
 
   return (
     <div ref={sectionRef} className="relative">
-      <div className="pt-10" style={{ paddingBottom: '120px' }}>
+      <div className="pt-10" style={{ paddingBottom: '20px' }}>
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-center mb-4">
           <span className="text-white">THE FLOW OF </span>
           <span className="text-primary">INNOVATION</span>
@@ -346,10 +346,10 @@ function FlowOfInnovation() {
             <div
               key={index}
               ref={el => { cardsRef.current[index] = el; }}
-              className="absolute bg-[#1A1A1A] border border-white/10 rounded-2xl shadow-lg max-w-6xl w-full mx-4 md:mx-0"
+              className="absolute bg-[#1A1A1A] border border-white/10 rounded-2xl shadow-lg max-w-6xl w-full mx-4 md:mx-0 touch-none md:touch-auto"
               style={{ zIndex: index + 1, transformOrigin: 'top center' }}
             >
-              <div className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-8 p-4 md:p-8 md:pr-0 md:pb-0">
+              <div className="flex flex-col md:flex-row items-start md:items-start justify-start md:justify-between gap-4 md:gap-8 p-4 md:p-8 md:pr-0 md:pb-0">
                 <div className="flex-1 md:pr-8 pb-4 md:pb-8">
                   <h3 className="text-lg md:text-2xl font-semibold text-primary mb-2 md:mb-3 uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                     {card.title}
@@ -703,7 +703,7 @@ export default function Whatwedo() {
 
       <FlowOfInnovation />
           {/* CTA */}
-          <section className="section py-16">
+          <section className="section pb-16" style={{ marginTop: '-80px' }}>
             <div className="relative bg-black border border-white/10 rounded-2xl p-12 md:p-16 overflow-hidden">
               <div className="flex items-center justify-center gap-8">
                 {/* Left image placeholder */}
