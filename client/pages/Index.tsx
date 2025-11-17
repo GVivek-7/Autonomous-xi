@@ -440,11 +440,11 @@ export default function Index() {
         <div className="relative flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
           {/* Left image placeholder */}
           <div className="hidden lg:flex items-center justify-center w-20 h-20 lg:w-24 lg:h-24 flex-shrink-0">
-            <img
+            {/* <img
               src="/number-image-2.png"
               alt="Decoration"
               className="w-full h-full object-contain"
-            />
+            /> */}
           </div>
 
           {/* Stats container */}
@@ -468,11 +468,11 @@ export default function Index() {
 
           {/* Right image placeholder */}
           <div className="hidden lg:flex items-center justify-center w-20 h-20 lg:w-24 lg:h-24 flex-shrink-0">
-            <img
+            {/* <img
               src="/number-image-1.png"
               alt="Decoration"
               className="w-full h-full object-contain"
-            />
+            /> */}
           </div>
         </div>
       </section>
