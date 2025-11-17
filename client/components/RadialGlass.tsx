@@ -34,6 +34,9 @@ function RadialGlassModel() {
   }, [clonedScene]);
   
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) return; // Disable mouse tracking on mobile
+    
     const handleMouseMove = (event: MouseEvent) => {
       const x = (event.clientX / window.innerWidth) * 2 - 0.5;
       const y = -(event.clientY / window.innerHeight) * 2 + 1;
@@ -68,7 +71,7 @@ function Loader() {
 
 export default function RadialGlass() {
   return (
-    <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute inset-0 pointer-events-none z-10 md:z-auto">
       <Canvas 
         camera={{ position: [1, 0, 6], fov: 50 }}
         shadows

@@ -102,8 +102,6 @@ function WhatWeDoCarousel() {
     const updateCardsPerView = () => {
       if (window.innerWidth < 768) {
         setCardsPerView(1); // Mobile: 1 card
-      } else if (window.innerWidth < 1024) {
-        setCardsPerView(2); // Tablet: 2 cards
       } else {
         setCardsPerView(3); // Desktop: 3 cards
       }
@@ -173,13 +171,18 @@ function WhatWeDoCarousel() {
   return (
     <div className="relative">
       {/* Cards Container */}
-      <div className="overflow-hidden px-2 md:px-0">
+      <div className="overflow-hidden w-full">
         <div 
-          className="flex gap-3 md:gap-5 transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${currentIndex * (100 / cardsPerView + (cardsPerView > 1 ? 0 : 0))}%)` }}
+          className="flex transition-transform duration-500 ease-out"
+          style={{ 
+            gap: cardsPerView === 1 ? '0' : '20px',
+            transform: cardsPerView === 1 
+              ? `translateX(-${currentIndex * 100}%)` 
+              : `translateX(-${currentIndex * (100 / cardsPerView + (20 / cardsPerView))}%)`
+          }}
         >
           {cards.map((card, index) => (
-            <div key={index} className="flex-shrink-0 px-1 md:px-0" style={{ width: cardsPerView === 1 ? '100%' : `calc(${100 / cardsPerView}% - ${(cardsPerView - 1) * 20 / cardsPerView}px)` }}>
+            <div key={index} className="flex-shrink-0" style={{ width: cardsPerView === 1 ? '100%' : `calc(${100 / cardsPerView}% - ${20 * (cardsPerView - 1) / cardsPerView}px)` }}>
               <Card
                 title={card.title}
                 desc={card.desc}
@@ -295,7 +298,7 @@ export default function Index() {
       {/* <section className="relative overflow-hidden bg-black w-full" style={{ height: '870px' }}>
         <SplineBackground />
         <RadialGlass />
-        <div className="section pt-24 md:pt-32 pb-16 md:pb-28 h-full flex flex-col gap-6 md:gap-8 relative z-20">
+        <div className="section pt-8 md:pt-32 pb-16 md:pb-28 h-full flex flex-col gap-6 md:gap-8 relative z-20 justify-start md:justify-center">
           <div className="max-w-4xl relative z-20">
             <h1 className="mt-0 text-2xl md:text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
               <span className="block text-white">INTELLIGENCE</span>
@@ -309,33 +312,39 @@ export default function Index() {
           </div> */}
         {/* </div>
       </section> */}
-      <section
-  className="relative overflow-hidden bg-black w-full"
-  style={{ height: "800px" }}
->
-  {/* Background layers */}
-  <SplineBackground />
-  <RadialGlass />
-
-  {/* TEXT BLOCK — placed bottom-left */}
-  <div className="absolute bottom-12 left-10 md:bottom-20 md:left-20 z-20">
-    <h1
-      className="mt-0 text-2xl md:text-5xl font-normal leading-tight uppercase"
-      style={{ fontFamily: "Clash Display, sans-serif" }}
-    >
-      <span className="block text-white">INTELLIGENCE</span>
-      <span className="block text-primary">THAT MOVES THE FUTURE</span>
-    </h1>
-  </div>
-</section>
-
-      
+      {/* HERO */}
+                  <section className="relative overflow-hidden bg-black w-full" style={{ height: '800px' }}>
+                    <SplineBackground />
+                    <RadialGlass />
+                    <div className="absolute inset-0 pointer-events-none -z-10">
+                      <div
+                        className="absolute -top-24 right-0 h-[320px] w-[720px] blur-3xl opacity-0"
+                        style={{
+                          background:
+                            "radial-gradient(closest-side, hsl(var(--primary)/0.55), transparent)",
+                        }}
+                      />
+                    </div>
+                    <div className="section pt-8 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-between gap-6 md:gap-8 relative z-20 md:z-auto">
+                      <div className="max-w-4xl relative">
+                        <h1 className="mt-0 text-2xl md:text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                          <span className="block">INTELLIGENCE THAT BUILDS</span>
+                          <span className="block">
+                            THE<span className="text-primary"> FUTURE</span>
+                          </span>
+                        </h1>
+                      </div>
+                      {/* <div className="flex-shrink-0 mt-4 md:mt-0">
+                        <PlusButton to="/contact" />
+                      </div> */}
+                    </div>
+                  </section>
 
       {/* INTRO */}
       <section className="section py-16 md:py-20">
-        <div className="relative bg-black p-12 md:p-16 lg:p-20 rounded-[20px]">
-          {/* Top-left corner line */}
-          <div className="absolute top-50 left-0">
+        <div className="relative bg-black rounded-[20px] p-6 md:p-16 lg:p-20">
+          {/* Top-left corner accent */}
+          <div className="absolute top-0 left-0">
             <svg
               width="60"
               height="60"
@@ -354,29 +363,29 @@ export default function Index() {
           </div>
 
           {/* Top-left glow */}
-          {/* <div
+          <div
             className="absolute -top-8 -left-8 w-24 h-24 rounded-full blur-2xl opacity-20"
             style={{
               background: "radial-gradient(circle, hsl(var(--primary)), transparent)",
             }}
-          /> */}
+          />
 
-          {/* Center radial glow behind text
+          {/* Center radial glow behind text */}
           <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full blur-3xl opacity-15"
             style={{
               background: "radial-gradient(ellipse, hsl(var(--primary)), transparent 70%)",
             }}
-          /> */}
+          />
 
           {/* Content */}
-          <p className="text-xs md:text-[30px] text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-[30px] text-left md:text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
             At <span className="text-primary font-semibold">Autonomous AI</span>, we build systems that think, learn, and evolve. From predictive
             analytics to generative intelligence, we empower <span className="text-primary font-semibold">UAE businesses</span> to automate,
             innovate, and scale with precision.
           </p>
 
-          {/* Bottom-right corner line */}
+          {/* Bottom-right corner accent */}
           <div className="absolute bottom-0 right-0">
             <svg
               width="60"
@@ -395,13 +404,14 @@ export default function Index() {
             </svg>
           </div>
 
-          {/* Bottom-right glow
+          {/* Bottom-right glow */}
           <div
             className="absolute -bottom-8 -right-8 w-24 h-24 rounded-full blur-2xl opacity-20"
             style={{
               background: "radial-gradient(circle, hsl(var(--primary)), transparent)",
             }}
-          />*/}        </div>
+          />
+        </div>
       </section>
 
       {/* WHAT WE DO */}
@@ -425,7 +435,7 @@ export default function Index() {
       {/* NUMBERS */}
       <section className="section py-16 md:py-20 relative">
         <h3 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide uppercase mb-12 md:mb-16">
-          <span className="text-primary">NUMBERS</span> <span className="text-white">THAT SPEAK</span>
+          <span className="text-primary font-bold">NUMBERS</span> <span className="text-white">THAT SPEAK</span>
         </h3>
         <div className="relative flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
           {/* Left image placeholder */}

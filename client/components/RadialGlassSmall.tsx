@@ -33,6 +33,9 @@ function RadialGlassModel() {
   }, [clonedScene]);
   
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) return; // Disable mouse tracking on mobile
+    
     const handleMouseMove = (event: MouseEvent) => {
       const x = (event.clientX / window.innerWidth) * 2 - 0.5;
       const y = -(event.clientY / window.innerHeight) * 2 + 1;

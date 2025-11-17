@@ -132,8 +132,8 @@ export default function Solutions() {
                   }}
                 />
               </div>
-              <div className="section pt-14 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
-                <div className="max-w-4xl relative z-20">
+              <div className="section pt-8 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-between gap-6 md:gap-8 relative z-20 md:z-auto">
+                <div className="max-w-4xl relative">
                   <h1 className="mt-0 text-2xl md:text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                     <span className="block">AUTONOMOUS BY NATURE</span>
                     <span className="block">

@@ -50,8 +50,6 @@ function WhatWeDoCarousel() {
     const updateCardsPerView = () => {
       if (window.innerWidth < 768) {
         setCardsPerView(1); // Mobile: 1 card
-      } else if (window.innerWidth < 1024) {
-        setCardsPerView(2); // Tablet: 2 cards
       } else {
         setCardsPerView(3); // Desktop: 3 cards
       }
@@ -124,15 +122,16 @@ function WhatWeDoCarousel() {
       {/* Cards Container */}
       <div className="overflow-hidden w-full">
         <div 
-          className="flex gap-0 md:gap-5 transition-transform duration-500 ease-out"
+          className="flex transition-transform duration-500 ease-out"
           style={{ 
+            gap: cardsPerView === 1 ? '0' : '20px',
             transform: cardsPerView === 1 
               ? `translateX(-${currentIndex * 100}%)` 
-              : `translateX(-${currentIndex * (100 / cardsPerView)}%)`
+              : `translateX(-${currentIndex * (100 / cardsPerView + (20 / cardsPerView))}%)`
           }}
         >
           {cards.map((card, index) => (
-            <div key={index} className="flex-shrink-0 w-full md:w-auto" style={{ width: cardsPerView === 1 ? '100%' : `calc(${100 / cardsPerView}% - ${(cardsPerView - 1) * 20 / cardsPerView}px)` }}>
+            <div key={index} className="flex-shrink-0" style={{ width: cardsPerView === 1 ? '100%' : `calc(${100 / cardsPerView}% - ${20 * (cardsPerView - 1) / cardsPerView}px)` }}>
               <MouseGradientCard className="h-full">
                 <Card
                   title={card.title}
@@ -400,8 +399,8 @@ export default function Whatwedo() {
                   }}
                 />
               </div>
-              <div className="section pt-14 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
-                <div className="max-w-4xl relative z-20">
+              <div className="section pt-8 md:pt-24 pb-16 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-between gap-6 md:gap-8 relative z-20 md:z-auto">
+                <div className="max-w-4xl relative">
                   <h1 className="mt-0 text-2xl md:text-5xl font-normal leading-tight uppercase" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                     <span className="block">EMPOWERING THE FUTURE</span>
                     <span className="block">
@@ -416,7 +415,7 @@ export default function Whatwedo() {
             </section>
       {/* INTRO */}
       <section className="section py-16 md:py-20">
-        <div className="relative bg-black rounded-[20px] p-12 md:p-16 lg:p-20">
+        <div className="relative bg-black rounded-[20px] p-6 md:p-16 lg:p-20">
           {/* Top-left corner accent */}
           <div className="absolute top-0 left-0">
             <svg
@@ -453,7 +452,7 @@ export default function Whatwedo() {
           />
 
           {/* Content */}
-          <p className="text-xs md:text-[30px] text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-[30px] text-left md:text-center text-white/80 relative z-10 max-w-4xl mx-auto leading-relaxed">
             At <span className="text-primary font-semibold">Autonomous AI</span>, we build systems that think, learn, and evolve. From predictive
             analytics to generative intelligence, we empower <span className="text-primary font-semibold">UAE businesses</span> to automate,
             innovate, and scale with precision.
