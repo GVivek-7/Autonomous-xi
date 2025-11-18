@@ -692,11 +692,11 @@ export default function Index() {
           </div>
           
           {/* Mobile Image Only */}
-          <div className="md:hidden mt-2 w-full max-w-full flex items-center justify-center px-4">
+          <div className="md:hidden mt-2 w-full flex items-center justify-center px-2">
             <img 
               src="/Radial-Glass-Mobile.png" 
               alt="3D Radial Glass" 
-              className="w-full max-w-[400px] h-auto max-h-[400px] object-contain mx-auto"
+              className="w-full max-w-[500px] h-auto max-h-[500px] object-contain"
             />
           </div>
         </div>
