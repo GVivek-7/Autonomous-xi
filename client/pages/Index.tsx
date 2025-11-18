@@ -665,7 +665,16 @@ export default function Index() {
             className="w-full h-auto max-h-[500px] md:max-h-[600px] lg:max-h-[700px] object-contain"
           />
         </div>
-        <div className="section pt-6 md:pt-16 lg:pt-24 pb-0 md:pb-20 lg:pb-28 h-full flex flex-col md:flex-row items-start md:items-center lg:items-end justify-start md:justify-between gap-0 md:gap-8 relative z-20">
+        
+        {/* 3D Model Image for Mobile - Bottom Center */}
+        <div className="md:hidden absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[300px] z-10 pointer-events-none flex items-end justify-center">
+          <img 
+            src="/radial-glass-mobile.png" 
+            alt="3D Radial Glass" 
+            className="w-auto h-full object-contain"
+          />
+        </div>
+        <div className="section pt-6 md:pt-24 pb-0 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-between gap-0 md:gap-8 relative z-20">
           <div className="max-w-2xl relative z-20">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight uppercase mb-6 text-left">
               <span className="text-primary block sm:inline">AI-POWERED</span>{" "}
@@ -690,15 +699,6 @@ export default function Index() {
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black text-xl font-light">+</span>
             </Link>
           </div>
-        </div>
-        
-        {/* 3D Model Image for Mobile - Bottom Center */}
-        <div className="md:hidden absolute bottom-0 left-1/4 -translate-x-1/2 w-full h-[300px] z-10 pointer-events-none flex items-end justify-center">
-          <img 
-            src="/radial-glass-mobile.png" 
-            alt="3D Radial Glass" 
-            className="w-auto h-full object-contain"
-          />
         </div>
       </section>
 
