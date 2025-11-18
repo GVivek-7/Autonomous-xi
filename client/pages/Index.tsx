@@ -665,7 +665,7 @@ export default function Index() {
             className="h-full w-auto object-contain"
           />
         </div>
-        <div className="section pt-6 md:pt-24 pb-0 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-between gap-0 md:gap-8 relative z-20">
+        <div className="section pt-6 md:pt-16 lg:pt-24 pb-0 md:pb-20 lg:pb-28 h-full flex flex-col md:flex-row items-start md:items-center lg:items-end justify-start md:justify-between gap-0 md:gap-8 relative z-20">
           <div className="max-w-2xl relative z-20">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight uppercase mb-6 text-left">
               <span className="text-primary block sm:inline">AI-POWERED</span>{" "}
