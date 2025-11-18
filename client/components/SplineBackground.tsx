@@ -32,7 +32,7 @@ export default function SplineBackground() {
       <div className="absolute inset-0 pointer-events-none">
         {/* Center glow - larger and brighter */}
         <div
-          className="absolute top-1/2 left-1/2 w-[1000px] h-[1000px] rounded-full blur-3xl opacity-50 transition-transform duration-200 ease-out"
+          className="absolute top-1/2 left-1/2 w-[1000px] h-[1000px] rounded-full blur-3xl opacity-50 transition-transform duration-300 ease-out"
           style={{
             background: "radial-gradient(circle, hsl(var(--primary)/0.8), transparent 70%)",
             transform: `translate(-50%, -50%) translate(${parallaxX * 0.6}px, ${parallaxY * 0.6}px)`,
@@ -40,7 +40,7 @@ export default function SplineBackground() {
         />
         {/* Secondary glow - brighter */}
         <div
-          className="absolute top-1/3 left-1/3 w-[700px] h-[700px] rounded-full blur-3xl opacity-35 transition-transform duration-200 ease-out"
+          className="absolute top-1/3 left-1/3 w-[700px] h-[700px] rounded-full blur-3xl opacity-35 transition-transform duration-500 ease-out"
           style={{
             background: "radial-gradient(circle, rgba(255, 107, 0, 0.6), transparent 60%)",
             transform: `translate(${parallaxX * 0.4}px, ${parallaxY * 0.4}px)`,
@@ -48,7 +48,7 @@ export default function SplineBackground() {
         />
         {/* Additional accent glow */}
         <div
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-3xl opacity-25 transition-transform duration-200 ease-out"
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-3xl opacity-25 transition-transform duration-700 ease-out"
           style={{
             background: "radial-gradient(circle, rgba(255, 150, 50, 0.5), transparent 60%)",
             transform: `translate(${parallaxX * 0.5}px, ${parallaxY * 0.5}px)`,
