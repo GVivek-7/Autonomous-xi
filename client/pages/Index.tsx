@@ -688,8 +688,8 @@ export default function Index() {
           </div>
         </div>
         
-        {/* 3D Model Image for Mobile - Center */}
-        <div className="md:hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[300px] z-10 pointer-events-none flex items-center justify-center">
+        {/* 3D Model Image for Mobile - Center Left */}
+        <div className="md:hidden absolute top-[60%] left-[35%] -translate-x-1/2 -translate-y-1/2 w-full h-[300px] z-10 pointer-events-none flex items-center justify-center">
           <img 
             src="/radial-glass-mobile.png" 
             alt="3D Radial Glass" 
