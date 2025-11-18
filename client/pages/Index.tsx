@@ -531,8 +531,8 @@ export default function Index() {
           </h2>
         </div>
         <div className="grid md:grid-cols-2 gap-5">
-          {/* SAIM.AI */}
-          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10 flex flex-col justify-between min-h-[320px]">
+          {/* SAIM.AI - Desktop/Tablet: Text first */}
+          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10 flex flex-col justify-between min-h-[320px] order-1 md:order-1">
             <div className="space-y-6">
               <h3 className="text-3xl md:text-4xl font-normal">
                 <span className="text-primary">SAIM.AI</span>
@@ -549,7 +549,7 @@ export default function Index() {
           </MouseGradientCard>
 
           {/* SAIM.AI Image */}
-          <div className="bg-[#1A1A1A] border border-white/10 rounded-xl overflow-hidden min-h-[280px]">
+          <div className="bg-[#1A1A1A] border border-white/10 rounded-xl overflow-hidden min-h-[280px] order-2 md:order-2">
             <img
               src="/spotlight-image-1.png"
               alt="SAIM.AI"
@@ -557,17 +557,8 @@ export default function Index() {
             />
           </div>
 
-          {/* GOGUARD.AI Image */}
-          <div className="bg-[#1A1A1A] border border-white/10 rounded-xl overflow-hidden min-h-[280px]">
-            <img
-              src="/spotlight-image-2.png"
-              alt="GOGUARD.AI"
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          {/* GOGUARD.AI */}
-          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10 flex flex-col justify-between min-h-[320px]">
+          {/* GOGUARD.AI - Mobile: Text first, Desktop: Image first */}
+          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10 flex flex-col justify-between min-h-[320px] order-3 md:order-4">
             <div className="space-y-6">
               <h3 className="text-3xl md:text-4xl font-normal">
                 <span className="text-primary">GOGUARD.AI</span>
@@ -583,8 +574,17 @@ export default function Index() {
             </p>
           </MouseGradientCard>
 
-          {/* RAQEEB.AI */}
-          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10 flex flex-col justify-between min-h-[320px]">
+          {/* GOGUARD.AI Image */}
+          <div className="bg-[#1A1A1A] border border-white/10 rounded-xl overflow-hidden min-h-[280px] order-4 md:order-3">
+            <img
+              src="/spotlight-image-2.png"
+              alt="GOGUARD.AI"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* RAQEEB.AI - Desktop/Tablet: Text first */}
+          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10 flex flex-col justify-between min-h-[320px] order-5 md:order-5">
             <div className="space-y-6">
               <h3 className="text-3xl md:text-4xl font-normal">
                 <span className="text-primary">RAQEEB.AI</span>
@@ -601,7 +601,7 @@ export default function Index() {
           </MouseGradientCard>
 
           {/* RAQEEB.AI Image */}
-          <div className="bg-[#1A1A1A] border border-white/10 rounded-xl overflow-hidden min-h-[280px]">
+          <div className="bg-[#1A1A1A] border border-white/10 rounded-xl overflow-hidden min-h-[280px] order-6 md:order-6">
             <img
               src="/spotlight-image-3.png"
               alt="RAQEEB.AI"
@@ -609,17 +609,8 @@ export default function Index() {
             />
           </div>
 
-          {/* ADNOC Image */}
-          <div className="bg-[#1A1A1A] border border-white/10 rounded-xl overflow-hidden min-h-[280px]">
-            <img
-              src="/Spotlight-image-4.png"
-              alt="ADNOC AI Initiative"
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          {/* ADNOC AI INITIATIVE */}
-          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10 flex flex-col justify-between min-h-[320px]">
+          {/* ADNOC AI INITIATIVE - Mobile: Text first, Desktop: Image first */}
+          <MouseGradientCard className="bg-[#1A1A1A] border border-white/10 rounded-xl p-10 flex flex-col justify-between min-h-[320px] order-7 md:order-8">
             <div className="space-y-6">
               <h3 className="text-3xl md:text-4xl font-normal">
                 <span className="text-primary">ADNOC AI INITIATIVE</span>
@@ -634,6 +625,15 @@ export default function Index() {
               Management In Real-Time.
             </p>
           </MouseGradientCard>
+
+          {/* ADNOC Image */}
+          <div className="bg-[#1A1A1A] border border-white/10 rounded-xl overflow-hidden min-h-[280px] order-8 md:order-7">
+            <img
+              src="/Spotlight-image-4.png"
+              alt="ADNOC AI Initiative"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
 
         {/* Discover More Button */}
