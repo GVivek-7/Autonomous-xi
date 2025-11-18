@@ -658,11 +658,11 @@ export default function Index() {
         }} />
         
         {/* 3D Model Image for Desktop & Tablet - Right */}
-        <div className="hidden md:flex absolute right-0 md:top-1/2 md:-translate-y-1/2 lg:bottom-0 lg:translate-y-0 w-[55%] md:w-[50%] lg:w-[55%] h-auto max-h-[70%] z-0 pointer-events-none items-center md:items-center lg:items-end justify-end pr-4 md:pr-6 lg:pr-8">
+        <div className="hidden md:flex absolute right-4 md:right-8 lg:right-12 md:top-1/2 md:-translate-y-1/2 lg:bottom-0 lg:translate-y-0 w-[50%] md:w-[45%] lg:w-[48%] h-auto max-h-[70%] z-0 pointer-events-none items-center md:items-center lg:items-end justify-end">
           <img 
             src="/radial-glass-model.png" 
             alt="3D Model" 
-            className="w-full h-auto max-h-full object-contain object-right"
+            className="w-full h-auto max-h-full object-contain"
           />
         </div>
         <div className="section pt-6 md:pt-16 lg:pt-24 pb-0 md:pb-20 lg:pb-28 h-full flex flex-col md:flex-row items-start md:items-center lg:items-end justify-start md:justify-between gap-0 md:gap-8 relative z-20">
