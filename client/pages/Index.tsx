@@ -693,7 +693,7 @@ export default function Index() {
         </div>
         
         {/* 3D Model Image for Mobile - Bottom Center */}
-        <div className="md:hidden absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[300px] z-10 pointer-events-none flex items-end justify-center">
+        <div className="md:hidden absolute bottom-0 left-1/4 -translate-x-1/2 w-full h-[300px] z-10 pointer-events-none flex items-end justify-center">
           <img 
             src="/radial-glass-mobile.png" 
             alt="3D Radial Glass" 
