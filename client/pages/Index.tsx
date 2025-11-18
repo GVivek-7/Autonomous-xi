@@ -691,6 +691,11 @@ export default function Index() {
             </Link>
           </div>
         </div>
+        
+        {/* 3D Model for Mobile - Bottom */}
+        <div className="md:hidden absolute bottom-0 left-0 right-0 w-full h-[200px] z-10 pointer-events-none">
+          <RadialGlassSmall />
+        </div>
       </section>
 
       {/* CTA */}
