@@ -657,21 +657,12 @@ export default function Index() {
           background: 'radial-gradient(ellipse 110% 100% at 0% 30%, #ff4400 0%, #d63a00 8%, #a82f00 15%, #7a2200 22%, #4a1a0a 30%, #2a0f05 40%, #000000 55%), linear-gradient(to bottom, transparent 0%, transparent 70%, rgba(0,0,0,0.5) 85%, #000000 100%)'
         }} />
         
-        {/* 3D Model Image for Desktop & Tablet - Right */}
-        <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 right-0 w-[45%] md:w-[42%] lg:w-[45%] h-auto z-0 pointer-events-none items-center justify-end pr-6 md:pr-8 lg:pr-12">
+        {/* 3D Model Image on Right */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[70%] h-[120%] z-0 pointer-events-none flex items-center justify-end">
           <img 
             src="/radial-glass-model.png" 
             alt="3D Model" 
-            className="w-full h-auto max-h-[500px] md:max-h-[600px] lg:max-h-[700px] object-contain"
-          />
-        </div>
-        
-        {/* 3D Model Image for Mobile - Bottom Center */}
-        <div className="md:hidden absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[300px] z-10 pointer-events-none flex items-end justify-center">
-          <img 
-            src="/radial-glass-mobile.png" 
-            alt="3D Radial Glass" 
-            className="w-auto h-full object-contain"
+            className="h-full w-auto object-contain"
           />
         </div>
         <div className="section pt-6 md:pt-24 pb-0 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-between gap-0 md:gap-8 relative z-20">
@@ -698,6 +689,15 @@ export default function Index() {
               </span>
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black text-xl font-light">+</span>
             </Link>
+          </div>
+          
+          {/* Mobile Image Only */}
+          <div className="md:hidden mt-8 w-full flex items-center justify-center">
+            <img 
+              src="/radial-glass-mobile.png" 
+              alt="3D Radial Glass" 
+              className="w-auto h-[250px] object-contain"
+            />
           </div>
         </div>
       </section>
