@@ -667,11 +667,11 @@ export default function Index() {
         </div>
         <div className="section pt-6 md:pt-24 pb-0 md:pb-28 h-full flex flex-col md:flex-row items-start md:items-end justify-start md:justify-between gap-0 md:gap-8 relative z-20">
           <div className="max-w-2xl relative z-20">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight uppercase mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight uppercase mb-6 text-left">
               <span className="text-primary">AI-POWERED</span>{" "}
               <span className="text-white">SOLUTIONS FOR</span>
-              <br />
-              <span className="text-white">TARGETED LEAD ACQUISITION</span>
+              <br className="hidden md:block" />
+              <span className="text-white block md:inline">TARGETED LEAD ACQUISITION</span>
             </h2>
             
             <p className="text-xs md:text-base text-white/70 leading-relaxed max-w-xl mb-6">
