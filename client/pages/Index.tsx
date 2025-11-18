@@ -657,8 +657,8 @@ export default function Index() {
           background: 'radial-gradient(ellipse 110% 100% at 0% 30%, #ff4400 0%, #d63a00 8%, #a82f00 15%, #7a2200 22%, #4a1a0a 30%, #2a0f05 40%, #000000 55%), linear-gradient(to bottom, transparent 0%, transparent 70%, rgba(0,0,0,0.5) 85%, #000000 100%)'
         }} />
         
-        {/* 3D Model Image on Right */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[70%] h-[120%] z-0 pointer-events-none flex items-center justify-end">
+        {/* 3D Model Image on Right - Desktop & Tablet Only */}
+        <div className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 w-[70%] h-[120%] z-0 pointer-events-none items-center justify-end">
           <img 
             src="/radial-glass-model.png" 
             alt="3D Model" 
@@ -696,7 +696,7 @@ export default function Index() {
             <img 
               src="/radial-glass-mobile.png" 
               alt="3D Radial Glass" 
-              className="w-auto h-[250px] object-contain"
+              className="w-auto h-[250px] object-contain mx-auto"
             />
           </div>
         </div>
