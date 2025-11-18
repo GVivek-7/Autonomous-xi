@@ -696,7 +696,7 @@ export default function Index() {
             <img 
               src="/Radial-Glass-Mobile.png" 
               alt="3D Radial Glass" 
-              className="w-full max-w-[500px] h-auto max-h-[500px] object-contain scale-125"
+              className="w-full max-w-[500px] h-auto max-h-[500px] object-contain scale-[1.4]"
             />
           </div>
         </div>
