@@ -658,7 +658,7 @@ export default function Index() {
         }} />
         
         {/* 3D Model Image on Right */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[70%] h-[120%] z-0 pointer-events-none flex items-center justify-end">
+        <div className="absolute right-0 top-[60%] md:top-1/2 -translate-y-1/2 w-[70%] h-[120%] z-0 pointer-events-none flex items-center justify-end">
           <img 
             src="/radial-glass-model.png" 
             alt="3D Model" 
