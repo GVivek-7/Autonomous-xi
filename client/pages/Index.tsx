@@ -696,7 +696,7 @@ export default function Index() {
             <img 
               src="/radial-glass-mobile.png" 
               alt="3D Radial Glass" 
-              className="w-auto h-[250px] object-contain mx-auto"
+              className="w-auto h-[350px] object-contain mx-auto"
             />
           </div>
         </div>
