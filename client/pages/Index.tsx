@@ -658,7 +658,7 @@ export default function Index() {
         }} />
         
         {/* 3D Model Image for Desktop & Tablet - Right Bottom */}
-        <div className="hidden md:flex absolute right-0 bottom-0 md:bottom-12 lg:bottom-0 w-[60%] h-[70%] z-0 pointer-events-none items-end justify-end">
+        <div className="hidden md:flex absolute right-0 bottom-0 w-[60%] h-[70%] z-0 pointer-events-none items-end justify-end">
           <img 
             src="/radial-glass-model.png" 
             alt="3D Model" 
@@ -692,8 +692,8 @@ export default function Index() {
           </div>
         </div>
         
-        {/* 3D Model Image for Mobile - Center */}
-        <div className="md:hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[350px] z-10 pointer-events-none flex items-center justify-center">
+        {/* 3D Model Image for Mobile - Bottom Center */}
+        <div className="md:hidden absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[300px] z-10 pointer-events-none flex items-end justify-center">
           <img 
             src="/radial-glass-mobile.png" 
             alt="3D Radial Glass" 
