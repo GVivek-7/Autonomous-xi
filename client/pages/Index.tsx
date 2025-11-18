@@ -659,11 +659,7 @@ export default function Index() {
         
         {/* 3D Model Image on Right */}
         <div className="absolute right-0 bottom-0 w-[70%] md:w-[60%] h-[50%] md:h-[60%] lg:h-[70%] z-0 pointer-events-none flex items-end justify-end">
-          <img 
-            src="/radial-glass-model.png" 
-            alt="3D Model" 
-            className="w-full h-full object-contain object-bottom"
-          />
+          
         </div>
         <div className="section pt-6 md:pt-16 lg:pt-24 pb-0 md:pb-20 lg:pb-28 h-full flex flex-col md:flex-row items-start md:items-center lg:items-end justify-start md:justify-between gap-0 md:gap-8 relative z-20">
           <div className="max-w-2xl relative z-20">
@@ -692,8 +688,8 @@ export default function Index() {
           </div>
         </div>
         
-        {/* 3D Model Image for Mobile - Bottom */}
-        <div className="md:hidden absolute bottom-0 left-0 right-0 w-full h-[250px] z-10 pointer-events-none flex items-end justify-center">
+        {/* 3D Model Image for Mobile - Center */}
+        <div className="md:hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[300px] z-10 pointer-events-none flex items-center justify-center">
           <img 
             src="/radial-glass-mobile.png" 
             alt="3D Radial Glass" 
