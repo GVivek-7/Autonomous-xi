@@ -392,7 +392,7 @@ export default function Whatwedo() {
   return (
     <Layout>
        {/* HERO */}
-            <section className="relative overflow-hidden bg-black w-full h-[500px] md:h-[800px]">
+            <section className="relative overflow-hidden bg-black w-full h-[600px] md:h-[800px]">
               <SplineBackground />
               <RadialGlass />
               <div className="absolute inset-0 pointer-events-none -z-10">
