@@ -1,6 +1,6 @@
 # EmailJS Setup Instructions
 
-This guide will help you configure EmailJS to send contact form submissions to info@autonomous.ae.
+This guide will help you configure EmailJS to send contact form submissions to info@autonomousai.ae.
 
 ## Step 1: Create an EmailJS Account
 
@@ -21,13 +21,14 @@ This guide will help you configure EmailJS to send contact form submissions to i
 1. Go to **Email Templates** in the dashboard
 2. Click **Create New Template**
 3. Set up your template with the following variables:
-   - `{{to_email}}` - Recipient email (info@autonomous.ae)
+   - `{{to_email}}` - Recipient email (info@autonomousai.ae)
    - `{{from_name}}` - Sender's full name
    - `{{from_email}}` - Sender's email
    - `{{phone}}` - Sender's phone number
    - `{{company}}` - Sender's company name
    - `{{service}}` - Service interested in
    - `{{message}}` - Message content
+   - `{{attachment_name}}` - Name of attached file (if any)
 
 ### Example Template:
 
@@ -42,6 +43,7 @@ Email: {{from_email}}
 Phone: {{phone}}
 Company: {{company}}
 Service Interested In: {{service}}
+Attachment: {{attachment_name}}
 
 Message:
 {{message}}
@@ -76,7 +78,7 @@ VITE_EMAILJS_PUBLIC_KEY=your_public_key_here
 1. Restart your development server: `npm run dev`
 2. Navigate to the Contact page
 3. Fill out and submit the form
-4. Check info@autonomous.ae for the email
+4. Check info@autonomousai.ae for the email
 
 ## Important Notes
 
@@ -88,7 +90,7 @@ VITE_EMAILJS_PUBLIC_KEY=your_public_key_here
 ## Troubleshooting
 
 - **"EmailJS configuration is missing"**: Check that your `.env` file exists and has the correct variable names
-- **Email not received**: Verify your EmailJS service is connected and template is configured correctly
+- **Email not received**: Verify your EmailJS service is connected and template is configured correctly. Also check info@autonomousai.ae spam folder
 - **CORS errors**: Make sure you're using the correct public key from EmailJS dashboard
 
 ## Support

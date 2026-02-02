@@ -13,6 +13,9 @@ export default function Contact() {
     agreeToPolicy: false,
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   const services = [
     "AI-Enabled Software Services",
     "AI Infrastructure & Data Services",
@@ -27,9 +30,95 @@ export default function Contact() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // You can add API call here
+    
+    // Get Google Apps Script URL from environment variables
+    const gasUrl = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL;
+
+    if (!gasUrl) {
+      console.error('Google Apps Script URL is missing. Please check your .env file.');
+      console.error('Expected: VITE_GOOGLE_APPS_SCRIPT_URL in .env file');
+      setSubmitStatus('error');
+      return;
+    }
+
+    console.log('Starting form submission...');
+    console.log('Google Apps Script URL:', gasUrl);
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      // Prepare data for Google Apps Script
+      const formPayload = {
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone || '',
+        company: formData.company || '',
+        service: formData.service || '',
+        message: formData.message,
+        attachment: formData.attachment ? {
+          name: formData.attachment.name,
+          size: formData.attachment.size
+        } : null
+      };
+
+      console.log('Form payload:', formPayload);
+
+      // Send data to Google Apps Script
+      console.log('Sending request to Google Apps Script...');
+      const response = await fetch(gasUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formPayload)
+      });
+
+      console.log('Response received. Status:', response.status);
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
+      // Check if response is ok
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      
+      // Log detailed response for debugging
+      console.log('Google Apps Script response:', result);
+
+      if (result.success) {
+        console.log('✅ Email sent successfully via Google Apps Script!');
+        setSubmitStatus('success');
+        
+        // Reset form after successful submission
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          company: "",
+          service: "",
+          message: "",
+          attachment: null,
+          agreeToPolicy: false,
+        });
+      } else {
+        console.error('❌ Google Apps Script returned error:', result.error);
+        throw new Error(result.error || 'Failed to send email');
+      }
+
+    } catch (error) {
+      console.error('❌ Failed to send email:', error);
+      console.error('Error details:', {
+        name: error.name,
+        message: error.message,
+        stack: error.stack
+      });
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+      console.log('Form submission completed');
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -263,14 +352,43 @@ export default function Contact() {
               </label>
             </div>
 
+            {/* Status Messages */}
+            {submitStatus === 'success' && (
+              <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-4 text-green-400 text-center">
+                <p className="text-sm">✓ Message sent successfully! We'll get back to you within 24 hours.</p>
+              </div>
+            )}
+            
+            {submitStatus === 'error' && (
+              <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-4 text-red-400 text-center">
+                <p className="text-sm">✗ Failed to send message. Please try again or contact us directly at info@autonomousai.ae</p>
+                <p className="text-xs mt-2 opacity-75">Check the browser console for more details</p>
+              </div>
+            )}
+
             {/* Submit Button */}
             <div className="flex justify-center md:justify-end pt-4">
               <button
                 type="submit"
-                className="bg-transparent border border-white/30 rounded-lg px-12 py-4 text-white text-sm tracking-[0.2em] uppercase hover:border-primary/50 hover:bg-white/5 transition-all duration-300"
+                disabled={isSubmitting || !formData.agreeToPolicy}
+                className={`border rounded-lg px-12 py-4 text-sm tracking-[0.2em] uppercase transition-all duration-300 ${
+                  isSubmitting || !formData.agreeToPolicy
+                    ? 'bg-gray-800 border-gray-600 text-gray-500 cursor-not-allowed'
+                    : 'bg-transparent border-white/30 text-white hover:border-primary/50 hover:bg-white/5'
+                }`}
               >
-                SEND MESSAGE
+                {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
               </button>
+              
+              {/* Helper text when button is disabled */}
+              {!formData.agreeToPolicy && !isSubmitting && (
+                <div className="ml-4 flex items-center text-white/40 text-xs">
+                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Please agree to the privacy policy
+                </div>
+              )}
             </div>
           </form>
         </div>
